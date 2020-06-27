@@ -1,2 +1,2 @@
 rootProject.name = "Atlas"
-include ':android'
+include(":android")
