@@ -1,0 +1,8 @@
+{
+  "name": "Atlas",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "cuHacking",
+  "license": "MIT",
+  "private": true
+}
