@@ -1,2 +1,2 @@
 rootProject.name = "Atlas"
-include(":android", ":common")
+include(":android", ":common", ":mapbox")
