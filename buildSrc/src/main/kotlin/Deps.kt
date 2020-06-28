@@ -19,6 +19,8 @@ object deps {
 
     object kotlin {
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
+        const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib-common:${Versions.kotlin}"
+        const val xcode = "org.jetbrains.kotlin.native.xcode:kotlin-native-xcode-11-4-workaround:1.3.72.0"
     }
 
     const val material = "com.google.android.material:material:1.1.0"
