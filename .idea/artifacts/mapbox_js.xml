@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="mapbox-js">
-    <output-path>C:\Users\Derek\StudioProjects\Atlas\mapbox\build\libs</output-path>
+    <output-path>$PROJECT_DIR$/mapbox/build/libs</output-path>
     <root id="archive" name="mapbox-js.jar" />
   </artifact>
 </component>

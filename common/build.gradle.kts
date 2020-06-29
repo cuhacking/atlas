@@ -50,16 +50,7 @@ kotlin {
     iOSTarget("ios") {
         binaries {
             framework {
-                baseName = "Shared"
-            }
-        }
-        compilations.getByName("main") {
-            cinterops.create("Mapbox") {
-                defFile(project.file("src/iosMain/defs/Mapbox.def"))
-
-                val frameworks = listOf(project.file("../ios/Pods/Mapbox-iOS-SDK/dynamic"))
-                val frameworkOpts = frameworks.map { "-F${it.path}" }
-                compilerOpts(*frameworkOpts.toTypedArray())
+                baseName = "Common"
             }
         }
     }
