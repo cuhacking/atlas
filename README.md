@@ -14,9 +14,12 @@ For development on the web client, the latest version of Node 12 needs to be ins
 
 ### Building
 
-* **Android**: Open project folder in Android Studio and execute the  `android` run configuration.
-* **iOS**: Open the `.xcworkspace` file in XCode or AppCode and run.
-* **Web**: Run `yarn start` in the `web` directory.
+- **Android**: Open project folder in Android Studio and execute the `android` run configuration.
+- **iOS**: Open the `.xcworkspace` file in XCode or AppCode and run.
+- **Web**:
+  - Run `./gradlew :common:jsBrowserDevelopmentWebpack` in the root directory
+  - Run `yarn install` in the `web` directory
+  - Then run `yarn start` in the `web` directory
 
 ## Project Structure
 
