@@ -1,0 +1,7 @@
+CREATE TABLE buildings (
+  building_name TEXT NOT NULL,
+  room_count INTEGER NOT NULL
+);
+
+INSERT INTO buildings (building_name, room_count)
+VALUES ('Robertson Hall', 123);

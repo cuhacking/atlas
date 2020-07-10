@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
+    id("com.squareup.sqldelight")
 }
 
 repositories {
@@ -68,10 +69,12 @@ kotlin {
 
     sourceSets["androidMain"].dependencies {
         implementation(deps.kotlin.stdlib)
+        implementation("com.squareup.sqldelight:android-driver:1.4.0")
     }
 
     sourceSets["iosMain"].dependencies {
         implementation(deps.kotlin.xcode)
+        implementation("com.squareup.sqldelight:native-driver:1.4.0")
     }
 }
 
@@ -105,3 +108,9 @@ val packForXCode by tasks.creating(Sync::class) {
 }
 
 tasks.getByName("build").dependsOn(packForXCode)
+
+sqldelight {
+    database("exampleDB") { // This will be the name of the generated database class.
+        packageName = "com.cuhacking.atlas.db"
+    }
+}

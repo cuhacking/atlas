@@ -4,6 +4,7 @@ object deps {
     object plugins {
         const val android = "com.android.tools.build:gradle:4.2.0-alpha03"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
+        const val sqldelight = "com.squareup.sqldelight:gradle-plugin:1.4.0"
     }
 
     object androidx {
