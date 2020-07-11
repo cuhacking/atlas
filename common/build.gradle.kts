@@ -69,12 +69,12 @@ kotlin {
 
     sourceSets["androidMain"].dependencies {
         implementation(deps.kotlin.stdlib)
-        implementation("com.squareup.sqldelight:android-driver:1.4.0")
+        implementation(deps.sqldelight.androidDriver)
     }
 
     sourceSets["iosMain"].dependencies {
         implementation(deps.kotlin.xcode)
-        implementation("com.squareup.sqldelight:native-driver:1.4.0")
+        implementation(deps.sqldelight.nativeDriver)
     }
 }
 
