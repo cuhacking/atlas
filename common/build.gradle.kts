@@ -65,6 +65,7 @@ kotlin {
 
     sourceSets["commonMain"].dependencies {
         implementation(deps.kotlin.stdlibCommon)
+        implementation(deps.sqldelight.runtime)
     }
 
     sourceSets["androidMain"].dependencies {
@@ -75,6 +76,10 @@ kotlin {
     sourceSets["iosMain"].dependencies {
         implementation(deps.kotlin.xcode)
         implementation(deps.sqldelight.nativeDriver)
+    }
+
+    sourceSets["jsMain"].dependencies {
+        implementation(deps.sqldelight.javascriptDriver)
     }
 }
 
