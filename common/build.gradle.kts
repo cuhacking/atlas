@@ -115,7 +115,7 @@ val packForXCode by tasks.creating(Sync::class) {
 tasks.getByName("build").dependsOn(packForXCode)
 
 sqldelight {
-    database("exampleDB") { // This will be the name of the generated database class.
+    database("Database") {
         packageName = "com.cuhacking.atlas.db"
     }
 }
