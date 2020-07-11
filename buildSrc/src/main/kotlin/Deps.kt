@@ -4,7 +4,7 @@ object deps {
     object plugins {
         const val android = "com.android.tools.build:gradle:4.2.0-alpha04"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
-        const val sqldelight = "com.squareup.sqldelight:gradle-plugin:1.4.0"
+        const val sqldelight = "com.squareup.sqldelight:gradle-plugin:${Versions.sqldelight}"
     }
 
     object androidx {
@@ -25,10 +25,10 @@ object deps {
     }
 
     object sqldelight {
-        const val androidDriver = "com.squareup.sqldelight:android-driver:1.4.0"
-        const val nativeDriver = "com.squareup.sqldelight:native-driver:1.4.0"
-        const val javascriptDriver = "com.squareup.sqldelight:sqljs-driver:1.4.0"
-        const val runtime = "com.squareup.sqldelight:runtime:1.4.0"
+        const val androidDriver = "com.squareup.sqldelight:android-driver:${Versions.sqldelight}"
+        const val nativeDriver = "com.squareup.sqldelight:native-driver:${Versions.sqldelight}"
+        const val javascriptDriver = "com.squareup.sqldelight:sqljs-driver:1.3.0"
+        const val runtime = "com.squareup.sqldelight:runtime:${Versions.sqldelight}"
     }
 
     const val material = "com.google.android.material:material:1.1.0"
