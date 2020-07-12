@@ -6,7 +6,8 @@ buildscript {
     }
     dependencies {
         classpath(deps.plugins.android)
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.72")
+        classpath(deps.plugins.kotlin)
+        classpath(deps.plugins.sqldelight)
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

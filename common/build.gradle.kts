@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
+    id("com.squareup.sqldelight")
 }
 
 repositories {
@@ -64,14 +65,21 @@ kotlin {
 
     sourceSets["commonMain"].dependencies {
         implementation(deps.kotlin.stdlibCommon)
+        implementation(deps.sqldelight.runtime)
     }
 
     sourceSets["androidMain"].dependencies {
         implementation(deps.kotlin.stdlib)
+        implementation(deps.sqldelight.androidDriver)
     }
 
     sourceSets["iosMain"].dependencies {
         implementation(deps.kotlin.xcode)
+        implementation(deps.sqldelight.nativeDriver)
+    }
+
+    sourceSets["jsMain"].dependencies {
+        implementation(deps.sqldelight.javascriptDriver)
     }
 }
 
@@ -105,3 +113,9 @@ val packForXCode by tasks.creating(Sync::class) {
 }
 
 tasks.getByName("build").dependsOn(packForXCode)
+
+sqldelight {
+    database("Database") {
+        packageName = "com.cuhacking.atlas.db"
+    }
+}
