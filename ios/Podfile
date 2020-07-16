@@ -15,4 +15,5 @@ target 'atlas' do
     # Pods for testing
   end
 
+  pod 'Mapbox-iOS-SDK', '~> 5.9'
 end
