@@ -1,9 +1,11 @@
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+import java.util.*
 
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
     id("com.squareup.sqldelight")
+    id("com.codingfeline.buildkonfig")
 }
 
 repositories {
@@ -74,6 +76,7 @@ kotlin {
     sourceSets["androidMain"].dependencies {
         implementation(deps.kotlin.stdlib)
         implementation(deps.sqldelight.androidDriver)
+        implementation(deps.mapbox.androidSdk)
     }
 
     sourceSets["iosMain"].dependencies {
@@ -85,6 +88,24 @@ kotlin {
         implementation(deps.kotlin.stdlibJs)
         //! https://github.com/cashapp/sqldelight/issues/1667
         // implementation(deps.sqldelight.javascriptDriver)
+    }
+}
+
+buildkonfig {
+    packageName = "com.cuhacking.atlas"
+
+    defaultConfigs {
+        val props = Properties()
+        val localPropsFile = project.rootProject.file("local.properties")
+        if (localPropsFile.exists()) {
+            props.load(localPropsFile.inputStream())
+        }
+
+        if (props.containsKey("mapbox.key")) {
+            buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING, "MAPBOX_KEY", "\"${props.getProperty("mapbox.key")}\"")
+        } else {
+            throw GradleException("mapbox.key not declared in local.properties")
+        }
     }
 }
 

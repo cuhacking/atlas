@@ -39,4 +39,8 @@ kotlin {
         browser()
     }
     ios()
+
+    dependencies {
+        implementation(deps.mapbox.androidSdk)
+    }
 }
