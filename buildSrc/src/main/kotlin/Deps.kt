@@ -27,7 +27,7 @@ object deps {
     object sqldelight {
         const val androidDriver = "com.squareup.sqldelight:android-driver:${Versions.sqldelight}"
         const val nativeDriver = "com.squareup.sqldelight:native-driver:${Versions.sqldelight}"
-        const val javascriptDriver = "com.squareup.sqldelight:sqljs-driver:1.3.0"
+        const val javascriptDriver = "com.squareup.sqldelight:sqljs-driver:${Versions.sqldelight}"
         const val runtime = "com.squareup.sqldelight:runtime:${Versions.sqldelight}"
     }
 

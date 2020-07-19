@@ -79,7 +79,8 @@ kotlin {
     }
 
     sourceSets["jsMain"].dependencies {
-        implementation(deps.sqldelight.javascriptDriver)
+        //! https://github.com/cashapp/sqldelight/issues/1667
+        // implementation(deps.sqldelight.javascriptDriver)
     }
 }
 
