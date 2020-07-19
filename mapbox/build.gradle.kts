@@ -40,7 +40,7 @@ kotlin {
     }
     ios()
 
-    dependencies {
+    sourceSets["androidMain"].dependencies {
         implementation(deps.mapbox.androidSdk)
     }
 }

@@ -17,18 +17,6 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
-        val props = Properties()
-        val localPropsFile = project.rootProject.file("local.properties")
-        if (localPropsFile.exists()) {
-            props.load(localPropsFile.inputStream())
-        }
-
-        if (props.containsKey("mapbox.key")) {
-            buildConfigField("String", "MAPBOX_KEY", "\"${props.getProperty("mapbox.key")}\"")
-        } else {
-            throw GradleException("mapbox.key not declared in local.properties")
-        }
     }
 
     buildTypes {

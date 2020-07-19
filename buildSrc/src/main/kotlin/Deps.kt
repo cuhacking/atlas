@@ -5,7 +5,7 @@ object deps {
         const val android = "com.android.tools.build:gradle:4.2.0-alpha04"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
         const val sqldelight = "com.squareup.sqldelight:gradle-plugin:${Versions.sqldelight}"
-        const val buildKonfig = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin:${Versions.buildKonfig}"
+        const val buildKonfig = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin:0.5.1"
     }
 
     object androidx {
@@ -40,7 +40,7 @@ object deps {
     }
 
     object mapbox {
-        const val androidSdk = "com.mapbox.mapboxsdk:mapbox-android-sdk:${Versions.mapbox}"
+        const val androidSdk = "com.mapbox.mapboxsdk:mapbox-android-sdk:9.2.0"
     }
 
     const val material = "com.google.android.material:material:1.1.0"
