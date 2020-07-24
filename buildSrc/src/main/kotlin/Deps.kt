@@ -32,5 +32,10 @@ object deps {
         const val runtime = "com.squareup.sqldelight:runtime:${Versions.sqldelight}"
     }
 
+    object spatialk {
+        const val geojson = "io.github.dellisd.spatialk:geojson:0.0.1-SNAPSHOT"
+        const val turf = "io.github.dellisd.spatialk:turf:0.0.1-SNAPSHOT"
+        const val geojsonDsl = "io.github.dellisd.spatialk:geojson-dsl:0.0.1-SNAPSHOT"
+    }
     const val material = "com.google.android.material:material:1.1.0"
 }

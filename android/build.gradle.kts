@@ -37,6 +37,9 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    packagingOptions {
+        exclude("META-INF/kotlinx-serialization-runtime.kotlin_module")
+    }
 }
 
 dependencies {
