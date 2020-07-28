@@ -1,5 +1,5 @@
-CREATE TABLE features (
-  fid TEXT NOT NULL,
+CREATE TABLE feature (
+  fid INTEGER PRIMARY KEY NOT NULL,
   common_name TEXT NOT NULL,
   secondary_name TEXT,
   type TEXT NOT NULL,
@@ -10,17 +10,17 @@ CREATE TABLE features (
 );
 
 insertFeature:
-INSERT INTO features(fid, common_name, secondary_name, type, building, floor, search_tags, json)
+INSERT INTO feature(fid, common_name, secondary_name, type, building, floor, search_tags, json)
 VALUES ?;
 
-selectById:
+getById:
 SELECT *
-FROM features
+FROM feature
 WHERE fid = ?;
 
-selectAll:
+getAll:
 SELECT *
-FROM features;
+FROM feature;
 
 deleteAll:
-DELETE FROM features;
+DELETE FROM feature;
