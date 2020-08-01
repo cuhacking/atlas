@@ -1,0 +1,26 @@
+CREATE TABLE feature (
+  fid INTEGER PRIMARY KEY NOT NULL,
+  common_name TEXT NOT NULL,
+  secondary_name TEXT,
+  type TEXT NOT NULL,
+  building TEXT,
+  floor TEXT,
+  search_tags TEXT,
+  json TEXT NOT NULL
+);
+
+insertFeature:
+INSERT INTO feature(fid, common_name, secondary_name, type, building, floor, search_tags, json)
+VALUES ?;
+
+getById:
+SELECT *
+FROM feature
+WHERE fid = ?;
+
+getAll:
+SELECT *
+FROM feature;
+
+deleteAll:
+DELETE FROM feature;
