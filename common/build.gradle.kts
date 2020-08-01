@@ -33,7 +33,7 @@ android {
         }
     }
 
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> { 
         kotlinOptions.jvmTarget = "1.8"
     }
 
@@ -71,21 +71,25 @@ kotlin {
         implementation(deps.spatialk.geojson)
         implementation(deps.spatialk.turf)
         implementation(deps.spatialk.geojsonDsl)
+      //  implementation (deps.ktor.commonKdriver)
     }
 
     sourceSets["androidMain"].dependencies {
         implementation(deps.kotlin.stdlib)
         implementation(deps.sqldelight.androidDriver)
         implementation(deps.mapbox.androidSdk)
+        implementation(deps.ktor.androidKdriver)
     }
 
     sourceSets["iosMain"].dependencies {
         implementation(deps.kotlin.xcode)
         implementation(deps.sqldelight.nativeDriver)
+        implementation(deps.ktor.iosKdriver)
     }
 
     sourceSets["jsMain"].dependencies {
         implementation(deps.kotlin.stdlibJs)
+        implementation (deps.ktor.jsKdriver)
         //! https://github.com/cashapp/sqldelight/issues/1667
         // implementation(deps.sqldelight.javascriptDriver)
     }
@@ -101,11 +105,11 @@ buildkonfig {
             props.load(localPropsFile.inputStream())
         }
 
-        if (props.containsKey("mapbox.key")) {
-            buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING, "MAPBOX_KEY", "\"${props.getProperty("mapbox.key")}\"")
-        } else {
-            throw GradleException("mapbox.key not declared in local.properties")
-        }
+//        if (props.containsKey("mapbox.key")) {
+//            buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING, "MAPBOX_KEY", "\"${props.getProperty("mapbox.key")}\"")
+//        } else {
+//            throw GradleException("mapbox.key not declared in local.properties")
+//        }
     }
 }
 
