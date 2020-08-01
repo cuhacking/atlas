@@ -41,6 +41,7 @@ android {
     }
     packagingOptions {
         exclude("META-INF/kotlinx-serialization-runtime.kotlin_module")
+        exclude("META-INF/*.kotlin_module")
     }
 }
 

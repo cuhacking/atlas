@@ -39,6 +39,7 @@ android {
 
     packagingOptions {
         exclude("META-INF/kotlinx-serialization-runtime.kotlin_module")
+        exclude("META-INF/*.kotlin_module")
     }
 }
 
@@ -71,25 +72,25 @@ kotlin {
         implementation(deps.spatialk.geojson)
         implementation(deps.spatialk.turf)
         implementation(deps.spatialk.geojsonDsl)
-      //  implementation (deps.ktor.commonKdriver)
+        implementation (deps.ktor.commondriver)
     }
 
     sourceSets["androidMain"].dependencies {
         implementation(deps.kotlin.stdlib)
         implementation(deps.sqldelight.androidDriver)
         implementation(deps.mapbox.androidSdk)
-        implementation(deps.ktor.androidKdriver)
+        implementation(deps.ktor.androiddriver)
     }
 
     sourceSets["iosMain"].dependencies {
         implementation(deps.kotlin.xcode)
         implementation(deps.sqldelight.nativeDriver)
-        implementation(deps.ktor.iosKdriver)
+        implementation(deps.ktor.iosdriver)
     }
 
     sourceSets["jsMain"].dependencies {
         implementation(deps.kotlin.stdlibJs)
-        implementation (deps.ktor.jsKdriver)
+        implementation (deps.ktor.jsdriver)
         //! https://github.com/cashapp/sqldelight/issues/1667
         // implementation(deps.sqldelight.javascriptDriver)
     }
@@ -105,11 +106,11 @@ buildkonfig {
             props.load(localPropsFile.inputStream())
         }
 
-//        if (props.containsKey("mapbox.key")) {
-//            buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING, "MAPBOX_KEY", "\"${props.getProperty("mapbox.key")}\"")
-//        } else {
-//            throw GradleException("mapbox.key not declared in local.properties")
-//        }
+        if (props.containsKey("mapbox.key")) {
+            buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING, "MAPBOX_KEY", "\"${props.getProperty("mapbox.key")}\"")
+        } else {
+            throw GradleException("mapbox.key not declared in local.properties")
+        }
     }
 }
 
