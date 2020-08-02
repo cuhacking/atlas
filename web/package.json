@@ -10,7 +10,7 @@
     "start": "webpack-dev-server --mode development"
   },
   "workspaces": [
-    "../build/js/packages_imported/kotlin-source-map-loader/1.3.72",
+    "../build/js/packages_imported/**",
     "../build/js/packages/Atlas-common"
   ],
   "dependencies": {

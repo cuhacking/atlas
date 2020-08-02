@@ -12,13 +12,21 @@ If developing on macOS or for iOS, the latest version of XCode will also need to
 
 For development on the web client, the latest version of Node 12 needs to be installed.
 
+### Setup
+
+Include the following in your `local.properties` file:
+
+```
+mapbox.key=<your mapbox access token>
+```
+
 ### Building
 
 - **Android**: Open project folder in Android Studio and execute the `android` run configuration.
 - **iOS**: Open the `.xcworkspace` file in XCode or AppCode and run.
 - **Web**:
-  - Run `./gradlew :common:jsBrowserDevelopmentWebpack` in the root directory
-  - Run `yarn install` in the `web` directory
+  - Run `./gradlew build` in the root directory
+  - Run `yarn` in the `web` directory
   - Then run `yarn start` in the `web` directory
 
 ## Project Structure

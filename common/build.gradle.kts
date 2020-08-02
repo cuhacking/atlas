@@ -97,7 +97,7 @@ kotlin {
 }
 
 buildkonfig {
-    packageName = "com.cuhacking.atlas"
+    packageName = "com.cuhacking.atlas.common"
 
     defaultConfigs {
         val props = Properties()
@@ -107,7 +107,9 @@ buildkonfig {
         }
 
         if (props.containsKey("mapbox.key")) {
-            buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING, "MAPBOX_KEY", "\"${props.getProperty("mapbox.key")}\"")
+            buildConfigField(com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING, "MAPBOX_KEY",
+                props.getProperty("mapbox.key")
+            )
         } else {
             throw GradleException("mapbox.key not declared in local.properties")
         }
