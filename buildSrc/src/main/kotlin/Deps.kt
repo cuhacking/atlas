@@ -34,10 +34,10 @@ object deps {
     }
 
     object ktor {
-        const val androiddriver = "io.ktor:ktor-client-okhttp:${Versions.ktor}"
-        const val iosdriver = "io.ktor:ktor-client-ios:${Versions.ktor}"
-        const val jsdriver = "io.ktor:ktor-client-js:${Versions.ktor}"
-        const val commondriver = "io.ktor:ktor-client-core:${Versions.ktor}"
+        const val androidDriver = "io.ktor:ktor-client-okhttp:${Versions.ktor}"
+        const val iosDriver = "io.ktor:ktor-client-ios:${Versions.ktor}"
+        const val jsDriver = "io.ktor:ktor-client-js:${Versions.ktor}"
+        const val commonDriver = "io.ktor:ktor-client-core:${Versions.ktor}"
     }
 
     object spatialk {
