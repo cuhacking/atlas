@@ -3,4 +3,5 @@ object Versions {
     const val compileSdk = 29
     const val minSdk = 21
     const val sqldelight = "1.4.0"
+    const val ktor = "1.3.2"
 }

@@ -33,12 +33,13 @@ android {
         }
     }
 
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> { 
         kotlinOptions.jvmTarget = "1.8"
     }
 
     packagingOptions {
         exclude("META-INF/kotlinx-serialization-runtime.kotlin_module")
+        exclude("META-INF/*.kotlin_module")
     }
 }
 
@@ -71,21 +72,25 @@ kotlin {
         implementation(deps.spatialk.geojson)
         implementation(deps.spatialk.turf)
         implementation(deps.spatialk.geojsonDsl)
+        implementation (deps.ktor.commonDriver)
     }
 
     sourceSets["androidMain"].dependencies {
         implementation(deps.kotlin.stdlib)
         implementation(deps.sqldelight.androidDriver)
         implementation(deps.mapbox.androidSdk)
+        implementation(deps.ktor.androidDriver)
     }
 
     sourceSets["iosMain"].dependencies {
         implementation(deps.kotlin.xcode)
         implementation(deps.sqldelight.nativeDriver)
+        implementation(deps.ktor.iosDriver)
     }
 
     sourceSets["jsMain"].dependencies {
         implementation(deps.kotlin.stdlibJs)
+        implementation (deps.ktor.jsDriver)
         //! https://github.com/cashapp/sqldelight/issues/1667
         // implementation(deps.sqldelight.javascriptDriver)
     }

@@ -33,6 +33,13 @@ object deps {
         const val runtime = "com.squareup.sqldelight:runtime:${Versions.sqldelight}"
     }
 
+    object ktor {
+        const val androidDriver = "io.ktor:ktor-client-okhttp:${Versions.ktor}"
+        const val iosDriver = "io.ktor:ktor-client-ios:${Versions.ktor}"
+        const val jsDriver = "io.ktor:ktor-client-js:${Versions.ktor}"
+        const val commonDriver = "io.ktor:ktor-client-core:${Versions.ktor}"
+    }
+
     object spatialk {
         const val geojson = "io.github.dellisd.spatialk:geojson:0.0.1-SNAPSHOT"
         const val turf = "io.github.dellisd.spatialk:turf:0.0.1-SNAPSHOT"
