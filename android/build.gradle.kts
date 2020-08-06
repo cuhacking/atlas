@@ -1,5 +1,3 @@
-import java.util.*
-
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -40,7 +38,6 @@ android {
         viewBinding = true
     }
     packagingOptions {
-        exclude("META-INF/kotlinx-serialization-runtime.kotlin_module")
         exclude("META-INF/*.kotlin_module")
     }
 }
