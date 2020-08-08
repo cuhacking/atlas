@@ -81,6 +81,10 @@ kotlin {
         implementation(deps.ktor.androidDriver)
     }
 
+    sourceSets["androidTest"].dependencies {
+        implementation("org.jetbrains.kotlin:kotlin-test-junit")
+    }
+
     sourceSets["iosMain"].dependencies {
         implementation(deps.kotlin.xcode)
         implementation(deps.sqldelight.nativeDriver)
