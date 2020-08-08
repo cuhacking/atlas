@@ -6,7 +6,7 @@ import io.github.dellisd.spatialk.geojson.Feature.Companion.toFeature
 import kotlinx.serialization.UnstableDefault
 
 @OptIn(UnstableDefault::class)
-val geoJsonAdapter = object : ColumnAdapter<Feature, String> {
+object GeoJsonAdapter : ColumnAdapter<Feature, String> {
 
     override fun decode(databaseValue: String): Feature = databaseValue.toFeature()
 
