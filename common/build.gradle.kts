@@ -71,7 +71,7 @@ kotlin {
         implementation(deps.spatialk.geojson)
         implementation(deps.spatialk.turf)
         implementation(deps.spatialk.geojsonDsl)
-        implementation (deps.ktor.commonDriver)
+        implementation(deps.ktor.commonDriver)
     }
 
     sourceSets["androidMain"].dependencies {
@@ -82,7 +82,7 @@ kotlin {
     }
 
     sourceSets["androidTest"].dependencies {
-        implementation("org.jetbrains.kotlin:kotlin-test-junit")
+        implementation(deps.kotlin.junit)
     }
 
     sourceSets["iosMain"].dependencies {
@@ -93,7 +93,7 @@ kotlin {
 
     sourceSets["jsMain"].dependencies {
         implementation(deps.kotlin.stdlibJs)
-        implementation (deps.ktor.jsDriver)
+        implementation(deps.ktor.jsDriver)
         //! https://github.com/cashapp/sqldelight/issues/1667
         // implementation(deps.sqldelight.javascriptDriver)
     }
