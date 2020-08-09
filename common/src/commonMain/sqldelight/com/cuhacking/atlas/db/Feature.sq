@@ -1,3 +1,5 @@
+import io.github.dellisd.spatialk.geojson.Feature;
+
 CREATE TABLE feature (
   fid INTEGER PRIMARY KEY NOT NULL,
   common_name TEXT NOT NULL,
@@ -6,7 +8,7 @@ CREATE TABLE feature (
   building TEXT,
   floor TEXT,
   search_tags TEXT,
-  json TEXT NOT NULL
+  json TEXT AS Feature NOT NULL
 );
 
 insertFeature:
