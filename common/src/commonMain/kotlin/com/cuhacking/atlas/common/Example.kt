@@ -1,3 +1,4 @@
 package com.cuhacking.atlas.common
 
-expect fun getMessage(): String
+val mapboxKeyTemp: String
+    get() = BuildKonfig.MAPBOX_KEY
