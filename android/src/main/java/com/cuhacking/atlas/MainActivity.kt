@@ -40,7 +40,12 @@ class MainActivity : AppCompatActivity() {
                 //! https://github.com/mapbox/mapbox-gl-js/issues/3018
                 val outlineLayer = LineLayer("outline-layer", "geojson-source")
                 outlineLayer.setProperties(
-                    PropertyFactory.lineColor(resources.getColor(R.color.purple_700)),
+                    PropertyFactory.lineColor(
+                        ContextCompat.getColor(
+                            applicationContext,
+                            R.color.purple_700
+                        )
+                    ),
                     PropertyFactory.lineWidth(5f)
                 )
                 style.addLayer(outlineLayer)
