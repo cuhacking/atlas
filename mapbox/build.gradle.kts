@@ -40,7 +40,31 @@ kotlin {
     }
     ios()
 
+    sourceSets["commonMain"].dependencies {
+        implementation(deps.kotlin.stdlibCommon)
+    }
+
+    sourceSets["commonTest"].dependencies {
+        implementation(deps.kotlin.test.common)
+        implementation(deps.kotlin.test.annotationsCommon)
+    }
+
     sourceSets["androidMain"].dependencies {
+        implementation(deps.kotlin.stdlib)
         implementation(deps.mapbox.androidSdk)
+    }
+
+    sourceSets["androidTest"].dependencies {
+        implementation(deps.kotlin.test.junit)
+        implementation(deps.kotlin.test.annotationsCommon)
+    }
+
+    sourceSets["jsMain"].dependencies {
+        implementation(deps.kotlin.stdlibJs)
+    }
+
+    sourceSets["jsTest"].dependencies {
+        implementation(deps.kotlin.test.js)
+        implementation(deps.kotlin.test.annotationsCommon)
     }
 }

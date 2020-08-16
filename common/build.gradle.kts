@@ -82,7 +82,7 @@ kotlin {
     }
 
     sourceSets["androidTest"].dependencies {
-        implementation(deps.kotlin.junit)
+        implementation(deps.kotlin.test.junit)
         implementation(deps.sqldelight.sqliteDriver)
     }
 
