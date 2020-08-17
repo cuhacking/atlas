@@ -1,7 +1,22 @@
 package com.cuhacking.mapbox.expressions
 
-expect class ExpressionLiteralTests {
-    fun testLiteralNumberMapping()
+import com.cuhacking.mapbox.test.assertMapboxEquivalent
+import kotlin.test.Test
 
-    fun testLiteralStringMapping()
+expect object Literals {
+    fun number(number: Number): Any
+
+    fun string(string: String): Any
+}
+
+class ExpressionLiteralTests {
+    @Test
+    fun testLiteralNumberMapping() {
+        assertMapboxEquivalent(literal(64), Literals.number(64))
+    }
+
+    @Test
+    fun testLiteralStringMapping() {
+        assertMapboxEquivalent(literal("Hello World"), Literals.string("Hello World"))
+    }
 }

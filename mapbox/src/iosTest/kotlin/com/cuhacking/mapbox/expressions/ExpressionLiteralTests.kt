@@ -1,12 +1,16 @@
 package com.cuhacking.mapbox.expressions
 
-import kotlin.test.Test
 
+actual object Literals {
+    actual fun number(number: Number): Any {
+        // TODO("Not yet implemented")
 
-actual class ExpressionLiteralTests {
-    @Test
-    actual fun testLiteralNumberMapping() {}
+        return Any()
+    }
 
-    @Test
-    actual fun testLiteralStringMapping() {}
+    actual fun string(string: String): Any {
+        // TODO("Not yet implemented")
+
+        return Any()
+    }
 }
