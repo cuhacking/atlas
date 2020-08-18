@@ -77,7 +77,7 @@ kotlin {
     sourceSets["androidMain"].dependencies {
         implementation(deps.kotlin.stdlib)
         implementation(deps.sqldelight.androidDriver)
-        implementation(deps.mapbox.androidSdk)
+        api(deps.mapbox.androidSdk)
         implementation(deps.ktor.androidDriver)
     }
 
