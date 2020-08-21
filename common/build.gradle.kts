@@ -95,7 +95,8 @@ kotlin {
         implementation(deps.kotlin.stdlibJs)
         implementation(deps.ktor.jsDriver)
         //! https://github.com/cashapp/sqldelight/issues/1667
-        // implementation(deps.sqldelight.javascriptDriver)
+        // implementation(deps.sqldelight.jsDriver)
+        // implementation(deps.sqldelight.jsRuntimeDriver)
     }
 }
 
