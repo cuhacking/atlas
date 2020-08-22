@@ -44,7 +44,6 @@ android {
 
 dependencies {
     implementation(project(":common"))
-    implementation(deps.kotlin.stdlib)
     implementation(deps.androidx.core)
     implementation(deps.androidx.appCompat)
     implementation(deps.material)
