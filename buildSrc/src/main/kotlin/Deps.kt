@@ -5,7 +5,7 @@ object deps {
         const val android = "com.android.tools.build:gradle:4.2.0-alpha07"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
         const val sqldelight = "com.squareup.sqldelight:gradle-plugin:${Versions.sqldelight}"
-        const val buildKonfig = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin:0.5.1"
+        const val buildKonfig = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin:0.6.0"
     }
 
     object androidx {
@@ -20,10 +20,6 @@ object deps {
     const val junit = "junit:junit:4.13"
 
     object kotlin {
-        const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
-        const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib-common:${Versions.kotlin}"
-        const val stdlibJs = "org.jetbrains.kotlin:kotlin-stdlib-js:${Versions.kotlin}"
-        const val xcode = "org.jetbrains.kotlin.native.xcode:kotlin-native-xcode-11-4-workaround:1.3.72.0"
         const val junit = "org.jetbrains.kotlin:kotlin-test-junit"
     }
 
@@ -42,9 +38,9 @@ object deps {
     }
 
     object spatialk {
-        const val geojson = "io.github.dellisd.spatialk:geojson:0.0.1-SNAPSHOT"
-        const val turf = "io.github.dellisd.spatialk:turf:0.0.1-SNAPSHOT"
-        const val geojsonDsl = "io.github.dellisd.spatialk:geojson-dsl:0.0.1-SNAPSHOT"
+        const val geojson = "io.github.dellisd.spatialk:geojson:0.0.2-SNAPSHOT"
+        const val turf = "io.github.dellisd.spatialk:turf:0.0.2-SNAPSHOT"
+        const val geojsonDsl = "io.github.dellisd.spatialk:geojson-dsl:0.0.2-SNAPSHOT"
     }
 
     object mapbox {

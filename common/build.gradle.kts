@@ -63,10 +63,11 @@ kotlin {
     js {
         useCommonJs()
         browser()
+
+        binaries.executable()
     }
 
     sourceSets["commonMain"].dependencies {
-        implementation(deps.kotlin.stdlibCommon)
         implementation(deps.sqldelight.runtime)
         implementation(deps.spatialk.geojson)
         implementation(deps.spatialk.turf)
@@ -75,7 +76,6 @@ kotlin {
     }
 
     sourceSets["androidMain"].dependencies {
-        implementation(deps.kotlin.stdlib)
         implementation(deps.sqldelight.androidDriver)
         api(deps.mapbox.androidSdk)
         implementation(deps.ktor.androidDriver)
@@ -86,13 +86,11 @@ kotlin {
     }
 
     sourceSets["iosMain"].dependencies {
-        implementation(deps.kotlin.xcode)
         implementation(deps.sqldelight.nativeDriver)
         implementation(deps.ktor.iosDriver)
     }
 
     sourceSets["jsMain"].dependencies {
-        implementation(deps.kotlin.stdlibJs)
         implementation(deps.ktor.jsDriver)
         //! https://github.com/cashapp/sqldelight/issues/1667
         // implementation(deps.sqldelight.javascriptDriver)
