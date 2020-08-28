@@ -83,6 +83,7 @@ kotlin {
 
     sourceSets["androidTest"].dependencies {
         implementation(deps.kotlin.junit)
+        implementation("com.squareup.sqldelight:sqlite-driver:${Versions.sqldelight}")
     }
 
     sourceSets["iosMain"].dependencies {
