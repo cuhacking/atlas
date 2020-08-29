@@ -29,6 +29,7 @@ object deps {
         const val jsDriver = "com.squareup.sqldelight:sqljs-driver:${Versions.sqldelight}"
         const val jsRuntimeDriver = "com.squareup.sqldelight:runtime-js:${Versions.sqldelight}"
         const val runtime = "com.squareup.sqldelight:runtime:${Versions.sqldelight}"
+        const val sqliteDriver = "com.squareup.sqldelight:sqlite-driver:${Versions.sqldelight}"
     }
 
     object ktor {

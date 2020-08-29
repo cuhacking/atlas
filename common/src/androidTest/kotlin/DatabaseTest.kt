@@ -17,7 +17,7 @@ class DatabaseTest {
     private val feature2 = Feature(2, "RB 2311", null, "room","River Building", "RB2",null,sampleFeature)
     private val feature3 = Feature(3, "HS 1301B", null, "room","Health Sciences Building", "HS1",null,sampleFeature)
 
-    private fun featureToFTS(feature: Feature) = (Feature_fts(feature.common_name,feature.secondary_name,feature.type,feature.building,feature.floor,feature.search_tags))
+    private fun Feature.toFTS() = (Feature_fts(common_name,secondary_name,type,building,floor,search_tags))
 
     @Before
     fun setup() {
@@ -41,13 +41,13 @@ class DatabaseTest {
         database.featureQueries.insertFeature(feature3)
 
         assertTrue(database.featureQueries.search("HS 1301B").executeAsList()
-                .contains(featureToFTS(feature3))
+                .contains(feature3.toFTS())
         )
     }
 
     @Test fun `check that search query works`(){
         assertTrue(database.featureQueries.search("river").executeAsList().containsAll(
-                listOf(featureToFTS(feature1), featureToFTS(feature2))
+                listOf(feature1.toFTS(), feature2.toFTS())
         ))
     }
 
