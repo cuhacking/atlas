@@ -1,6 +1,8 @@
 package com.cuhacking.mapbox.test
 
 import com.cuhacking.mapbox.expressions.Expression
+import com.cuhacking.mapbox.expressions.toNSExpression
+import kotlin.test.assertEquals
 
 /**
  * Utility assertion for comparing an [Expression] with its platform-specific equivalent.
@@ -14,5 +16,5 @@ actual fun assertMapboxEquivalent(
     platform: Any,
     message: String?
 ) {
-    // TODO: Implement appropriate assertion here
+    assertEquals(platform, expression.toNSExpression())
 }

@@ -1,16 +1,10 @@
 package com.cuhacking.mapbox.expressions
 
+import platform.Foundation.NSExpression
+
 
 actual object Literals {
-    actual fun number(number: Number): Any {
-        // TODO("Not yet implemented")
+    actual fun number(number: Number): Any = NSExpression.expressionForConstantValue(number)
 
-        return Any()
-    }
-
-    actual fun string(string: String): Any {
-        // TODO("Not yet implemented")
-
-        return Any()
-    }
+    actual fun string(string: String): Any = NSExpression.expressionForConstantValue(string)
 }

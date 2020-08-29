@@ -1,5 +1,8 @@
 package com.cuhacking.mapbox.expressions
 
-fun Expression.toMapbox() {
-    TODO("Not yet implemented. Still have't figured out how this translation will work")
+import platform.Foundation.NSExpression
+
+fun Expression.toNSExpression(): NSExpression = when (this) {
+    is ExpressionLiteral -> NSExpression.expressionForConstantValue(literal)
+    else -> TODO("Not yet implemented")
 }
