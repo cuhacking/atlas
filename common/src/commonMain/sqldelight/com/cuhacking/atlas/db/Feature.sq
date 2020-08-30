@@ -11,6 +11,21 @@ CREATE TABLE feature (
   json TEXT AS Feature NOT NULL
 );
 
+CREATE VIRTUAL TABLE feature_fts USING fts4 (
+   common_name TEXT NOT NULL,
+   secondary_name TEXT,
+   type TEXT NOT NULL,
+   building TEXT,
+   floor TEXT,
+   search_tags TEXT,
+);
+
+CREATE TRIGGER update_feature_fts AFTER INSERT ON feature
+BEGIN
+INSERT INTO feature_fts(common_name, secondary_name, type, building, floor, search_tags)
+VALUES(new.common_name, new.secondary_name, new.type, new.building, new.floor, new.search_tags);
+END;
+
 insertFeature:
 INSERT INTO feature(fid, common_name, secondary_name, type, building, floor, search_tags, json)
 VALUES ?;
@@ -26,3 +41,11 @@ FROM feature;
 
 deleteAll:
 DELETE FROM feature;
+
+search:
+SELECT *
+FROM feature_fts
+WHERE feature_fts MATCH ?;
+
+clearFts:
+DELETE FROM feature_fts;
