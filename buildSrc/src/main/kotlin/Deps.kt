@@ -20,7 +20,17 @@ object deps {
     const val junit = "junit:junit:4.13"
 
     object kotlin {
-        const val junit = "org.jetbrains.kotlin:kotlin-test-junit"
+        const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
+        const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib-common:${Versions.kotlin}"
+        const val stdlibJs = "org.jetbrains.kotlin:kotlin-stdlib-js:${Versions.kotlin}"
+        const val xcode = "org.jetbrains.kotlin.native.xcode:kotlin-native-xcode-11-4-workaround:1.3.72.0"
+
+        object test {
+            const val common = "org.jetbrains.kotlin:kotlin-test-common"
+            const val annotationsCommon = "org.jetbrains.kotlin:kotlin-test-annotations-common"
+            const val junit = "org.jetbrains.kotlin:kotlin-test-junit"
+            const val js = "org.jetbrains.kotlin:kotlin-test-js"
+        }
     }
 
     object sqldelight {
