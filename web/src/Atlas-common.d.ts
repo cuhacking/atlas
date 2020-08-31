@@ -3,10 +3,10 @@ declare module "Atlas-common" {
   namespace com.cuhacking.atlas.common {
     export function getMessage(): string;
 
-    interface BuildKonfig {
+    interface AtlasConfig {
       readonly MAPBOX_KEY: string;
     }
 
-    export const BuildKonfig: BuildKonfig;
+    export const AtlasConfig: AtlasConfig;
   }
 }

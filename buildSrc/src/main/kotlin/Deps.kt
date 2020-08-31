@@ -1,11 +1,15 @@
-@file:Suppress("ClassName")
+@file:Suppress("ClassName", "ClassNaming", "Filename", "MatchingDeclarationName")
 
 object deps {
     object plugins {
-        const val android = "com.android.tools.build:gradle:4.2.0-alpha07"
+        const val android = "com.android.tools.build:gradle:4.2.0-alpha08"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
         const val sqldelight = "com.squareup.sqldelight:gradle-plugin:${Versions.sqldelight}"
-        const val buildKonfig = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin:0.6.0"
+        const val buildKonfig = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin:0.7.0"
+        const val node = "com.github.node-gradle:gradle-node-plugin:2.2.4"
+
+        // Uses newer plugins DSL
+        const val detekt = "io.gitlab.arturbosch.detekt"
     }
 
     object androidx {
@@ -24,6 +28,7 @@ object deps {
         const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib-common:${Versions.kotlin}"
         const val stdlibJs = "org.jetbrains.kotlin:kotlin-stdlib-js:${Versions.kotlin}"
         const val xcode = "org.jetbrains.kotlin.native.xcode:kotlin-native-xcode-11-4-workaround:1.3.72.0"
+        const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9"
 
         object test {
             const val common = "org.jetbrains.kotlin:kotlin-test-common"
@@ -40,6 +45,7 @@ object deps {
         const val jsRuntimeDriver = "com.squareup.sqldelight:runtime-js:${Versions.sqldelight}"
         const val runtime = "com.squareup.sqldelight:runtime:${Versions.sqldelight}"
         const val sqliteDriver = "com.squareup.sqldelight:sqlite-driver:${Versions.sqldelight}"
+        const val coroutines = "com.squareup.sqldelight:coroutines-extensions:${Versions.sqldelight}"
     }
 
     object ktor {
@@ -60,4 +66,5 @@ object deps {
     }
 
     const val material = "com.google.android.material:material:1.1.0"
+    const val turbine = "app.cash.turbine:turbine:0.2.1"
 }

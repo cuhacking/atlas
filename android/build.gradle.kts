@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    id(deps.plugins.detekt)
 }
 
 android {
@@ -51,4 +52,16 @@ dependencies {
     testImplementation(deps.junit)
     androidTestImplementation(deps.androidx.junit)
     androidTestImplementation(deps.androidx.espresso)
+}
+
+detekt {
+    failFast = true
+    buildUponDefaultConfig = true
+    config = files("${rootProject.projectDir}/detekt.yml")
+}
+
+tasks {
+    withType<io.gitlab.arturbosch.detekt.Detekt> {
+        jvmTarget = "1.8"
+    }
 }

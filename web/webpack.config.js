@@ -1,11 +1,15 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require("path");
 
 module.exports = {
   devtool: "source-map",
 
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
+  },
+  output: {
+    path: path.resolve(__dirname, "build")
   },
 
   module: {
@@ -18,7 +22,7 @@ module.exports = {
       {
         enforce: "pre",
         test: /\.js$/,
-        use: ["source-map-loader", "kotlin-source-map-loader"],
+        use: ["source-map-loader"],
       },
       {
         test: /\.(sa|sc|c)ss$/,
