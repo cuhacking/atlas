@@ -90,6 +90,7 @@ class MainActivity : AppCompatActivity() {
                     R.color.purple_700
                 )
             ),
+            @Suppress("MagicNumber")
             PropertyFactory.lineWidth(5f)
         )
         return outlineLayer

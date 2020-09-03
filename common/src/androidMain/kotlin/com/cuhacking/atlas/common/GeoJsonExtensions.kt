@@ -1,3 +1,4 @@
+@file:Suppress("TooManyFunctions")
 package com.cuhacking.atlas.common
 
 import com.google.gson.JsonObject
