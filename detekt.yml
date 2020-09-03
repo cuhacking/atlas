@@ -1,0 +1,10 @@
+style:
+  active: true
+  WildcardImport:
+    active: false
+  MaxLineLength:
+    active: true
+    maxLineLength: 120
+    excludePackageStatements: true
+    excludeImportStatements: true
+    excludeCommentStatements: true

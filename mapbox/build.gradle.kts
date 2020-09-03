@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
+    id(deps.plugins.detekt)
 }
 
 android {
@@ -66,5 +67,18 @@ kotlin {
     sourceSets["jsTest"].dependencies {
         implementation(deps.kotlin.test.js)
         implementation(deps.kotlin.test.annotationsCommon)
+    }
+}
+
+detekt {
+    failFast = true
+    buildUponDefaultConfig = true
+    config = files("${rootProject.projectDir}/detekt.yml")
+    input = files("$projectDir/src")
+}
+
+tasks {
+    withType<io.gitlab.arturbosch.detekt.Detekt> {
+        jvmTarget = "1.8"
     }
 }

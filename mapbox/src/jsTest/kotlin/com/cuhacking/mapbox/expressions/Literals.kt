@@ -1,6 +1,5 @@
 package com.cuhacking.mapbox.expressions
 
-
 actual object Literals {
     actual fun number(number: Number): Any = arrayOf("literal", 64)
 

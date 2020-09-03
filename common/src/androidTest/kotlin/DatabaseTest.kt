@@ -7,6 +7,7 @@ import org.junit.Before
 import org.junit.Test
 import kotlin.test.assertTrue
 
+@Suppress("MaxLineLength")
 class DatabaseTest {
 
     lateinit var driver: SqlDriver
