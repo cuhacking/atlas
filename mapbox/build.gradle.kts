@@ -43,7 +43,7 @@ kotlin {
 
     sourceSets["commonMain"].dependencies {
         implementation(deps.kotlin.stdlibCommon)
-        implementation(deps.spatialk.geojson)
+        api(deps.spatialk.geojson)
         implementation(deps.spatialk.turf)
         implementation(deps.spatialk.geojsonDsl)
     }
