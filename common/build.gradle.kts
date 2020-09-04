@@ -79,7 +79,6 @@ kotlin {
         implementation(deps.sqldelight.androidDriver)
         api(deps.mapbox.androidSdk)
         implementation(deps.ktor.androidDriver)
-        api(deps.spatialk.geojson)
     }
 
     sourceSets["androidTest"].dependencies {
@@ -90,7 +89,6 @@ kotlin {
     sourceSets["iosMain"].dependencies {
         implementation(deps.sqldelight.nativeDriver)
         implementation(deps.ktor.iosDriver)
-        implementation(deps.spatialk.geojson)
     }
 
     sourceSets["jsMain"].dependencies {

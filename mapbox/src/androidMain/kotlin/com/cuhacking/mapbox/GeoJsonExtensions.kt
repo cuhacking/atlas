@@ -1,5 +1,5 @@
 @file:Suppress("TooManyFunctions")
-package com.cuhacking.atlas.common
+package com.cuhacking.mapbox
 
 import com.google.gson.JsonObject
 import io.github.dellisd.spatialk.geojson.*

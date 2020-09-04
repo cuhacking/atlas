@@ -1,4 +1,4 @@
-package com.cuhacking.atlas.common
+package com.cuhacking.mapbox
 
 import io.github.dellisd.spatialk.geojson.Feature
 import io.github.dellisd.spatialk.geojson.FeatureCollection

@@ -4,7 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.cuhacking.atlas.common.GeoJsonSource
+import com.cuhacking.mapbox.GeoJsonSource
 import com.cuhacking.atlas.databinding.ActivityMainBinding
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.style.layers.FillLayer

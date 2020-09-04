@@ -45,6 +45,7 @@ android {
 
 dependencies {
     implementation(project(":common"))
+    implementation(project(":mapbox"))
     implementation(deps.androidx.core)
     implementation(deps.androidx.appCompat)
     implementation(deps.material)

@@ -1,4 +1,4 @@
-package com.cuhacking.atlas.common
+package com.cuhacking.mapbox
 
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource
 import io.github.dellisd.spatialk.geojson.Feature
