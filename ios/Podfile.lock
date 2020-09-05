@@ -1,9 +1,12 @@
 PODS:
+  - common (1.0):
+    - Mapbox-iOS-SDK (~> 5.9)
   - Mapbox-iOS-SDK (5.9.0):
     - MapboxMobileEvents (= 0.10.2)
   - MapboxMobileEvents (0.10.2)
 
 DEPENDENCIES:
+  - common (from `../common`)
   - Mapbox-iOS-SDK (~> 5.9)
 
 SPEC REPOS:
@@ -11,10 +14,15 @@ SPEC REPOS:
     - Mapbox-iOS-SDK
     - MapboxMobileEvents
 
+EXTERNAL SOURCES:
+  common:
+    :path: "../common"
+
 SPEC CHECKSUMS:
+  common: 4dfe2c07f293e11f645961d8a09138c24c5c166b
   Mapbox-iOS-SDK: a5915700ec84bc1a7f8b3e746d474789e35b7956
   MapboxMobileEvents: 2bc0ca2eedb627b73cf403258dce2b2fa98074a6
 
-PODFILE CHECKSUM: fefa000f8bf705258d7c27e03b515f1f4f29c802
+PODFILE CHECKSUM: fbff944802c4801917fc48dacd31006b34b7ccbc
 
 COCOAPODS: 1.9.3

@@ -1,6 +1,9 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
+    kotlin("native.cocoapods")
     id(deps.plugins.detekt)
 }
 
@@ -34,12 +37,30 @@ android {
     }
 }
 
+version = Versions.atlas
+
 kotlin {
     android()
     js {
         browser()
     }
-    ios()
+
+    // Select iOS target platform depending on the Xcode environment variables
+    val iOSTarget: (String, KotlinNativeTarget.() -> Unit) -> org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget =
+        if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true) ::iosArm64 else ::iosX64
+
+    iOSTarget("ios") {}
+
+    cocoapods {
+        summary = "mapbox framework"
+        homepage = "https://github.com/cuhacking/atlas"
+
+        frameworkName = "Common"
+
+        ios.deploymentTarget = Versions.ios
+
+        pod("Mapbox-iOS-SDK", "~> 5.9", moduleName = "Mapbox")
+    }
 
     sourceSets["commonMain"].dependencies {
         implementation(deps.kotlin.stdlibCommon)
