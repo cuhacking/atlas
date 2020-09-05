@@ -46,7 +46,7 @@ kotlin {
     }
 
     // Select iOS target platform depending on the Xcode environment variables
-    val iOSTarget: (String, KotlinNativeTarget.() -> Unit) -> org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget =
+    val iOSTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
         if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true) ::iosArm64 else ::iosX64
 
     iOSTarget("ios") {}
