@@ -1,6 +1,5 @@
 PODS:
-  - common (1.0):
-    - Mapbox-iOS-SDK (~> 5.9)
+  - common (1.0)
   - Mapbox-iOS-SDK (5.9.0):
     - MapboxMobileEvents (= 0.10.2)
   - MapboxMobileEvents (0.10.2)
@@ -19,7 +18,7 @@ EXTERNAL SOURCES:
     :path: "../common"
 
 SPEC CHECKSUMS:
-  common: 4dfe2c07f293e11f645961d8a09138c24c5c166b
+  common: 38a66d108ca2a809d9bd8a0d58ddb3911d66ff65
   Mapbox-iOS-SDK: a5915700ec84bc1a7f8b3e746d474789e35b7956
   MapboxMobileEvents: 2bc0ca2eedb627b73cf403258dce2b2fa98074a6
 
