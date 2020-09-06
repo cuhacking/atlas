@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,8 +16,7 @@
 		653FF84124A97E44008855CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 653FF83F24A97E44008855CD /* LaunchScreen.storyboard */; };
 		653FF84C24A97E44008855CD /* atlasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653FF84B24A97E44008855CD /* atlasTests.swift */; };
 		653FF85724A97E44008855CD /* atlasUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653FF85624A97E44008855CD /* atlasUITests.swift */; };
-		653FF86524A9943F008855CD /* Common.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653FF86424A9943F008855CD /* Common.framework */; };
-		653FF86624A9943F008855CD /* Common.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 653FF86424A9943F008855CD /* Common.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BE031A1B25043ADB00DB3C5F /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BE031A1A25043AC400DB3C5F /* libsqlite3.tbd */; };
 		D4A40637B8F6BE70695CB3B5 /* Pods_atlasTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED0C217B4AC7707D0FBBB716 /* Pods_atlasTests.framework */; };
 		EAB9216E0E92559F3E7A473E /* Pods_atlas_atlasUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF8A5E143EDB51299092EB8 /* Pods_atlas_atlasUITests.framework */; };
 /* End PBXBuildFile section */
@@ -38,20 +37,6 @@
 			remoteInfo = atlas;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		653FF86724A9943F008855CD /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				653FF86624A9943F008855CD /* Common.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		10FE1ED6BE997E3055A192E3 /* Pods-atlas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-atlas.debug.xcconfig"; path = "Target Support Files/Pods-atlas/Pods-atlas.debug.xcconfig"; sourceTree = "<group>"; };
@@ -76,6 +61,7 @@
 		8D07A56DA62CCE5C35863962 /* Pods-atlasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-atlasTests.debug.xcconfig"; path = "Target Support Files/Pods-atlasTests/Pods-atlasTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9AF8A5E143EDB51299092EB8 /* Pods_atlas_atlasUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_atlas_atlasUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A68C62AA2C38665908049AE8 /* Pods-atlas-atlasUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-atlas-atlasUITests.release.xcconfig"; path = "Target Support Files/Pods-atlas-atlasUITests/Pods-atlas-atlasUITests.release.xcconfig"; sourceTree = "<group>"; };
+		BE031A1A25043AC400DB3C5F /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		CB44A52907449604C99C4D45 /* Pods_atlas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_atlas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED0C217B4AC7707D0FBBB716 /* Pods_atlasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_atlasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -85,8 +71,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE031A1B25043ADB00DB3C5F /* libsqlite3.tbd in Frameworks */,
 				584D35185D595B187B4B3473 /* Pods_atlas.framework in Frameworks */,
-				653FF86524A9943F008855CD /* Common.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,6 +160,7 @@
 		6DEF913CDA99784F563E6401 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BE031A1A25043AC400DB3C5F /* libsqlite3.tbd */,
 				653FF86424A9943F008855CD /* Common.framework */,
 				CB44A52907449604C99C4D45 /* Pods_atlas.framework */,
 				9AF8A5E143EDB51299092EB8 /* Pods_atlas_atlasUITests.framework */,
@@ -203,11 +190,9 @@
 			buildConfigurationList = 653FF85B24A97E44008855CD /* Build configuration list for PBXNativeTarget "atlas" */;
 			buildPhases = (
 				738F9C17FEB564ED2A5F15F5 /* [CP] Check Pods Manifest.lock */,
-				653FF86824A9950C008855CD /* ShellScript */,
 				653FF82D24A97E42008855CD /* Sources */,
 				653FF82E24A97E42008855CD /* Frameworks */,
 				653FF82F24A97E42008855CD /* Resources */,
-				653FF86724A9943F008855CD /* Embed Frameworks */,
 				FF21E9D25333BF145158D374 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -345,23 +330,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-atlas-atlasUITests/Pods-atlas-atlasUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		653FF86824A9950C008855CD /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncd \"$SRCROOT/../common/build/xcode-frameworks\"\n./gradlew :common:packForXCode -PXCODE_CONFIGURATION=${CONFIGURATION}\n";
 		};
 		738F9C17FEB564ED2A5F15F5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -624,7 +592,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"atlas/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../common/build/xcode-frameworks";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = atlas/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -645,7 +613,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"atlas/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../common/build/xcode-frameworks";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = atlas/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

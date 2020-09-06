@@ -5,4 +5,6 @@ object Versions {
     const val sqldelight = "1.4.2"
     const val ktor = "1.4.0"
     const val detekt = "1.12.0"
+    const val atlas = "1.0"
+    const val ios = "13.5"
 }
