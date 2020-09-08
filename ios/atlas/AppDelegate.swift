@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                               willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        MGLAccountManager.accessToken = AtlasConfig.init().MAPBOX_KEY
+        MGLAccountManager.accessToken = AtlasConfig().MAPBOX_KEY
         return true
     }
 
@@ -40,4 +40,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-
