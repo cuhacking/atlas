@@ -17,6 +17,7 @@
 		653FF84C24A97E44008855CD /* atlasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653FF84B24A97E44008855CD /* atlasTests.swift */; };
 		653FF85724A97E44008855CD /* atlasUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653FF85624A97E44008855CD /* atlasUITests.swift */; };
 		BE031A1B25043ADB00DB3C5F /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BE031A1A25043AC400DB3C5F /* libsqlite3.tbd */; };
+		BE27ABA4250692E200F4D63B /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE27ABA3250692E200F4D63B /* MapView.swift */; };
 		D4A40637B8F6BE70695CB3B5 /* Pods_atlasTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED0C217B4AC7707D0FBBB716 /* Pods_atlasTests.framework */; };
 		EAB9216E0E92559F3E7A473E /* Pods_atlas_atlasUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AF8A5E143EDB51299092EB8 /* Pods_atlas_atlasUITests.framework */; };
 /* End PBXBuildFile section */
@@ -62,6 +63,7 @@
 		9AF8A5E143EDB51299092EB8 /* Pods_atlas_atlasUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_atlas_atlasUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A68C62AA2C38665908049AE8 /* Pods-atlas-atlasUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-atlas-atlasUITests.release.xcconfig"; path = "Target Support Files/Pods-atlas-atlasUITests/Pods-atlas-atlasUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BE031A1A25043AC400DB3C5F /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		BE27ABA3250692E200F4D63B /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		CB44A52907449604C99C4D45 /* Pods_atlas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_atlas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED0C217B4AC7707D0FBBB716 /* Pods_atlasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_atlasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -121,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				653FF83424A97E42008855CD /* AppDelegate.swift */,
+				BE27ABA3250692E200F4D63B /* MapView.swift */,
 				653FF83624A97E42008855CD /* SceneDelegate.swift */,
 				653FF83824A97E42008855CD /* ContentView.swift */,
 				653FF83A24A97E44008855CD /* Assets.xcassets */,
@@ -422,6 +425,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				653FF83524A97E42008855CD /* AppDelegate.swift in Sources */,
+				BE27ABA4250692E200F4D63B /* MapView.swift in Sources */,
 				653FF83724A97E42008855CD /* SceneDelegate.swift in Sources */,
 				653FF83924A97E42008855CD /* ContentView.swift in Sources */,
 			);
