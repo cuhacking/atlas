@@ -56,9 +56,9 @@ object deps {
     }
 
     object spatialk {
-        const val geojson = "io.github.dellisd.spatialk:geojson:0.0.2-SNAPSHOT"
-        const val turf = "io.github.dellisd.spatialk:turf:0.0.2-SNAPSHOT"
-        const val geojsonDsl = "io.github.dellisd.spatialk:geojson-dsl:0.0.2-SNAPSHOT"
+        const val geojson = "io.github.dellisd.spatialk:geojson:${Versions.spatialk}"
+        const val turf = "io.github.dellisd.spatialk:turf:${Versions.spatialk}"
+        const val geojsonDsl = "io.github.dellisd.spatialk:geojson-dsl:${Versions.spatialk}"
     }
 
     object mapbox {
