@@ -35,3 +35,9 @@ jobs:
       run: ./gradlew build
     - name: Run tests
       run: ./gradlew check
+    - name: Select Xcode
+      run: sudo xcode-select -switch /Applications/Xcode_12.app
+    - name: Xcode version
+      run: /usr/bin/xcodebuild -version
+    - name: Run xcodebuild
+      run: xcodebuild -sdk iphonesimulator -destination "name=iPhone 11,OS=14.0" -workspace ios/atlas.xcworkspace -configuration Debug -scheme atlas build
