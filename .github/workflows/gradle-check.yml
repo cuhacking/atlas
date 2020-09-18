@@ -41,6 +41,7 @@ jobs:
     - name: Xcode version
       run: /usr/bin/xcodebuild -version
     - name: Install pods
+      working-directory: ./ios
       run: pod install
     - name: Run xcodebuild
       run: xcodebuild -sdk iphonesimulator -destination "name=iPhone 11,OS=14.0" -workspace ios/atlas.xcworkspace -configuration Debug -scheme atlas build
