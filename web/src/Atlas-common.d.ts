@@ -1,4 +1,6 @@
 declare module "Atlas-common" {
+  import { GeoJSONSource } from "mapbox-gl";
+
   type Nullable<T> = T | null | undefined;
   namespace com.cuhacking.atlas.common {
     export function getMessage(): string;
@@ -8,5 +10,7 @@ declare module "Atlas-common" {
     }
 
     export const AtlasConfig: AtlasConfig;
+
+    export const exampleDataSource: GeoJSONSource;
   }
 }
