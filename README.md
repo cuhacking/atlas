@@ -25,13 +25,12 @@ mapbox.key=<your mapbox access token>
 - **Android**: Open project folder in Android Studio and execute the `android` run configuration.
 - **iOS**: Open the `.xcworkspace` file in XCode or AppCode and run.
 - **Web**:
-  - Run `./gradlew build` in the root directory
   - Run `yarn` in the `web` directory
   - Then run `yarn start` in the `web` directory
 
 ## Project Structure
 
-This project is a Kotlin Multiplatform project targetting Android, iOS, and Web.
+This project is a Kotlin Multiplatform project targeting Android, iOS, and Web.
 
 ```
 .

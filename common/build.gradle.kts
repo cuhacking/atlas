@@ -80,6 +80,7 @@ kotlin {
         implementation(deps.spatialk.geojsonDsl)
         implementation(deps.ktor.commonDriver)
         implementation(deps.kotlin.coroutines)
+        api(project(":mapbox"))
     }
 
     sourceSets["androidMain"].dependencies {
