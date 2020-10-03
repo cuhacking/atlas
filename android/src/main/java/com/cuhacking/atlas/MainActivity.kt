@@ -7,22 +7,23 @@ import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.cuhacking.atlas.common.exampleDataSource
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cuhacking.atlas.databinding.ActivityMainBinding
-import com.cuhacking.atlas.search.SearchResult
 import com.cuhacking.atlas.search.SearchResultsAdapter
-import com.cuhacking.atlas.search.SearchViewModel
+import com.cuhacking.atlas.common.SearchViewModel
+import com.cuhacking.atlas.db.database
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.style.layers.FillLayer
 import com.mapbox.mapboxsdk.style.layers.LineLayer
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory
-
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val searchViewModel = SearchViewModel()
+    private val searchViewModel = SearchViewModel(database)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,26 +57,30 @@ class MainActivity : AppCompatActivity() {
         }
         binding.searchResultsList.adapter = searchResultsAdapter
 
-        val searchResultsObserver = Observer<List<SearchResult>> { searchResultItems ->
-            searchResultsAdapter.submitList(searchResultItems)
+        lifecycleScope.launch {
+            searchViewModel.searchResults.collect { searchResultItems ->
+                searchResultsAdapter.submitList(searchResultItems)
+            }
         }
-        searchViewModel.searchResults.observe(this, searchResultsObserver)
+            binding.searchView.setOnQueryTextListener(object :
+                    SearchView.OnQueryTextListener {
 
-        binding.searchView.setOnQueryTextListener(object :
-               SearchView.OnQueryTextListener {
+                override fun onQueryTextChange(newText: String): Boolean {
+                    lifecycleScope.launch {
+                    searchViewModel.getSearchResults(newText.trim())
+                    }
+                    binding.searchResultsList.visibility = View.VISIBLE
+                    return true
+                }
 
-           override fun onQueryTextChange(newText: String): Boolean {
-               searchViewModel.getSearchResults(newText.trim())
-               binding.searchResultsList.visibility = View.VISIBLE
-               return true
-           }
-
-           override fun onQueryTextSubmit(query: String): Boolean {
-               searchViewModel.getSearchResults(query.trim())
-               return true
-           }
-       })
-    }
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    lifecycleScope.launch {
+                        searchViewModel.getSearchResults(query.trim())
+                    }
+                    return true
+                }
+            })
+        }
 
     override fun onStart() {
         super.onStart()

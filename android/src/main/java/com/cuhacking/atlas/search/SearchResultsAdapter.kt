@@ -1,21 +1,18 @@
 package com.cuhacking.atlas.search
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.cuhacking.atlas.R
+import com.cuhacking.atlas.common.SearchResult
+import com.cuhacking.atlas.databinding.ItemSearchResultBinding
 
-class SearchResultsViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    private val result: TextView = view.findViewById(R.id.result)
-    private val description: TextView = view.findViewById(R.id.description)
+class SearchResultsViewHolder(private val binding: ItemSearchResultBinding) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(searchResult: SearchResult) {
-        result.text = searchResult.name
-        description.text = searchResult.description
+        binding.result.text = searchResult.name
+        binding.description.text = searchResult.description
     }
 }
 
@@ -36,8 +33,8 @@ class SearchResultsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchResultsViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_search_result, parent, false)
-        return SearchResultsViewHolder(itemView)
+        val inflater = LayoutInflater.from(parent.context)
+        return SearchResultsViewHolder(ItemSearchResultBinding.inflate(inflater, parent, false))
     }
 
     override fun onBindViewHolder(holder: SearchResultsViewHolder, position: Int) {

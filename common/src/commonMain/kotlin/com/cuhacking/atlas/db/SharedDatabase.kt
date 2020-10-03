@@ -28,8 +28,8 @@ fun SqlDriver.createDatabase(): Database {
         |"coordinates":[-75.0,45.0]},"properties":{}}""".trimMargin())
     val feature1 = Feature(1, "River Building", "Richcraft Hall", "Building", null, null, null, sampleFeature)
     val feature2 = Feature(2, "RB 2311", null, "room", "River Building", "RB2", null, sampleFeature)
+    @Suppress("MagicNumber")
     val feature3 = Feature(3, "HS 1301B", null, "room", "Health Sciences Building", "HS1", null, sampleFeature)
-
     database.featureQueries.insertFeature(feature1)
     database.featureQueries.insertFeature(feature2)
     database.featureQueries.insertFeature(feature3)

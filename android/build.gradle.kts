@@ -49,6 +49,8 @@ dependencies {
     implementation(deps.androidx.appCompat)
     implementation(deps.material)
     implementation(deps.androidx.constraintLayout)
+    implementation(deps.androidx.lifeCycle)
+
     testImplementation(deps.junit)
     androidTestImplementation(deps.androidx.junit)
     androidTestImplementation(deps.androidx.espresso)
