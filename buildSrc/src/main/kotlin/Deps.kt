@@ -27,7 +27,6 @@ object deps {
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
         const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib-common:${Versions.kotlin}"
         const val stdlibJs = "org.jetbrains.kotlin:kotlin-stdlib-js:${Versions.kotlin}"
-        const val xcode = "org.jetbrains.kotlin.native.xcode:kotlin-native-xcode-11-4-workaround:1.3.72.0"
         const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9"
 
         object test {
@@ -53,6 +52,11 @@ object deps {
         const val iosDriver = "io.ktor:ktor-client-ios:${Versions.ktor}"
         const val jsDriver = "io.ktor:ktor-client-js:${Versions.ktor}"
         const val commonDriver = "io.ktor:ktor-client-core:${Versions.ktor}"
+        object server {
+            const val core = "io.ktor:ktor-server-core:${Versions.ktor}"
+            const val netty = "io.ktor:ktor-server-netty:${Versions.ktor}"
+            const val test = "io.ktor:ktor-server-test-host:${Versions.ktor}"
+        }
     }
 
     object spatialk {
@@ -67,4 +71,6 @@ object deps {
 
     const val material = "com.google.android.material:material:1.1.0"
     const val turbine = "app.cash.turbine:turbine:0.2.1"
+    const val slf4j = "org.slf4j:slf4j-simple:1.7.9"
+    const val clikt = "com.github.ajalt.clikt:clikt:3.0.1"
 }
