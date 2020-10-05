@@ -2,19 +2,29 @@ package com.cuhacking.atlas
 
 import android.graphics.Color
 import android.os.Bundle
+import android.widget.SearchView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import com.cuhacking.atlas.common.exampleDataSource
-import com.cuhacking.mapbox.GeoJsonSource
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.cuhacking.atlas.common.CoroutineDispatchers
 import com.cuhacking.atlas.databinding.ActivityMainBinding
+import com.cuhacking.atlas.search.SearchResultsAdapter
+import com.cuhacking.atlas.common.SearchViewModel
+import com.cuhacking.atlas.db.database
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.style.layers.FillLayer
 import com.mapbox.mapboxsdk.style.layers.LineLayer
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory
-import io.github.dellisd.spatialk.geojson.FeatureCollection.Companion.toFeatureCollection
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private val searchViewModel = SearchViewModel(database, CoroutineDispatchers)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +50,38 @@ class MainActivity : AppCompatActivity() {
                 style.addLayer(outlineLayer("outline-layer", "example"))
             }
         }
+
+        binding.searchResultsList.layoutManager = LinearLayoutManager(this)
+        val searchResultsAdapter = SearchResultsAdapter {
+            // Used for testing click handler
+            Toast.makeText(this, it.name + " was clicked", Toast.LENGTH_SHORT).show()
+        }
+        binding.searchResultsList.adapter = searchResultsAdapter
+
+        lifecycleScope.launch {
+            searchViewModel.searchResults.collect { searchResultItems ->
+                searchResultsAdapter.submitList(searchResultItems)
+            }
+        }
+
+        binding.searchView.setOnQueryTextListener(object :
+            SearchView.OnQueryTextListener {
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                lifecycleScope.launch {
+                    searchViewModel.getSearchResults(newText)
+                }
+                binding.searchResultsList.isVisible = true
+                return true
+            }
+
+            override fun onQueryTextSubmit(query: String): Boolean {
+                lifecycleScope.launch {
+                    searchViewModel.getSearchResults(query)
+                }
+                return true
+            }
+        })
     }
 
     override fun onStart() {

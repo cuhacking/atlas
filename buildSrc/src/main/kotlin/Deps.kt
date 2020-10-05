@@ -13,9 +13,10 @@ object deps {
     }
 
     object androidx {
-        const val core = "androidx.core:core-ktx:1.3.0"
+        const val core = "androidx.core:core-ktx:1.3.2"
         const val appCompat = "androidx.appcompat:appcompat:1.1.0"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
+        const val lifeCycle = "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-alpha01"
 
         const val junit = "androidx.test.ext:junit:1.1.1"
         const val espresso = "androidx.test.espresso:espresso-core:3.2.0"
