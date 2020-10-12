@@ -84,10 +84,9 @@ class FeatureApiTest {
     }
 
     @Test
-    fun `check that data is downloaded and inserted to database`() {
-        runBlocking {
-            FeatureApi(database, client).getAndStoreFeatures()
-        }
+    fun `check that data is downloaded and inserted to database`() = runBlocking {
+        FeatureApi(database, client).getAndStoreFeatures()
+
         assertEquals(database.featureQueries.getAll().executeAsList(),featureList)
     }
 }
