@@ -53,6 +53,7 @@ object deps {
         const val iosDriver = "io.ktor:ktor-client-ios:${Versions.ktor}"
         const val jsDriver = "io.ktor:ktor-client-js:${Versions.ktor}"
         const val commonDriver = "io.ktor:ktor-client-core:${Versions.ktor}"
+        const val mockClient = "io.ktor:ktor-client-mock-jvm:${Versions.ktor}"
         object server {
             const val core = "io.ktor:ktor-server-core:${Versions.ktor}"
             const val netty = "io.ktor:ktor-server-netty:${Versions.ktor}"

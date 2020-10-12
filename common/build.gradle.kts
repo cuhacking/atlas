@@ -87,6 +87,7 @@ kotlin {
         implementation(deps.sqldelight.androidDriver)
         api(deps.mapbox.androidSdk)
         implementation(deps.ktor.androidDriver)
+        implementation(deps.ktor.mockClient)
     }
 
     sourceSets["androidTest"].dependencies {
