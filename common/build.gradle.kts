@@ -127,6 +127,15 @@ buildkonfig {
         } else {
             throw GradleException("mapbox.key not declared in local.properties")
         }
+
+        if (props.containsKey("server.url")) {
+            buildConfigField(
+                com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING, "SERVER_URL",
+                props.getProperty("server.url")
+            )
+        } else {
+            throw GradleException("server.url not declared in local.properties")
+        }
     }
 }
 
