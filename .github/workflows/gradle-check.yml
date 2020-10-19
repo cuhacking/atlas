@@ -33,9 +33,11 @@ jobs:
     - name: Set up local secrets
       env:
         MAPBOX_KEY: ${{ secrets.MAPBOX_KEY }}
+        MAPBOX_DOWNLOADS_TOKEN: ${{ secrets.MAPBOX_DOWNLOADS_TOKEN }}
       run: |
         echo mapbox.key="$MAPBOX_KEY" > local.properties
         echo server.url=https://example.com/ >> local.properties
+        echo MAPBOX_DOWNLOADS_TOKEN=$MAPBOX_DOWNLOADS_TOKEN >> ~/.gradle/gradle.properties
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
