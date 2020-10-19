@@ -55,7 +55,8 @@ kotlin {
         summary = "mapbox framework"
         homepage = "https://github.com/cuhacking/atlas"
 
-        frameworkName = "Common"
+        frameworkName = "Mapbox-Atlas"
+        podfile = project.file("../ios/Podfile")
 
         ios.deploymentTarget = Versions.ios
 
