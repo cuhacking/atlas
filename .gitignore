@@ -8,6 +8,7 @@
 .externalNativeBuild
 .cxx
 local.properties
+*.podspec
 
 /**/node_modules
 

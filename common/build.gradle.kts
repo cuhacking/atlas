@@ -57,10 +57,10 @@ kotlin {
         summary = "mapbox framework"
         homepage = "https://github.com/cuhacking/atlas"
         podfile = project.file("../ios/Podfile")
-
         frameworkName = "Common"
 
         ios.deploymentTarget = Versions.ios
+        pod("Mapbox-iOS-SDK", "~> 5.9", moduleName = "Mapbox")
     }
 
     android()
