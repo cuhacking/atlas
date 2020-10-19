@@ -41,10 +41,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
     - name: Run tests
-      run: ./gradlew check
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
-      
+      run: ./gradlew check 
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_12.app
     - name: Xcode version
