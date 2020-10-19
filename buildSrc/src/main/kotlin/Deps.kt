@@ -2,7 +2,7 @@
 
 object deps {
     object plugins {
-        const val android = "com.android.tools.build:gradle:4.2.0-alpha11"
+        const val android = "com.android.tools.build:gradle:4.2.0-alpha13"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
         const val sqldelight = "com.squareup.sqldelight:gradle-plugin:${Versions.sqldelight}"
         const val buildKonfig = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin:0.7.0"
@@ -14,9 +14,9 @@ object deps {
 
     object androidx {
         const val core = "androidx.core:core-ktx:1.3.2"
-        const val appCompat = "androidx.appcompat:appcompat:1.1.0"
-        const val constraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
-        const val lifeCycle = "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-alpha01"
+        const val appCompat = "androidx.appcompat:appcompat:1.2.0"
+        const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.2"
+        const val lifeCycle = "androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-beta01"
 
         const val junit = "androidx.test.ext:junit:1.1.1"
         const val espresso = "androidx.test.espresso:espresso-core:3.2.0"
@@ -68,10 +68,10 @@ object deps {
     }
 
     object mapbox {
-        const val androidSdk = "com.mapbox.mapboxsdk:mapbox-android-sdk:9.2.0"
+        const val androidSdk = "com.mapbox.mapboxsdk:mapbox-android-sdk:9.5.0"
     }
 
-    const val material = "com.google.android.material:material:1.1.0"
+    const val material = "com.google.android.material:material:1.3.0-alpha03"
     const val turbine = "app.cash.turbine:turbine:0.2.1"
     const val slf4j = "org.slf4j:slf4j-simple:1.7.9"
     const val clikt = "com.github.ajalt.clikt:clikt:3.0.1"

@@ -20,6 +20,12 @@ Include the following in your `local.properties` file:
 mapbox.key=<your mapbox access token>
 ```
 
+In your home `.gradle` folder create a `gradle.properties` file (`~/.gradle/gradle.properties`) and add the following:
+```
+MAPBOX_DOWNLOADS_TOKEN=<your secret mapbox downloads token>
+```
+as [specified here](https://docs.mapbox.com/android/maps/overview/) in the Mapbox docs.
+
 ### Building
 
 - **Android**: Open project folder in Android Studio and execute the `android` run configuration.
