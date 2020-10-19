@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5AAE95651429DD8C11503811 /* Pods_atlasTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85290C5B89A648C1E32A6E08 /* Pods_atlasTests.framework */; };
+		56EA330661358FCA710E8075 /* Pods_atlasTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08ACDEDD606A38121A2FD6D9 /* Pods_atlasTests.framework */; };
+		5F58D7F2FFDADC0235C51E09 /* Pods_atlas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA49F6C006D30B0B0CD574F5 /* Pods_atlas.framework */; };
 		653FF83524A97E42008855CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653FF83424A97E42008855CD /* AppDelegate.swift */; };
 		653FF83724A97E42008855CD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653FF83624A97E42008855CD /* SceneDelegate.swift */; };
 		653FF83924A97E42008855CD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653FF83824A97E42008855CD /* ContentView.swift */; };
@@ -16,10 +17,9 @@
 		653FF84124A97E44008855CD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 653FF83F24A97E44008855CD /* LaunchScreen.storyboard */; };
 		653FF84C24A97E44008855CD /* atlasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653FF84B24A97E44008855CD /* atlasTests.swift */; };
 		653FF85724A97E44008855CD /* atlasUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653FF85624A97E44008855CD /* atlasUITests.swift */; };
-		BD8C31351A20E72FDD8BD08C /* Pods_atlas_atlasUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA5D107A27E04699183B6E1 /* Pods_atlas_atlasUITests.framework */; };
+		9A8C0A87D82DE1079C1DE327 /* Pods_atlas_atlasUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4EF53D8CC51560607F828970 /* Pods_atlas_atlasUITests.framework */; };
 		BE031A1B25043ADB00DB3C5F /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BE031A1A25043AC400DB3C5F /* libsqlite3.tbd */; };
 		BE27ABA4250692E200F4D63B /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE27ABA3250692E200F4D63B /* MapView.swift */; };
-		E69CFA0798673E5CBC73AD64 /* Pods_atlas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F9DEED9B3DA474E66EF3E15 /* Pods_atlas.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,9 +40,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		07F97D5053E5F2AC8E7FF641 /* Pods-atlasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-atlasTests.release.xcconfig"; path = "Target Support Files/Pods-atlasTests/Pods-atlasTests.release.xcconfig"; sourceTree = "<group>"; };
-		1B06FCE75764177D9C06FDC7 /* Pods-atlas-atlasUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-atlas-atlasUITests.debug.xcconfig"; path = "Target Support Files/Pods-atlas-atlasUITests/Pods-atlas-atlasUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		2CA5D107A27E04699183B6E1 /* Pods_atlas_atlasUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_atlas_atlasUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		08ACDEDD606A38121A2FD6D9 /* Pods_atlasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_atlasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4BF728E69CE51B6A686EBA90 /* Pods-atlas-atlasUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-atlas-atlasUITests.release.xcconfig"; path = "Target Support Files/Pods-atlas-atlasUITests/Pods-atlas-atlasUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4EF53D8CC51560607F828970 /* Pods_atlas_atlasUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_atlas_atlasUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		541473D2AFC525B31F3D1CC5 /* Pods-atlas-atlasUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-atlas-atlasUITests.debug.xcconfig"; path = "Target Support Files/Pods-atlas-atlasUITests/Pods-atlas-atlasUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		54B74818DE0BADDB6A39C2D3 /* Pods-atlasTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-atlasTests.release.xcconfig"; path = "Target Support Files/Pods-atlasTests/Pods-atlasTests.release.xcconfig"; sourceTree = "<group>"; };
 		653FF83124A97E42008855CD /* atlas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = atlas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		653FF83424A97E42008855CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		653FF83624A97E42008855CD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,14 +60,12 @@
 		653FF85624A97E44008855CD /* atlasUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = atlasUITests.swift; sourceTree = "<group>"; };
 		653FF85824A97E44008855CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		653FF86424A9943F008855CD /* Common.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Common.framework; path = "../common/build/xcode-frameworks/Common.framework"; sourceTree = "<group>"; };
-		7F9DEED9B3DA474E66EF3E15 /* Pods_atlas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_atlas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		85290C5B89A648C1E32A6E08 /* Pods_atlasTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_atlasTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		964D0A40D384E92877EFCEA2 /* Pods-atlasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-atlasTests.debug.xcconfig"; path = "Target Support Files/Pods-atlasTests/Pods-atlasTests.debug.xcconfig"; sourceTree = "<group>"; };
-		9C3F8CBE8407C995CFA57CFD /* Pods-atlas-atlasUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-atlas-atlasUITests.release.xcconfig"; path = "Target Support Files/Pods-atlas-atlasUITests/Pods-atlas-atlasUITests.release.xcconfig"; sourceTree = "<group>"; };
-		A06B64A4EBE661B0C28A39F1 /* Pods-atlas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-atlas.release.xcconfig"; path = "Target Support Files/Pods-atlas/Pods-atlas.release.xcconfig"; sourceTree = "<group>"; };
+		B55B4E78D395188EB7EB84E3 /* Pods-atlasTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-atlasTests.debug.xcconfig"; path = "Target Support Files/Pods-atlasTests/Pods-atlasTests.debug.xcconfig"; sourceTree = "<group>"; };
 		BE031A1A25043AC400DB3C5F /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		BE27ABA3250692E200F4D63B /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		D81A4C073A4849C27DEED72E /* Pods-atlas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-atlas.debug.xcconfig"; path = "Target Support Files/Pods-atlas/Pods-atlas.debug.xcconfig"; sourceTree = "<group>"; };
+		DA49F6C006D30B0B0CD574F5 /* Pods_atlas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_atlas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1AF2388A55738CC3A48B79C /* Pods-atlas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-atlas.debug.xcconfig"; path = "Target Support Files/Pods-atlas/Pods-atlas.debug.xcconfig"; sourceTree = "<group>"; };
+		F207833B42829FED8D42339B /* Pods-atlas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-atlas.release.xcconfig"; path = "Target Support Files/Pods-atlas/Pods-atlas.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +74,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE031A1B25043ADB00DB3C5F /* libsqlite3.tbd in Frameworks */,
-				E69CFA0798673E5CBC73AD64 /* Pods_atlas.framework in Frameworks */,
+				5F58D7F2FFDADC0235C51E09 /* Pods_atlas.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5AAE95651429DD8C11503811 /* Pods_atlasTests.framework in Frameworks */,
+				56EA330661358FCA710E8075 /* Pods_atlasTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD8C31351A20E72FDD8BD08C /* Pods_atlas_atlasUITests.framework in Frameworks */,
+				9A8C0A87D82DE1079C1DE327 /* Pods_atlas_atlasUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,9 +165,9 @@
 			children = (
 				BE031A1A25043AC400DB3C5F /* libsqlite3.tbd */,
 				653FF86424A9943F008855CD /* Common.framework */,
-				7F9DEED9B3DA474E66EF3E15 /* Pods_atlas.framework */,
-				2CA5D107A27E04699183B6E1 /* Pods_atlas_atlasUITests.framework */,
-				85290C5B89A648C1E32A6E08 /* Pods_atlasTests.framework */,
+				DA49F6C006D30B0B0CD574F5 /* Pods_atlas.framework */,
+				4EF53D8CC51560607F828970 /* Pods_atlas_atlasUITests.framework */,
+				08ACDEDD606A38121A2FD6D9 /* Pods_atlasTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -175,12 +175,12 @@
 		7C1FE2A515EC51EACE4BD6E6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D81A4C073A4849C27DEED72E /* Pods-atlas.debug.xcconfig */,
-				A06B64A4EBE661B0C28A39F1 /* Pods-atlas.release.xcconfig */,
-				1B06FCE75764177D9C06FDC7 /* Pods-atlas-atlasUITests.debug.xcconfig */,
-				9C3F8CBE8407C995CFA57CFD /* Pods-atlas-atlasUITests.release.xcconfig */,
-				964D0A40D384E92877EFCEA2 /* Pods-atlasTests.debug.xcconfig */,
-				07F97D5053E5F2AC8E7FF641 /* Pods-atlasTests.release.xcconfig */,
+				E1AF2388A55738CC3A48B79C /* Pods-atlas.debug.xcconfig */,
+				F207833B42829FED8D42339B /* Pods-atlas.release.xcconfig */,
+				541473D2AFC525B31F3D1CC5 /* Pods-atlas-atlasUITests.debug.xcconfig */,
+				4BF728E69CE51B6A686EBA90 /* Pods-atlas-atlasUITests.release.xcconfig */,
+				B55B4E78D395188EB7EB84E3 /* Pods-atlasTests.debug.xcconfig */,
+				54B74818DE0BADDB6A39C2D3 /* Pods-atlasTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -192,11 +192,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 653FF85B24A97E44008855CD /* Build configuration list for PBXNativeTarget "atlas" */;
 			buildPhases = (
-				F9CBBE3E230AB27BCA98AD21 /* [CP] Check Pods Manifest.lock */,
+				61BDFF8804E88750CE8E8F1A /* [CP] Check Pods Manifest.lock */,
 				653FF82D24A97E42008855CD /* Sources */,
 				653FF82E24A97E42008855CD /* Frameworks */,
 				653FF82F24A97E42008855CD /* Resources */,
-				E2B8C2DA6AB7F394A584E06C /* [CP] Embed Pods Frameworks */,
+				19D59F7B1463E064A9FF8310 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -211,7 +211,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 653FF85E24A97E44008855CD /* Build configuration list for PBXNativeTarget "atlasTests" */;
 			buildPhases = (
-				6BF1FD26D0AD74A01EBBB87A /* [CP] Check Pods Manifest.lock */,
+				58F59ECD7169CA723D184635 /* [CP] Check Pods Manifest.lock */,
 				653FF84324A97E44008855CD /* Sources */,
 				653FF84424A97E44008855CD /* Frameworks */,
 				653FF84524A97E44008855CD /* Resources */,
@@ -230,11 +230,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 653FF86124A97E44008855CD /* Build configuration list for PBXNativeTarget "atlasUITests" */;
 			buildPhases = (
-				B21AFA19857E73ACE4DDD13D /* [CP] Check Pods Manifest.lock */,
+				66652F0830D232C2018F16A1 /* [CP] Check Pods Manifest.lock */,
 				653FF84E24A97E44008855CD /* Sources */,
 				653FF84F24A97E44008855CD /* Frameworks */,
 				653FF85024A97E44008855CD /* Resources */,
-				D9916D18CA39D452421BB426 /* [CP] Embed Pods Frameworks */,
+				329F65CC549E27C1A0FC4DF5 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -317,7 +317,41 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		6BF1FD26D0AD74A01EBBB87A /* [CP] Check Pods Manifest.lock */ = {
+		19D59F7B1463E064A9FF8310 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-atlas/Pods-atlas-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-atlas/Pods-atlas-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-atlas/Pods-atlas-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		329F65CC549E27C1A0FC4DF5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-atlas-atlasUITests/Pods-atlas-atlasUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-atlas-atlasUITests/Pods-atlas-atlasUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-atlas-atlasUITests/Pods-atlas-atlasUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		58F59ECD7169CA723D184635 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -339,63 +373,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B21AFA19857E73ACE4DDD13D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-atlas-atlasUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D9916D18CA39D452421BB426 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-atlas-atlasUITests/Pods-atlas-atlasUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-atlas-atlasUITests/Pods-atlas-atlasUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-atlas-atlasUITests/Pods-atlas-atlasUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E2B8C2DA6AB7F394A584E06C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-atlas/Pods-atlas-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-atlas/Pods-atlas-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-atlas/Pods-atlas-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F9CBBE3E230AB27BCA98AD21 /* [CP] Check Pods Manifest.lock */ = {
+		61BDFF8804E88750CE8E8F1A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -411,6 +389,28 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-atlas-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		66652F0830D232C2018F16A1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-atlas-atlasUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -590,7 +590,7 @@
 		};
 		653FF85C24A97E44008855CD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D81A4C073A4849C27DEED72E /* Pods-atlas.debug.xcconfig */;
+			baseConfigurationReference = E1AF2388A55738CC3A48B79C /* Pods-atlas.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -611,7 +611,7 @@
 		};
 		653FF85D24A97E44008855CD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A06B64A4EBE661B0C28A39F1 /* Pods-atlas.release.xcconfig */;
+			baseConfigurationReference = F207833B42829FED8D42339B /* Pods-atlas.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -632,7 +632,7 @@
 		};
 		653FF85F24A97E44008855CD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 964D0A40D384E92877EFCEA2 /* Pods-atlasTests.debug.xcconfig */;
+			baseConfigurationReference = B55B4E78D395188EB7EB84E3 /* Pods-atlasTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -654,7 +654,7 @@
 		};
 		653FF86024A97E44008855CD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07F97D5053E5F2AC8E7FF641 /* Pods-atlasTests.release.xcconfig */;
+			baseConfigurationReference = 54B74818DE0BADDB6A39C2D3 /* Pods-atlasTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -676,7 +676,7 @@
 		};
 		653FF86224A97E44008855CD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B06FCE75764177D9C06FDC7 /* Pods-atlas-atlasUITests.debug.xcconfig */;
+			baseConfigurationReference = 541473D2AFC525B31F3D1CC5 /* Pods-atlas-atlasUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -696,7 +696,7 @@
 		};
 		653FF86324A97E44008855CD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9C3F8CBE8407C995CFA57CFD /* Pods-atlas-atlasUITests.release.xcconfig */;
+			baseConfigurationReference = 4BF728E69CE51B6A686EBA90 /* Pods-atlas-atlasUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

@@ -1,4 +1,4 @@
-platform :ios, '13.5'
+platform :ios, '13.7'
 
 target 'atlas' do
   # Comment the next line if you don't want to use dynamic frameworks
