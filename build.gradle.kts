@@ -25,6 +25,7 @@ allprojects {
         google()
         jcenter()
         maven(url = "https://oss.sonatype.org/content/repositories/snapshots")
+        maven(url = "https://dl.bintray.com/kotlin/kotlinx/")
         maven(url = "https://api.mapbox.com/downloads/v2/releases/maven") {
             authentication {
                 create<BasicAuthentication>("basic")

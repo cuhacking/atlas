@@ -80,6 +80,7 @@ kotlin {
         implementation(deps.spatialk.geojsonDsl)
         implementation(deps.ktor.commonDriver)
         implementation(deps.kotlin.coroutines)
+        implementation(deps.kotlin.datetime)
         api(project(":mapbox"))
     }
 
@@ -88,6 +89,7 @@ kotlin {
         api(deps.mapbox.androidSdk)
         implementation(deps.ktor.androidDriver)
         implementation(deps.ktor.mockClient)
+        implementation(deps.kotlin.datetime)
     }
 
     sourceSets["androidTest"].dependencies {
@@ -98,10 +100,12 @@ kotlin {
     sourceSets["iosMain"].dependencies {
         implementation(deps.sqldelight.nativeDriver)
         implementation(deps.ktor.iosDriver)
+        implementation(deps.kotlin.datetime)
     }
 
     sourceSets["jsMain"].dependencies {
         implementation(deps.ktor.jsDriver)
+        implementation(deps.kotlin.datetime)
         // https://github.com/cashapp/sqldelight/issues/1667
         // implementation(deps.sqldelight.jsDriver)
         // implementation(deps.sqldelight.jsRuntimeDriver)
