@@ -10,6 +10,8 @@ import kotlinx.coroutines.withContext
 
 class FeatureApi(private val database: Database, private val client: HttpClient) {
 
+    private val dataCache = DataCache()
+
     private fun Feature.toDbFeature() = DbFeature(
         properties["id"].toString().toLong(),
         properties["name"].toString().replace("\"", ""),
@@ -21,10 +23,13 @@ class FeatureApi(private val database: Database, private val client: HttpClient)
         this)
 
     suspend fun getAndStoreFeatures() = withContext(CoroutineDispatchers.io) {
-        val features: List<Feature> = client.get<String>(AtlasConfig.SERVER_URL).toFeatureCollection().features
+        val response = client.get<String>(AtlasConfig.SERVER_URL)
+        val features: List<Feature> = response.toFeatureCollection().features
 
         features.forEach {
             database.featureQueries.insertFeature(it.toDbFeature())
         }
+
+        dataCache.writeData(response)
     }
 }

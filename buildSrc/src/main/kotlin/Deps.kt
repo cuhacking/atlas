@@ -29,6 +29,7 @@ object deps {
         const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib-common:${Versions.kotlin}"
         const val stdlibJs = "org.jetbrains.kotlin:kotlin-stdlib-js:${Versions.kotlin}"
         const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9"
+        const val datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.1.0"
 
         object test {
             const val common = "org.jetbrains.kotlin:kotlin-test-common"

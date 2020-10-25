@@ -54,6 +54,7 @@ dependencies {
     testImplementation(deps.junit)
     androidTestImplementation(deps.androidx.junit)
     androidTestImplementation(deps.androidx.espresso)
+    androidTestImplementation(deps.kotlin.datetime)
 }
 
 detekt {
