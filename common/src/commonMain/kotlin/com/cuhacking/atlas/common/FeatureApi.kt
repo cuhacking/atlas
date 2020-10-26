@@ -22,6 +22,7 @@ class FeatureApi(private val database: Database, private val client: HttpClient)
         properties["name"].toString().replace("\"", ""),
         this)
 
+    @Suppress("TooGenericExceptionCaught")
     suspend fun getAndStoreFeatures() = withContext(dispatchers.io) {
         try {
             val response = client.get<FeatureCollection>(AtlasConfig.SERVER_URL)
