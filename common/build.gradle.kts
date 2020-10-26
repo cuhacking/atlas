@@ -95,6 +95,8 @@ kotlin {
     sourceSets["androidTest"].dependencies {
         implementation(deps.kotlin.test.junit)
         implementation(deps.sqldelight.sqliteDriver)
+        implementation(deps.ktor.jsonFeature)
+        implementation(deps.ktor.jsonSerializer)
     }
 
     sourceSets["iosMain"].dependencies {
