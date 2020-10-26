@@ -55,6 +55,9 @@ object deps {
         const val jsDriver = "io.ktor:ktor-client-js:${Versions.ktor}"
         const val commonDriver = "io.ktor:ktor-client-core:${Versions.ktor}"
         const val mockClient = "io.ktor:ktor-client-mock-jvm:${Versions.ktor}"
+        const val jsonFeature = "io.ktor:ktor-client-json-jvm:${Versions.ktor}"
+        const val jsonSerializer = "io.ktor:ktor-client-serialization-jvm:${Versions.ktor}"
+
         object server {
             const val core = "io.ktor:ktor-server-core:${Versions.ktor}"
             const val netty = "io.ktor:ktor-server-netty:${Versions.ktor}"

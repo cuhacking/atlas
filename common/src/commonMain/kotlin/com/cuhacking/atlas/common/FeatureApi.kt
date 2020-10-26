@@ -3,14 +3,14 @@ package com.cuhacking.atlas.common
 import com.cuhacking.atlas.db.Feature as DbFeature
 import com.cuhacking.atlas.db.Database
 import io.github.dellisd.spatialk.geojson.Feature
-import io.github.dellisd.spatialk.geojson.FeatureCollection.Companion.toFeatureCollection
+import io.github.dellisd.spatialk.geojson.FeatureCollection
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import kotlinx.coroutines.withContext
 
 class FeatureApi(private val database: Database, private val client: HttpClient) {
-
-    private val dataCache = DataCache()
+    private val dispatchers = CoroutineDispatchers
+    private val dataCache = DataCache(dispatchers)
 
     private fun Feature.toDbFeature() = DbFeature(
         properties["id"].toString().toLong(),
@@ -22,14 +22,18 @@ class FeatureApi(private val database: Database, private val client: HttpClient)
         properties["name"].toString().replace("\"", ""),
         this)
 
-    suspend fun getAndStoreFeatures() = withContext(CoroutineDispatchers.io) {
-        val response = client.get<String>(AtlasConfig.SERVER_URL)
-        val features: List<Feature> = response.toFeatureCollection().features
+    suspend fun getAndStoreFeatures() = withContext(dispatchers.io) {
+        try {
+            val response = client.get<FeatureCollection>(AtlasConfig.SERVER_URL)
+            val features: List<Feature> = response.features
 
-        features.forEach {
-            database.featureQueries.insertFeature(it.toDbFeature())
+            features.forEach {
+                database.featureQueries.insertFeature(it.toDbFeature())
+            }
+
+            dataCache.writeData(response.toString())
+        } catch (exception: Exception) {
+            print("Error retrieving data from server $exception")
         }
-
-        dataCache.writeData(response)
     }
 }

@@ -2,6 +2,7 @@ package com.cuhacking.atlas
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import com.cuhacking.atlas.common.CoroutineDispatchers
 import com.cuhacking.atlas.common.DataCache
 import org.junit.Assert.assertEquals
 import kotlinx.coroutines.runBlocking
@@ -12,7 +13,8 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class DataCacheTest {
     private val context = InstrumentationRegistry.getInstrumentation().targetContext
-    private val dataCache = DataCache()
+    private val dispatchers = CoroutineDispatchers
+    private val dataCache = DataCache(dispatchers)
 
     private val sampleData: String =
         """{

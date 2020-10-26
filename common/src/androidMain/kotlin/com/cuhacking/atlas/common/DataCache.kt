@@ -6,11 +6,12 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import java.io.File
 
-actual class DataCache {
+actual class DataCache actual constructor(dispatchers: CoroutineDispatchers) {
     lateinit var appContext: Context
     actual var lastModified: Instant? = null
+    private val dispatchers = CoroutineDispatchers
 
-    actual suspend fun writeData(data: String) = withContext(CoroutineDispatchers.io) {
+    actual suspend fun writeData(data: String) = withContext(dispatchers.io) {
         lastModified = Clock.System.now()
         val file = File(appContext.cacheDir, "mapdata.json")
         file.bufferedWriter().use {
@@ -18,7 +19,7 @@ actual class DataCache {
         }
     }
 
-    actual suspend fun readData(): String = withContext(CoroutineDispatchers.io) {
+    actual suspend fun readData(): String = withContext(dispatchers.io) {
         val file = File(appContext.cacheDir, "mapdata.json")
         return@withContext file.bufferedReader().use {
             it.readLine()

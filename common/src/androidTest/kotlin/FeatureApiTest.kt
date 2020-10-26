@@ -8,7 +8,9 @@ import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
-import io.ktor.http.HttpStatusCode
+import io.ktor.client.features.json.*
+import io.ktor.client.features.json.serializer.*
+import io.ktor.http.*
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
@@ -18,8 +20,8 @@ import kotlin.test.assertEquals
 @Suppress("MaxLineLength")
 class FeatureApiTest {
 
-    lateinit var driver: SqlDriver
-    lateinit var database: Database
+    private lateinit var driver: SqlDriver
+    private lateinit var database: Database
     private val sampleFeatureCollection: String =
         """{
                 "type": "FeatureCollection",
@@ -64,9 +66,19 @@ class FeatureApiTest {
     private val featureList = mutableListOf(feature1, feature2)
 
     private val client = HttpClient(MockEngine) {
+        install(JsonFeature) {
+            serializer = KotlinxSerializer()
+        }
         engine {
             addHandler {
-                respond(sampleFeatureCollection, HttpStatusCode.OK)
+                respond(sampleFeatureCollection, HttpStatusCode.OK, headersOf("Content-Type", ContentType.Application.Json.toString()))
+            }
+        }
+    }
+    private val badClient = HttpClient(MockEngine) {
+        engine {
+            addHandler {
+                respond("Error", HttpStatusCode.BadRequest)
             }
         }
     }
@@ -91,7 +103,11 @@ class FeatureApiTest {
     @Test
     fun `check that data is downloaded and inserted to database`() = runBlocking {
         FeatureApi(database, client).getAndStoreFeatures()
+        assertEquals(featureList, database.featureQueries.getAll().executeAsList())
+    }
 
-        assertEquals(database.featureQueries.getAll().executeAsList(), featureList)
+    @Test
+    fun `check that network error is handled`() = runBlocking {
+        FeatureApi(database, badClient).getAndStoreFeatures()
     }
 }
