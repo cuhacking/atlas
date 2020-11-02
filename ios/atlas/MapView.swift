@@ -11,7 +11,7 @@ import SwiftUI
 import Mapbox
 
 struct MapView: UIViewRepresentable {
-    
+
     private let mapView: MGLMapView = MGLMapView(frame: .zero, styleURL: MGLStyle.darkStyleURL)
 
     func makeUIView(context: UIViewRepresentableContext<MapView>) -> MGLMapView {
@@ -51,7 +51,6 @@ struct MapView: UIViewRepresentable {
         func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
 
             let source = DataSourceKt.exampleDataSource
-            let intern = DataSourceKt.exampleDataSource.internalSource
             mapView.style?.addSource(source.internalSource)
 
             let fillLayer = MGLFillStyleLayer(identifier: "fill-layer", source: source.internalSource)
