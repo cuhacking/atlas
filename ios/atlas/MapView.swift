@@ -6,11 +6,12 @@
 //  Copyright © 2020 cuHacking. All rights reserved.
 //
 
+import Common
 import SwiftUI
 import Mapbox
 
 struct MapView: UIViewRepresentable {
-
+    
     private let mapView: MGLMapView = MGLMapView(frame: .zero, styleURL: MGLStyle.darkStyleURL)
 
     func makeUIView(context: UIViewRepresentableContext<MapView>) -> MGLMapView {
@@ -49,22 +50,18 @@ struct MapView: UIViewRepresentable {
 
         func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
 
-            let theCafCoordinates = [
-                CLLocationCoordinate2D(latitude: 45.386891, longitude: -75.697635), // bottom left
-                CLLocationCoordinate2D(latitude: 45.386930, longitude: -75.696871), // bottom right
-                CLLocationCoordinate2D(latitude: 45.387305, longitude: -75.696865), // top right
-                CLLocationCoordinate2D(latitude: 45.387300, longitude: -75.697653)  // top left
-            ]
+            let source = DataSourceKt.exampleDataSource
+            let intern = DataSourceKt.exampleDataSource.internalSource
+            mapView.style?.addSource(source.internalSource)
 
-            let buildingFeature = MGLPolygonFeature(coordinates: theCafCoordinates, count: 4)
-            let shapeSource = MGLShapeSource(identifier: "buildingSource", features: [buildingFeature], options: nil)
-            mapView.style?.addSource(shapeSource)
-
-            let fillLayer = MGLFillStyleLayer(identifier: "buildingFillLayer", source: shapeSource)
-            fillLayer.fillColor = NSExpression(forConstantValue: UIColor.red)
-            fillLayer.fillOpacity = NSExpression(forConstantValue: 0.3)
-
+            let fillLayer = MGLFillStyleLayer(identifier: "fill-layer", source: source.internalSource)
+            fillLayer.fillColor = NSExpression(forConstantValue: UIColor.darkGray)
             mapView.style?.addLayer(fillLayer)
+            
+            let outlineLayer = MGLLineStyleLayer(identifier: "outline-layer", source: source.internalSource)
+            outlineLayer.lineWidth = NSExpression(forConstantValue: 4)
+            outlineLayer.lineColor = NSExpression(forConstantValue: UIColor.purple)
+            mapView.style?.addLayer(outlineLayer)
 
         }
 
@@ -76,5 +73,11 @@ struct MapView: UIViewRepresentable {
             return true
         }
 
+    }
+}
+
+struct MapView_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
     }
 }

@@ -52,10 +52,10 @@ kotlin {
     iOSTarget("ios") {}
 
     cocoapods {
-        summary = "mapbox framework"
+        summary = "MapboxAtlas framework"
         homepage = "https://github.com/cuhacking/atlas"
 
-        frameworkName = "Mapbox-Atlas"
+        frameworkName = "MapboxAtlas"
         podfile = project.file("../ios/Podfile")
 
         ios.deploymentTarget = Versions.ios

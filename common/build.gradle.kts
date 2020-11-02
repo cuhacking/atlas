@@ -54,7 +54,7 @@ kotlin {
     iOSTarget("ios") {}
 
     cocoapods {
-        summary = "mapbox framework"
+        summary = "Common framework"
         homepage = "https://github.com/cuhacking/atlas"
         podfile = project.file("../ios/Podfile")
         frameworkName = "Common"
