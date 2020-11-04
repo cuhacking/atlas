@@ -1,4 +1,5 @@
 @file:Suppress("TooManyFunctions")
+
 package com.cuhacking.mapbox
 
 import cocoapods.Mapbox.*
@@ -17,39 +18,51 @@ internal fun CLLocationCoordinate2D.fromPosition(position: Position) {
     longitude = position.longitude
 }
 
-internal fun List<Position>.toCoreLocation(): CArrayPointer<CLLocationCoordinate2D> =
-    nativeHeap.allocArray(this@toCoreLocation.size) { index ->
-        this.fromPosition(this@toCoreLocation[index])
+
+internal fun NativePlacement.positionsToCoreLocation(positions: List<Position>) =
+    allocArray<CLLocationCoordinate2D>(positions.size) { index ->
+        fromPosition(positions[index])
     }
 
-fun Point.toMapbox(): MGLPointFeature = MGLPointFeature().also { it.setCoordinate(coordinates.toCoreLocation()) }
+fun Point.toMapbox(): MGLPointFeature =
+    MGLPointFeature().also { it.setCoordinate(coordinates.toCoreLocation()) }
 
-fun MultiPoint.toMapbox(): MGLPointCollectionFeature = MGLPointCollectionFeature.pointCollectionWithCoordinates(
-    coordinates.toCoreLocation(),
-    coordinates.size.convert()
-)!!
+fun MultiPoint.toMapbox(): MGLPointCollectionFeature = memScoped {
+    MGLPointCollectionFeature.pointCollectionWithCoordinates(
+        positionsToCoreLocation(coordinates),
+        coordinates.size.convert()
+    )!!
+}
 
-fun LineString.toMapbox(): MGLPolylineFeature =
-    MGLPolylineFeature.polylineWithCoordinates(coordinates.toCoreLocation(), coordinates.size.convert())
+fun LineString.toMapbox(): MGLPolylineFeature = memScoped {
+    MGLPolylineFeature.polylineWithCoordinates(
+        positionsToCoreLocation(coordinates),
+        coordinates.size.convert()
+    )
+}
 
 
-fun MultiLineString.toMapbox(): MGLMultiPolylineFeature =
+fun MultiLineString.toMapbox(): MGLMultiPolylineFeature = memScoped {
     MGLMultiPolylineFeature.multiPolylineWithPolylines(coordinates.map { line ->
-        MGLPolyline.polylineWithCoordinates(line.toCoreLocation(), line.size.convert())
+        MGLPolyline.polylineWithCoordinates(positionsToCoreLocation(line), line.size.convert())
     })
+}
 
-internal fun List<List<Position>>.toMGLPolygon(): MGLPolygonFeature {
+internal fun List<List<Position>>.toMGLPolygon(): MGLPolygonFeature = memScoped {
     fun ringToPolygon(ring: List<Position>): MGLPolygon =
-        MGLPolygon.polygonWithCoordinates(ring.toCoreLocation(), ring.size.convert())
+        MGLPolygon.polygonWithCoordinates(positionsToCoreLocation(ring), ring.size.convert())
 
     return if (size > 1) {
         MGLPolygonFeature.polygonWithCoordinates(
-            this[0].toCoreLocation(),
-            this[0].size.convert(),
-            this.subList(1, size).map(::ringToPolygon)
+            positionsToCoreLocation(this@toMGLPolygon[0]),
+            this@toMGLPolygon[0].size.convert(),
+            this@toMGLPolygon.subList(1, size).map(::ringToPolygon)
         )
     } else {
-        MGLPolygonFeature.polygonWithCoordinates(this[0].toCoreLocation(), this[0].size.convert())
+        MGLPolygonFeature.polygonWithCoordinates(
+            positionsToCoreLocation(this@toMGLPolygon[0]),
+            this@toMGLPolygon[0].size.convert()
+        )
     }
 }
 
