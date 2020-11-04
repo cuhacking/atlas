@@ -19,7 +19,7 @@ EXTERNAL SOURCES:
     :path: "../common"
 
 SPEC CHECKSUMS:
-  common: aec3e31780ebdd7e60783b60fe4ead5b3ad9ad6b
+  common: 141e1f13f953f6874a3ba8ca92248e415c6248f5
   Mapbox-iOS-SDK: a5915700ec84bc1a7f8b3e746d474789e35b7956
   MapboxMobileEvents: 2bc0ca2eedb627b73cf403258dce2b2fa98074a6
 
