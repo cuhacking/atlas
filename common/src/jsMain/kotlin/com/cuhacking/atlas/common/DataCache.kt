@@ -3,7 +3,7 @@ package com.cuhacking.atlas.common
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 
-actual class DataCache actual constructor(dispatchers: CoroutineDispatchers) {
+actual class DataCache actual constructor(private val dispatchers: CoroutineDispatchers) {
     actual var lastModified: Instant? = null
     private var jsonData = ""
 

@@ -5,11 +5,11 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import platform.Foundation.*
 
-actual class DataCache actual constructor(dispatchers: CoroutineDispatchers) {
+@Suppress("MaxLineLength")
+actual class DataCache actual constructor(private val dispatchers: CoroutineDispatchers) {
     actual var lastModified: Instant? = null
     private val cacheDirectory = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, true).first()
     private val file = (cacheDirectory as NSString).stringByAppendingPathComponent("mapdata.json")
-    private val dispatchers = CoroutineDispatchers
 
     @Suppress("CAST_NEVER_SUCCEEDS")
     actual suspend fun writeData(data: String) = withContext(dispatchers.io) {
