@@ -8,8 +8,11 @@ import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import kotlinx.coroutines.withContext
 
-class FeatureApi(private val database: Database, private val client: HttpClient) {
-    private val dispatchers = CoroutineDispatchers
+class FeatureApi(
+    private val database: Database,
+    private val client: HttpClient,
+    private val dispatchers: CoroutineDispatchers = CoroutineDispatchers
+) {
     private val dataCache = DataCache(dispatchers)
 
     private fun Feature.toDbFeature() = DbFeature(

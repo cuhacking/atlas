@@ -6,10 +6,9 @@ import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import java.io.File
 
-actual class DataCache actual constructor(dispatchers: CoroutineDispatchers) {
+actual class DataCache actual constructor(private val dispatchers: CoroutineDispatchers) {
     lateinit var appContext: Context
     actual var lastModified: Instant? = null
-    private val dispatchers = CoroutineDispatchers
 
     actual suspend fun writeData(data: String) = withContext(dispatchers.io) {
         lastModified = Clock.System.now()
