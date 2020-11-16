@@ -5,15 +5,18 @@ import com.cuhacking.atlas.db.Database
 import io.github.dellisd.spatialk.geojson.Feature
 import io.github.dellisd.spatialk.geojson.FeatureCollection
 import io.ktor.client.HttpClient
-import io.ktor.client.request.get
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
 import kotlinx.coroutines.withContext
+import kotlinx.datetime.Instant
+import kotlinx.datetime.toInstant
 
 class FeatureApi(
     private val database: Database,
     private val client: HttpClient,
     private val dispatchers: CoroutineDispatchers = CoroutineDispatchers
 ) {
-    private val dataCache = DataCache(dispatchers)
+    val dataCache = DataCache(dispatchers)
 
     private fun Feature.toDbFeature() = DbFeature(
         properties["id"].toString().toLong(),
@@ -35,9 +38,21 @@ class FeatureApi(
                 database.featureQueries.insertFeature(it.toDbFeature())
             }
 
-            dataCache.writeData(response.toString())
+            if (updateCache(dataCache.lastModified)) {
+                dataCache.writeData(response.toString())
+            }
         } catch (exception: Exception) {
             print("Error retrieving data from server $exception")
         }
+    }
+
+    private suspend fun updateCache(cacheLastModified: Instant?) = withContext(dispatchers.io) {
+        val header = client.head<HttpResponse>(AtlasConfig.SERVER_URL).headers
+        val serverLastModified = header["Last-Modified"]?.toInstant()
+
+        if (cacheLastModified == null || serverLastModified == null || serverLastModified > cacheLastModified) {
+            return@withContext true
+        }
+        return@withContext false
     }
 }

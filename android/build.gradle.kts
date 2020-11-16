@@ -55,6 +55,9 @@ dependencies {
     androidTestImplementation(deps.androidx.junit)
     androidTestImplementation(deps.androidx.espresso)
     androidTestImplementation(deps.kotlin.datetime)
+    androidTestImplementation(deps.ktor.mockClient)
+    androidTestImplementation(deps.ktor.jsonSerializer)
+    androidTestImplementation(deps.ktor.jsonFeature)
 }
 
 detekt {
