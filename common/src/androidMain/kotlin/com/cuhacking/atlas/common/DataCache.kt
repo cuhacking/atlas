@@ -21,7 +21,7 @@ actual class DataCache actual constructor(private val dispatchers: CoroutineDisp
     actual suspend fun readData(): String = withContext(dispatchers.io) {
         val file = File(appContext.cacheDir, "mapdata.json")
         return@withContext file.bufferedReader().use {
-            it.readLine()
+            it.readText()
         }
     }
 }
