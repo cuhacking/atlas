@@ -1,6 +1,8 @@
 package com.cuhacking.atlas
 
 import androidx.test.platform.app.InstrumentationRegistry
+import com.cuhacking.atlas.common.CoroutineDispatchers
+import com.cuhacking.atlas.common.DataCache
 import com.cuhacking.atlas.common.FeatureApi
 import com.cuhacking.atlas.db.createDatabase
 import com.cuhacking.atlas.db.provideDbDriver
@@ -18,6 +20,8 @@ import org.junit.Test
 class FeatureApiTest {
     private val context = InstrumentationRegistry.getInstrumentation().targetContext
     private val database = provideDbDriver().createDatabase()
+    private val dispatchers = CoroutineDispatchers
+    private val dataCache = DataCache(dispatchers)
 
     private val sampleData: String =
         """{
@@ -39,7 +43,7 @@ class FeatureApiTest {
                         }
                     }
                 ]
-            }""".replace(Regex("[\\s\n]"), "")
+            }"""
 
     private var client = HttpClient(MockEngine) {
         install(JsonFeature) {
@@ -55,11 +59,11 @@ class FeatureApiTest {
             }
         }
     }
-    private val api = FeatureApi(database, client)
+    private val api = FeatureApi(database, client, dataCache)
 
     @Before
     fun before() {
-        api.dataCache.appContext = context
+        dataCache.appContext = context
         database.featureQueries.run {
             deleteAll()
             clearFts()
@@ -69,12 +73,12 @@ class FeatureApiTest {
     @Test
      fun writeDataWhenCacheIsOldOrEmpty(): Unit = runBlocking {
         api.getAndStoreFeatures()
-        assertEquals(sampleData, api.dataCache.readData())
+        assertEquals(sampleData, dataCache.readData())
     }
 
     @Test fun noUpdateWhenServerDataIsTheSame(): Unit = runBlocking {
-        api.dataCache.writeData("changed for testing")
+        dataCache.writeData("changed for testing")
         api.getAndStoreFeatures()
-        assertEquals("changed for testing", api.dataCache.readData())
+        assertEquals("changed for testing", dataCache.readData())
     }
 }

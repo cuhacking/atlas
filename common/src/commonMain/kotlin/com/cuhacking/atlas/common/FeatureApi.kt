@@ -4,6 +4,7 @@ import com.cuhacking.atlas.db.Feature as DbFeature
 import com.cuhacking.atlas.db.Database
 import io.github.dellisd.spatialk.geojson.Feature
 import io.github.dellisd.spatialk.geojson.FeatureCollection
+import io.github.dellisd.spatialk.geojson.FeatureCollection.Companion.toFeatureCollection
 import io.ktor.client.HttpClient
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
@@ -11,13 +12,13 @@ import kotlinx.coroutines.withContext
 import kotlinx.datetime.Instant
 import kotlinx.datetime.toInstant
 
+@Suppress("MaxLineLength", "MaximumLineLength")
 class FeatureApi(
     private val database: Database,
     private val client: HttpClient,
+    private val dataCache: DataCache,
     private val dispatchers: CoroutineDispatchers = CoroutineDispatchers
 ) {
-    val dataCache = DataCache(dispatchers)
-
     private fun Feature.toDbFeature() = DbFeature(
         properties["id"].toString().toLong(),
         properties["name"].toString().replace("\"", ""),
@@ -31,15 +32,16 @@ class FeatureApi(
     @Suppress("TooGenericExceptionCaught")
     suspend fun getAndStoreFeatures() = withContext(dispatchers.io) {
         try {
-            val response = client.get<FeatureCollection>(AtlasConfig.SERVER_URL)
-            val features: List<Feature> = response.features
-
-            features.forEach {
-                database.featureQueries.insertFeature(it.toDbFeature())
-            }
-
             if (updateCache(dataCache.lastModified)) {
-                dataCache.writeData(response.toString())
+                val response = client.get<String>(AtlasConfig.SERVER_URL)
+
+                val features: List<Feature> = response.toFeatureCollection().features
+
+                features.forEach {
+                    database.featureQueries.insertFeature(it.toDbFeature())
+                }
+
+                dataCache.writeData(response)
             }
         } catch (exception: Exception) {
             print("Error retrieving data from server $exception")
@@ -49,10 +51,6 @@ class FeatureApi(
     private suspend fun updateCache(cacheLastModified: Instant?) = withContext(dispatchers.io) {
         val header = client.head<HttpResponse>(AtlasConfig.SERVER_URL).headers
         val serverLastModified = header["Last-Modified"]?.toInstant()
-
-        if (cacheLastModified == null || serverLastModified == null || serverLastModified > cacheLastModified) {
-            return@withContext true
-        }
-        return@withContext false
+        return@withContext cacheLastModified == null || serverLastModified == null || serverLastModified > cacheLastModified
     }
 }

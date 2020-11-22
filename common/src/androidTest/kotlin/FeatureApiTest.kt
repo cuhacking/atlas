@@ -1,3 +1,5 @@
+import com.cuhacking.atlas.common.CoroutineDispatchers
+import com.cuhacking.atlas.common.DataCache
 import com.cuhacking.atlas.common.FeatureApi
 import com.cuhacking.atlas.db.Database
 import com.cuhacking.atlas.db.GeoJsonAdapter
@@ -17,11 +19,13 @@ import org.junit.Before
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-@Suppress("MaxLineLength")
+@Suppress("MaxLineLength", "MaximumLineLength")
 class FeatureApiTest {
 
     private lateinit var driver: SqlDriver
     private lateinit var database: Database
+    private val dispatchers = CoroutineDispatchers
+    private val dataCache = DataCache(dispatchers)
     private val sampleFeatureCollection: String =
         """{
                 "type": "FeatureCollection",
@@ -102,12 +106,12 @@ class FeatureApiTest {
 
     @Test
     fun `check that data is downloaded and inserted to database`() = runBlocking {
-        FeatureApi(database, client).getAndStoreFeatures()
+        FeatureApi(database, client, dataCache).getAndStoreFeatures()
         assertEquals(featureList, database.featureQueries.getAll().executeAsList())
     }
 
     @Test
     fun `check that network error is handled`() = runBlocking {
-        FeatureApi(database, badClient).getAndStoreFeatures()
+        FeatureApi(database, badClient, dataCache).getAndStoreFeatures()
     }
 }
