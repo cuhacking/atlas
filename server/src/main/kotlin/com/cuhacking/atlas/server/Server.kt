@@ -7,6 +7,8 @@ import com.github.ajalt.clikt.parameters.options.option
 import com.github.ajalt.clikt.parameters.types.int
 import com.github.ajalt.clikt.parameters.types.path
 import io.github.dellisd.spatialk.geojson.FeatureCollection.Companion.toFeatureCollection
+import io.ktor.application.*
+import io.ktor.features.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 
@@ -21,7 +23,11 @@ class Server : CliktCommand() {
 
     override fun run() {
         verifyData()
-        embeddedServer(Netty, port, module = dataModuleFactory(file)).start(wait = true)
+
+        embeddedServer(Netty, port, module = {
+            install(AutoHeadResponse)
+            dataModuleFactory(file)
+        }).start(wait = true)
     }
 
     internal fun verifyData() {
