@@ -9,20 +9,17 @@ import java.nio.file.attribute.BasicFileAttributes
 import java.time.ZoneId
 import java.time.ZonedDateTime
 
-fun dataModuleFactory(path: Path): Application.() -> Unit {
+fun Application.dataModuleFactory(path: Path) {
     val attr = Files.readAttributes(path, BasicFileAttributes::class.java)
 
-    @Suppress("FunctionNaming")
-    return fun Application.() {
-        routing {
-            get("/") {
-                call.response.lastModified(
-                    ZonedDateTime.ofInstant(
-                        attr.lastModifiedTime().toInstant(), ZoneId.systemDefault()
-                    )
+    routing {
+        get("/") {
+            call.response.lastModified(
+                ZonedDateTime.ofInstant(
+                    attr.lastModifiedTime().toInstant(), ZoneId.systemDefault()
                 )
-                call.respondFile(path.toFile())
-            }
+            )
+            call.respondFile(path.toFile())
         }
     }
 }
