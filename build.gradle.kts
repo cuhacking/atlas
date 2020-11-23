@@ -5,6 +5,8 @@ buildscript {
         jcenter()
     }
     dependencies {
+        // Temporary workaround: https://github.com/cashapp/sqldelight/issues/2058
+        classpath("xml-apis:xml-apis:1.4.01")
         classpath(deps.plugins.android)
         classpath(deps.plugins.kotlin)
         classpath(deps.plugins.sqldelight)
