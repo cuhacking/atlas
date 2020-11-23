@@ -10,6 +10,7 @@ buildscript {
         classpath(deps.plugins.sqldelight)
         classpath(deps.plugins.buildKonfig)
         classpath(deps.plugins.node)
+        classpath(deps.plugins.shadow)
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

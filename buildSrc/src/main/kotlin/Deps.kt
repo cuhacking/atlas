@@ -2,11 +2,12 @@
 
 object deps {
     object plugins {
-        const val android = "com.android.tools.build:gradle:4.2.0-alpha13"
+        const val android = "com.android.tools.build:gradle:4.2.0-alpha16"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
         const val sqldelight = "com.squareup.sqldelight:gradle-plugin:${Versions.sqldelight}"
         const val buildKonfig = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin:0.7.0"
         const val node = "com.github.node-gradle:gradle-node-plugin:2.2.4"
+        const val shadow = "com.github.jengelman.gradle.plugins:shadow:6.1.0"
 
         // Uses newer plugins DSL
         const val detekt = "io.gitlab.arturbosch.detekt"
