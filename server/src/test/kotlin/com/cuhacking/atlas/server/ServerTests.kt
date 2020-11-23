@@ -1,5 +1,7 @@
 package com.cuhacking.atlas.server
 
+import io.ktor.application.*
+import io.ktor.features.*
 import io.ktor.http.*
 import io.ktor.server.testing.*
 import kotlinx.serialization.SerializationException
@@ -22,10 +24,17 @@ class ServerTests {
 
     @Test
     fun `request for data returns content and last-modified header`() =
-        withTestApplication(moduleFunction = dataModuleFactory(data)) {
+        withTestApplication(moduleFunction = {
+            install(AutoHeadResponse)
+            dataModuleFactory(data)
+        }) {
             with(handleRequest(HttpMethod.Get, "/")) {
                 assertEquals(HttpStatusCode.OK, response.status())
                 assertEquals(data.toFile().readText(), response.content)
+                assertEquals(lastModified, response.headers["Last-Modified"])
+            }
+            with(handleRequest(HttpMethod.Head, "/")) {
+                assertEquals(HttpStatusCode.OK, response.status())
                 assertEquals(lastModified, response.headers["Last-Modified"])
             }
         }
