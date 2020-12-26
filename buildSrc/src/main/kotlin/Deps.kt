@@ -2,7 +2,7 @@
 
 object deps {
     object plugins {
-        const val android = "com.android.tools.build:gradle:4.2.0-alpha16"
+        const val android = "com.android.tools.build:gradle:7.0.0-alpha03"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
         const val sqldelight = "com.squareup.sqldelight:gradle-plugin:${Versions.sqldelight}"
         const val buildKonfig = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin:0.7.0"
@@ -16,8 +16,8 @@ object deps {
     object androidx {
         const val core = "androidx.core:core-ktx:1.3.2"
         const val appCompat = "androidx.appcompat:appcompat:1.2.0"
-        const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.2"
-        const val lifeCycle = "androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-beta01"
+        const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.0.4"
+        const val lifeCycle = "androidx.lifecycle:lifecycle-runtime-ktx:2.3.0-rc01"
 
         const val junit = "androidx.test.ext:junit:1.1.1"
         const val espresso = "androidx.test.espresso:espresso-core:3.2.0"
@@ -29,8 +29,8 @@ object deps {
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
         const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib-common:${Versions.kotlin}"
         const val stdlibJs = "org.jetbrains.kotlin:kotlin-stdlib-js:${Versions.kotlin}"
-        const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9"
-        const val datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.1.0"
+        const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2"
+        const val datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.1.1"
 
         object test {
             const val common = "org.jetbrains.kotlin:kotlin-test-common"
@@ -73,11 +73,11 @@ object deps {
     }
 
     object mapbox {
-        const val androidSdk = "com.mapbox.mapboxsdk:mapbox-android-sdk:9.5.0"
+        const val androidSdk = "com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.0"
     }
 
-    const val material = "com.google.android.material:material:1.3.0-alpha03"
-    const val turbine = "app.cash.turbine:turbine:0.2.1"
+    const val material = "com.google.android.material:material:1.3.0-beta01"
+    const val turbine = "app.cash.turbine:turbine:0.3.0"
     const val slf4j = "org.slf4j:slf4j-simple:1.7.9"
     const val clikt = "com.github.ajalt.clikt:clikt:3.0.1"
 }
