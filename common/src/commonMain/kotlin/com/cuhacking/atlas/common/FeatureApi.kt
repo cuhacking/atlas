@@ -17,19 +17,23 @@ class FeatureApi(
     private val dispatchers: CoroutineDispatchers = CoroutineDispatchers
 ) {
     private fun Feature.toDbFeature() = DbFeature(
-        properties["id"].toString().toLong(),
-        properties["name"].toString().replace("\"", ""),
-        null,
+        properties["fid"].toString().toLong(),
+        properties["roomId"].toString().replace("\"", ""),
+        properties["roomName"].toString().replace("\"", "").takeIf { it != "null" },
         properties["type"].toString().replace("\"", ""),
         properties["building"].toString().replace("\"", "").takeIf { it != "null" },
         properties["floor"].toString().replace("\"", "").takeIf { it != "null" },
-        properties["name"].toString().replace("\"", ""),
+        null,
         this)
 
     @Suppress("TooGenericExceptionCaught")
     suspend fun getAndStoreFeatures() = withContext(dispatchers.io) {
         try {
             if (updateCache(dataCache.lastModified)) {
+                database.featureQueries.run {
+                    deleteAll()
+                    clearFts()
+                }
                 val response = client.get<String>(AtlasConfig.SERVER_URL)
 
                 val features: List<Feature> = response.toFeatureCollection().features
