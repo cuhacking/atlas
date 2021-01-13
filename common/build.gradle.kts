@@ -39,8 +39,14 @@ android {
         kotlinOptions.jvmTarget = "1.8"
     }
 
-    packagingOptions {
-        exclude("META-INF/*.kotlin_module")
+    // Workaround for: https://youtrack.jetbrains.com/issue/KT-43944
+    configurations {
+        create("androidTestApi")
+        create("androidTestDebugApi")
+        create("androidTestReleaseApi")
+        create("testApi")
+        create("testDebugApi")
+        create("testReleaseApi")
     }
 }
 
