@@ -76,7 +76,7 @@ kotlin {
 
     android()
 
-    js {
+    js(IR) {
         useCommonJs()
         browser()
 

@@ -355,7 +355,7 @@
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
   integrity sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==
 
-"Kotlin-DateTime-library-kotlinx-datetime-jsLegacy@file:../build/js/packages_imported/Kotlin-DateTime-library-kotlinx-datetime-jsLegacy/0.1.1":
+"Kotlin-DateTime-library-kotlinx-datetime-jsIr@file:../build/js/packages_imported/Kotlin-DateTime-library-kotlinx-datetime-jsIr/0.1.1":
   version "0.1.1"
   dependencies:
     "@js-joda/core" "3.1.0"
@@ -2616,19 +2616,7 @@ kind-of@^6.0.0, kind-of@^6.0.2:
 "kotlin@file:../build/js/packages_imported/kotlin/1.4.21":
   version "1.4.21"
 
-"kotlinx-atomicfu@file:../build/js/packages_imported/kotlinx-atomicfu/0.14.4":
-  version "0.14.4"
-
-"kotlinx-coroutines-core@file:../build/js/packages_imported/kotlinx-coroutines-core/1.4.2":
-  version "1.4.2"
-
-"kotlinx-serialization-kotlinx-serialization-core-jsLegacy@file:../build/js/packages_imported/kotlinx-serialization-kotlinx-serialization-core-jsLegacy/1.0.1":
-  version "1.0.1"
-
-"kotlinx-serialization-kotlinx-serialization-json-jsLegacy@file:../build/js/packages_imported/kotlinx-serialization-kotlinx-serialization-json-jsLegacy/1.0.1":
-  version "1.0.1"
-
-"ktor-ktor-client-core-jsLegacy@file:../build/js/packages_imported/ktor-ktor-client-core-jsLegacy/1.5.0":
+"ktor-ktor-client-core-jsIr@file:../build/js/packages_imported/ktor-ktor-client-core-jsIr/1.5.0":
   version "1.5.0"
   dependencies:
     abort-controller "3.0.0"
@@ -2636,27 +2624,27 @@ kind-of@^6.0.0, kind-of@^6.0.2:
     text-encoding "0.7.0"
     ws "6.2.1"
 
-"ktor-ktor-client-js-jsLegacy@file:../build/js/packages_imported/ktor-ktor-client-js-jsLegacy/1.5.0":
+"ktor-ktor-client-js-jsIr@file:../build/js/packages_imported/ktor-ktor-client-js-jsIr/1.5.0":
   version "1.5.0"
   dependencies:
     text-encoding "0.7.0"
 
-"ktor-ktor-http-cio-jsLegacy@file:../build/js/packages_imported/ktor-ktor-http-cio-jsLegacy/1.5.0":
+"ktor-ktor-http-cio-jsIr@file:../build/js/packages_imported/ktor-ktor-http-cio-jsIr/1.5.0":
   version "1.5.0"
   dependencies:
     text-encoding "0.7.0"
 
-"ktor-ktor-http-jsLegacy@file:../build/js/packages_imported/ktor-ktor-http-jsLegacy/1.5.0":
+"ktor-ktor-http-jsIr@file:../build/js/packages_imported/ktor-ktor-http-jsIr/1.5.0":
   version "1.5.0"
   dependencies:
     text-encoding "0.7.0"
 
-"ktor-ktor-io-jsLegacy@file:../build/js/packages_imported/ktor-ktor-io-jsLegacy/1.5.0":
+"ktor-ktor-io-jsIr@file:../build/js/packages_imported/ktor-ktor-io-jsIr/1.5.0":
   version "1.5.0"
   dependencies:
     text-encoding "0.7.0"
 
-"ktor-ktor-utils-jsLegacy@file:../build/js/packages_imported/ktor-ktor-utils-jsLegacy/1.5.0":
+"ktor-ktor-utils-jsIr@file:../build/js/packages_imported/ktor-ktor-utils-jsIr/1.5.0":
   version "1.5.0"
   dependencies:
     text-encoding "0.7.0"
@@ -4178,15 +4166,6 @@ source-map@^0.7.3:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.7.3.tgz#5302f8169031735226544092e64981f751750383"
   integrity sha512-CkCj6giN3S+n9qrYiBTX5gystlENnRW5jZeNLHpe6aue+SrHcG5VYwujhW9s4dY31mEGsxBDrHR6oI69fTXsaQ==
 
-"spatial-k-geojson-dsl-jsLegacy@file:../build/js/packages_imported/spatial-k-geojson-dsl-jsLegacy/0.0.3-SNAPSHOT":
-  version "0.0.3-SNAPSHOT"
-
-"spatial-k-geojson-jsLegacy@file:../build/js/packages_imported/spatial-k-geojson-jsLegacy/0.0.3-SNAPSHOT":
-  version "0.0.3-SNAPSHOT"
-
-"spatial-k-turf-jsLegacy@file:../build/js/packages_imported/spatial-k-turf-jsLegacy/0.0.3-SNAPSHOT":
-  version "0.0.3-SNAPSHOT"
-
 spdy-transport@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/spdy-transport/-/spdy-transport-3.0.0.tgz#00d4863a6400ad75df93361a1608605e5dcdcf31"
@@ -4216,12 +4195,6 @@ split-string@^3.0.1, split-string@^3.0.2:
   integrity sha512-NzNVhJDYpwceVVii8/Hu6DKfD2G+NrQHlS/V/qgv763EYudVwEcMQNxd2lh+0VrUByXN/oJkl5grOhYWvQUYiw==
   dependencies:
     extend-shallow "^3.0.0"
-
-"sqldelight-coroutines-extensions-jsLegacy@file:../build/js/packages_imported/sqldelight-coroutines-extensions-jsLegacy/1.4.4":
-  version "1.4.4"
-
-"sqldelight-runtime-jsLegacy@file:../build/js/packages_imported/sqldelight-runtime-jsLegacy/1.4.4":
-  version "1.4.4"
 
 ssri@^6.0.1:
   version "6.0.1"

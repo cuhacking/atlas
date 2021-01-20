@@ -52,7 +52,7 @@ version = Versions.atlas
 
 kotlin {
     android()
-    js {
+    js(IR) {
         browser()
     }
 
