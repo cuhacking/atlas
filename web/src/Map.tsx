@@ -24,7 +24,7 @@ export const Map = () => {
           onViewportChange={setViewport}
           mapboxApiAccessToken={AtlasConfig.MAPBOX_KEY}
         >
-          <Source {...exampleDataSource}>
+          <Source {...exampleDataSource.toJsObject()}>
             <Layer id="test-fill" type="fill" paint={{}} />
           </Source>
         </ReactMapGL>
