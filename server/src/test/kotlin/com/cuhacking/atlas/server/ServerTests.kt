@@ -12,6 +12,7 @@ import java.nio.file.attribute.BasicFileAttributes
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
+import java.util.*
 import kotlin.test.assertEquals
 
 class ServerTests {
@@ -20,7 +21,7 @@ class ServerTests {
     private val attr = Files.readAttributes(data, BasicFileAttributes::class.java)
     private val lastModified =
         ZonedDateTime.ofInstant(attr.lastModifiedTime().toInstant(), ZoneId.of("GMT"))
-            .format(DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss zzz"))
+            .format(DateTimeFormatter.ofPattern("EEE, dd MMM yyyy HH:mm:ss zzz", Locale.ENGLISH))
 
     @Test
     fun `request for data returns content and last-modified header`() =
