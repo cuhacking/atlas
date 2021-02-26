@@ -3,10 +3,9 @@ buildscript {
     repositories {
         google()
         jcenter()
+        mavenCentral()
     }
     dependencies {
-        // Temporary workaround: https://github.com/cashapp/sqldelight/issues/2058
-        classpath("xml-apis:xml-apis:1.4.01")
         classpath(deps.plugins.android)
         classpath(deps.plugins.kotlin)
         classpath(deps.plugins.sqldelight)
@@ -27,8 +26,12 @@ allprojects {
     repositories {
         google()
         jcenter()
+        mavenCentral()
+
+        // kotlinx-datetime
+        maven(url = "https://kotlin.bintray.com/kotlinx/")
+
         maven(url = "https://oss.sonatype.org/content/repositories/snapshots")
-        maven(url = "https://dl.bintray.com/kotlin/kotlinx/")
         maven(url = "https://api.mapbox.com/downloads/v2/releases/maven") {
             authentication {
                 create<BasicAuthentication>("basic")
