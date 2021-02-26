@@ -66,10 +66,17 @@ android {
     }
     kotlinOptions {
         jvmTarget = "11"
+        useIR = true
     }
 
     buildFeatures {
         viewBinding = true
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerVersion = Versions.kotlin
+        kotlinCompilerExtensionVersion = Versions.compose
     }
 }
 
@@ -96,6 +103,13 @@ detekt {
 tasks {
     withType<Detekt> {
         jvmTarget = "11"
+    }
+
+    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = "11"
+            freeCompilerArgs += "-Xallow-jvm-ir-dependencies"
+        }
     }
 }
 
