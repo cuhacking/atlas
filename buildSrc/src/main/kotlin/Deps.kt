@@ -2,7 +2,7 @@
 
 object deps {
     object plugins {
-        const val android = "com.android.tools.build:gradle:7.0.0-alpha04"
+        const val android = "com.android.tools.build:gradle:7.0.0-alpha08"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
         const val sqldelight = "com.squareup.sqldelight:gradle-plugin:${Versions.sqldelight}"
         const val buildKonfig = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin:0.7.0"
@@ -26,9 +26,6 @@ object deps {
     const val junit = "junit:junit:4.13"
 
     object kotlin {
-        const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
-        const val stdlibCommon = "org.jetbrains.kotlin:kotlin-stdlib-common:${Versions.kotlin}"
-        const val stdlibJs = "org.jetbrains.kotlin:kotlin-stdlib-js:${Versions.kotlin}"
         const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2"
         const val datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.1.1"
 

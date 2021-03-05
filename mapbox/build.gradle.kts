@@ -31,6 +31,12 @@ android {
             res.srcDirs("src/androidTest/res")
             manifest.srcFile("src/androidTest/AndroidManifest.xml")
         }
+        // Workaround for KMP looking for `actual` declarations in androidAndroidTest
+        getByName("androidTest") {
+            java.srcDirs("src/androidTest/kotlin")
+            res.srcDirs("src/androidTest/res")
+            manifest.srcFile("src/androidTest/AndroidManifest.xml")
+        }
     }
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -75,7 +81,6 @@ kotlin {
     }
 
     sourceSets["commonMain"].dependencies {
-        implementation(deps.kotlin.stdlibCommon)
         api(deps.spatialk.geojson)
         implementation(deps.spatialk.turf)
         implementation(deps.spatialk.geojsonDsl)
@@ -87,7 +92,6 @@ kotlin {
     }
 
     sourceSets["androidMain"].dependencies {
-        implementation(deps.kotlin.stdlib)
         implementation(deps.mapbox.androidSdk)
     }
 
@@ -97,7 +101,6 @@ kotlin {
     }
 
     sourceSets["jsMain"].dependencies {
-        implementation(deps.kotlin.stdlibJs)
     }
 
     sourceSets["jsTest"].dependencies {
