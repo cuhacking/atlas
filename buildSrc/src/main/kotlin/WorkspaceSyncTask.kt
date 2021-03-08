@@ -13,11 +13,19 @@ open class WorkspaceSyncTask : DefaultTask() {
     @get:Input
     var dependencies = listOf<String>()
 
+    /**
+     * Reads a `package.json` file and returns it as a `Map<String, Any?>?` or `null` if not found.
+     */
     private fun fromSrcPackageJson(packageJson: File?): MutableMap<String, Any?>? =
         packageJson?.readText()?.let {
             adapter.fromJson(it)
         } as MutableMap<String, Any?>?
 
+    /**
+     * Reads the `dependencies` block from a `package.json` file corresponding to a Kotlin/JS package
+     * with the given [packageName].
+     * The generated package name usually follows the form `rootProjectName-moduleName`.
+     */
     private fun getPackageDependencies(packageName: String): List<String> {
         val packageDir = project.rootDir.resolve("build/js/packages/$packageName")
         val packageJson = fromSrcPackageJson(packageDir.resolve("package.json"))
