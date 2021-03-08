@@ -4,6 +4,7 @@ buildscript {
         google()
         jcenter()
         mavenCentral()
+        maven(url = "https://oss.sonatype.org/content/repositories/snapshots")
     }
     dependencies {
         classpath(deps.plugins.android)

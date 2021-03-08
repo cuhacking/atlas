@@ -8,5 +8,5 @@ object Versions {
     const val ktor = "1.5.1"
     const val ios = "14.0"
     const val spatialk = "0.0.3-SNAPSHOT"
-    const val sqldelight = "1.4.4"
+    const val sqldelight = "1.5.0-SNAPSHOT"
 }

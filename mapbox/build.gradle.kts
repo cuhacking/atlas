@@ -60,6 +60,10 @@ kotlin {
     android()
     js(IR) {
         browser()
+
+        compilations["main"].packageJson {
+            customField("types", "kotlin/Atlas-mapbox.d.ts")
+        }
     }
 
     // Select iOS target platform depending on the Xcode environment variables
