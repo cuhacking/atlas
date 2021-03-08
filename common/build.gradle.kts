@@ -81,6 +81,10 @@ kotlin {
         browser()
 
         binaries.executable()
+
+        compilations["main"].packageJson {
+            customField("types", "kotlin/Atlas-common.d.ts")
+        }
     }
 
     sourceSets["commonMain"].dependencies {
@@ -119,9 +123,8 @@ kotlin {
     sourceSets["jsMain"].dependencies {
         implementation(deps.ktor.jsDriver)
         implementation(deps.kotlin.datetime)
-        // https://github.com/cashapp/sqldelight/issues/1667
-        // implementation(deps.sqldelight.jsDriver)
-        // implementation(deps.sqldelight.jsRuntimeDriver)
+        implementation(deps.sqldelight.jsDriver)
+        implementation(deps.sqldelight.jsRuntimeDriver)
     }
 }
 
