@@ -44,7 +44,7 @@ open class WorkspaceSyncTask : DefaultTask() {
             ?: throw kotlin.IllegalStateException("Could not find package.json for ${project.name}")
         val workspaces = dependencies.flatMap { getPackageDependencies(it) }
 
-        packageJson["workspaces"] = workspaces
+        packageJson["workspaces"] = workspaces.toSet()
         packageJson.saveTo(jsonFile)
     }
 }

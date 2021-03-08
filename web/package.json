@@ -25,9 +25,6 @@
         "..\\build\\js\\packages_imported\\kotlin-test-js-runner\\1.4.31",
         "..\\build\\js\\packages_imported\\kotlin-test\\1.4.31",
         "..\\build\\js\\packages\\Atlas-common",
-        "..\\build\\js\\packages_imported\\kotlin\\1.4.31",
-        "..\\build\\js\\packages_imported\\kotlin-test-js-runner\\1.4.31",
-        "..\\build\\js\\packages_imported\\kotlin-test\\1.4.31",
         "..\\build\\js\\packages\\Atlas-mapbox"
     ],
     "dependencies": {
