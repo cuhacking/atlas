@@ -13,19 +13,19 @@
         "workspace:sync": "../gradlew :web:workspaceSync"
     },
     "workspaces": [
-        "..\\build\\js\\packages_imported\\kotlin\\1.4.31",
-        "..\\build\\js\\packages_imported\\ktor-ktor-client-core-jsIr\\1.5.1",
-        "..\\build\\js\\packages_imported\\ktor-ktor-http-cio-jsIr\\1.5.1",
-        "..\\build\\js\\packages_imported\\ktor-ktor-http-jsIr\\1.5.1",
-        "..\\build\\js\\packages_imported\\ktor-ktor-utils-jsIr\\1.5.1",
-        "..\\build\\js\\packages_imported\\ktor-ktor-io-jsIr\\1.5.1",
-        "..\\build\\js\\packages_imported\\Kotlin-DateTime-library-kotlinx-datetime-jsIr\\0.1.1",
-        "..\\build\\js\\packages_imported\\ktor-ktor-client-js-jsIr\\1.5.1",
-        "..\\build\\js\\packages_imported\\sqldelight-sqljs-driver-jsIr\\1.5.0-SNAPSHOT",
-        "..\\build\\js\\packages_imported\\kotlin-test-js-runner\\1.4.31",
-        "..\\build\\js\\packages_imported\\kotlin-test\\1.4.31",
-        "..\\build\\js\\packages\\Atlas-common",
-        "..\\build\\js\\packages\\Atlas-mapbox"
+        "../build/js/packages_imported/kotlin/1.4.31",
+        "../build/js/packages_imported/ktor-ktor-client-core-jsIr/1.5.1",
+        "../build/js/packages_imported/ktor-ktor-http-cio-jsIr/1.5.1",
+        "../build/js/packages_imported/ktor-ktor-http-jsIr/1.5.1",
+        "../build/js/packages_imported/ktor-ktor-utils-jsIr/1.5.1",
+        "../build/js/packages_imported/ktor-ktor-io-jsIr/1.5.1",
+        "../build/js/packages_imported/Kotlin-DateTime-library-kotlinx-datetime-jsIr/0.1.1",
+        "../build/js/packages_imported/ktor-ktor-client-js-jsIr/1.5.1",
+        "../build/js/packages_imported/sqldelight-sqljs-driver-jsIr/1.5.0-SNAPSHOT",
+        "../build/js/packages_imported/kotlin-test-js-runner/1.4.31",
+        "../build/js/packages_imported/kotlin-test/1.4.31",
+        "../build/js/packages/Atlas-common",
+        "../build/js/packages/Atlas-mapbox"
     ],
     "dependencies": {
         "mapbox-gl": "^1.12.0",

@@ -28,9 +28,9 @@ open class WorkspaceSyncTask : DefaultTask() {
 
         val workspaceList = dependencies.filter { (_, path) -> !path[0].isDigit() }
             .map { (_, path) -> path.removePrefix("file:") }
-            .map { path -> File(path).relativeTo(project.projectDir).path }
+            .map { path -> File(path).relativeTo(project.projectDir).path.replace("\\", "/") }
 
-        return workspaceList + packageDir.relativeTo(project.projectDir).path
+        return workspaceList + packageDir.relativeTo(project.projectDir).path.replace("\\", "/")
     }
 
     private fun MutableMap<String, Any?>.saveTo(file: File) {
