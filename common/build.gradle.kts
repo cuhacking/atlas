@@ -77,10 +77,9 @@ kotlin {
     android()
 
     js(IR) {
-        useCommonJs()
         browser()
 
-        binaries.executable()
+        binaries.library()
 
         compilations["main"].packageJson {
             customField("types", "kotlin/Atlas-common.d.ts")
@@ -125,6 +124,7 @@ kotlin {
         implementation(deps.kotlin.datetime)
         implementation(deps.sqldelight.jsDriver)
         implementation(deps.sqldelight.jsRuntimeDriver)
+        implementation(npm("copy-webpack-plugin", "5.1.1"))
     }
 }
 
@@ -160,7 +160,7 @@ buildkonfig {
 }
 
 sqldelight {
-    database("Database") {
+    database("AtlasDatabase") {
         packageName = "com.cuhacking.atlas.db"
     }
 }
