@@ -81,10 +81,16 @@ android {
 }
 
 dependencies {
-    implementation(projects.common)
-    implementation(libs.bundles.androidx.runtime)
-    implementation(libs.material)
-    implementation(libs.ktor.client.okhttp)
+    implementation(project(":common"))
+    implementation(deps.androidx.core)
+    implementation(deps.androidx.appCompat)
+    implementation(deps.material)
+    implementation(deps.androidx.constraintLayout)
+    implementation(deps.androidx.lifeCycle)
+    implementation(deps.androidx.composeUI)
+    implementation(deps.androidx.composeFoundation)
+    implementation(deps.androidx.UITooling)
+    implementation(deps.androidx.composeMaterial)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.bundles.androidx.test)
