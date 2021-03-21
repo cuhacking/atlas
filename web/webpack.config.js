@@ -1,21 +1,22 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   devtool: "source-map",
   devServer: {
-    contentBase: path.join(__dirname, 'build'),
+    contentBase: path.join(__dirname, "build"),
   },
 
   resolve: {
     extensions: [".ts", ".tsx", ".js"],
   },
   output: {
-    path: path.resolve(__dirname, "build")
+    path: path.resolve(__dirname, "build"),
   },
   node: {
-    fs: 'empty'
+    fs: "empty",
   },
 
   module: {
@@ -53,6 +54,18 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "fonts/",
+            },
+          },
+        ],
+      },
     ],
   },
 
@@ -63,6 +76,9 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "[name].css",
       chunkFilename: "[id].css",
+    }),
+    new CopyWebpackPlugin({
+      patterns: [{ from: "./node_modules/sql.js/dist/sql-wasm.wasm" }],
     }),
   ],
 };

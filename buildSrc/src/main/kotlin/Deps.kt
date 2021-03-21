@@ -2,7 +2,7 @@
 
 object deps {
     object plugins {
-        const val android = "com.android.tools.build:gradle:7.0.0-alpha08"
+        const val android = "com.android.tools.build:gradle:7.0.0-alpha10"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
         const val sqldelight = "com.squareup.sqldelight:gradle-plugin:${Versions.sqldelight}"
         const val buildKonfig = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin:0.7.0"
@@ -52,9 +52,9 @@ object deps {
         const val iosDriver = "io.ktor:ktor-client-ios:${Versions.ktor}"
         const val jsDriver = "io.ktor:ktor-client-js:${Versions.ktor}"
         const val commonDriver = "io.ktor:ktor-client-core:${Versions.ktor}"
-        const val mockClient = "io.ktor:ktor-client-mock-jvm:${Versions.ktor}"
-        const val jsonFeature = "io.ktor:ktor-client-json-jvm:${Versions.ktor}"
-        const val jsonSerializer = "io.ktor:ktor-client-serialization-jvm:${Versions.ktor}"
+        const val mockClient = "io.ktor:ktor-client-mock:${Versions.ktor}"
+        const val jsonFeature = "io.ktor:ktor-client-json:${Versions.ktor}"
+        const val jsonSerializer = "io.ktor:ktor-client-serialization:${Versions.ktor}"
 
         object server {
             const val core = "io.ktor:ktor-server-core:${Versions.ktor}"

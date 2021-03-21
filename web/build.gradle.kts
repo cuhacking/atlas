@@ -7,7 +7,7 @@ tasks {
         group = "build"
         args = listOf("run", "build")
 
-        dependsOn(":common:jsBrowserDevelopmentWebpack", "workspaceSync", "yarn")
+        dependsOn("yarn")
     }
 
     create<Delete>("clean") {
@@ -15,11 +15,5 @@ tasks {
 
         delete("$projectDir/build")
         delete("$projectDir/node_modules")
-    }
-
-    create<WorkspaceSyncTask>("workspaceSync") {
-        group = "build"
-        dependencies = listOf("Atlas-common", "Atlas-mapbox")
-        dependsOn(":common:jsBrowserDevelopmentWebpack")
     }
 }

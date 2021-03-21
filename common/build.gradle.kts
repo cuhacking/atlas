@@ -77,12 +77,17 @@ kotlin {
     android()
 
     js(IR) {
-        browser()
-
-        binaries.library()
-
+        browser {
+            binaries.library()
+            testTask {
+                useMocha {
+                    timeout = "5s"
+                }
+            }
+        }
         compilations["main"].packageJson {
-            customField("types", "kotlin/Atlas-common.d.ts")
+            customField("types", "Atlas-common.d.ts")
+            peerDependencies["sql.js"] = "1.0.0"
         }
     }
 
@@ -98,6 +103,14 @@ kotlin {
         api(project(":mapbox"))
     }
 
+    sourceSets["commonTest"].dependencies {
+        implementation(deps.kotlin.test.common)
+        implementation(deps.kotlin.test.annotationsCommon)
+        implementation(deps.ktor.mockClient)
+        implementation(deps.ktor.jsonFeature)
+        implementation(deps.ktor.jsonSerializer)
+    }
+
     sourceSets["androidMain"].dependencies {
         implementation(deps.sqldelight.androidDriver)
         api(deps.mapbox.androidSdk)
@@ -109,8 +122,6 @@ kotlin {
     sourceSets["androidTest"].dependencies {
         implementation(deps.kotlin.test.junit)
         implementation(deps.sqldelight.sqliteDriver)
-        implementation(deps.ktor.jsonFeature)
-        implementation(deps.ktor.jsonSerializer)
     }
 
     sourceSets["iosMain"].dependencies {
@@ -124,7 +135,16 @@ kotlin {
         implementation(deps.kotlin.datetime)
         implementation(deps.sqldelight.jsDriver)
         implementation(deps.sqldelight.jsRuntimeDriver)
-        implementation(npm("copy-webpack-plugin", "5.1.1"))
+    }
+
+    sourceSets["jsTest"].dependencies {
+        implementation(deps.kotlin.test.js)
+    }
+
+    sourceSets.all {
+        with(languageSettings) {
+            useExperimentalAnnotation("kotlin.js.ExperimentalJsExport")
+        }
     }
 }
 

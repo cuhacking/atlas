@@ -14,6 +14,8 @@ import com.cuhacking.atlas.common.CoroutineDispatchers
 import com.cuhacking.atlas.databinding.ActivityMainBinding
 import com.cuhacking.atlas.search.SearchResultsAdapter
 import com.cuhacking.atlas.common.SearchViewModel
+import com.cuhacking.atlas.db.SharedDatabase
+import com.cuhacking.atlas.db.provideDbDriver
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.style.layers.FillLayer
 import com.mapbox.mapboxsdk.style.layers.LineLayer
@@ -23,7 +25,13 @@ import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val searchViewModel by lazy { SearchViewModel(CoroutineDispatchers, lifecycleScope) }
+    private val searchViewModel by lazy {
+        SearchViewModel(
+            CoroutineDispatchers,
+            lifecycleScope,
+            SharedDatabase(::provideDbDriver)
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
