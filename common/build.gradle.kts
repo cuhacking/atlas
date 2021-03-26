@@ -62,7 +62,29 @@ kotlin {
     val iOSTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
         if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true) ::iosArm64 else ::iosX64
 
-    iOSTarget("ios") {}
+    iOSTarget("ios") {
+        binaries {
+            getTest("DEBUG").apply {
+                // Map of pod names to their `module_name`s
+                val regularPodToModuleNameMap = mapOf("Mapbox-iOS-SDK" to "Mapbox")
+
+                // common is the name of our project, substitute accordingly
+                val commonSyntheticPath = "${buildDir.absolutePath}/cocoapods/synthetic/IOS/common"
+                val regularFrameworksPath = "$commonSyntheticPath/build/Release-iphonesimulator"
+                regularPodToModuleNameMap.forEach { entry ->
+                    val podDirectoryName = entry.key
+                    val moduleName = entry.value ?: entry.key
+                    val frameworkPath = "$regularFrameworksPath/$podDirectoryName"
+                    linkerOpts("-framework", moduleName)
+                    linkerOpts("-F$frameworkPath")
+                    linkerOpts("-rpath", frameworkPath)
+                }
+
+                // Don't forget framework flags for system frameworks any pods depend on
+                linkerOpts("-framework", "UIKit")
+            }
+        }
+    }
 
     cocoapods {
         summary = "Common framework"
