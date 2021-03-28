@@ -26,7 +26,7 @@ object deps {
     const val junit = "junit:junit:4.13"
 
     object kotlin {
-        const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2"
+        const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3-native-mt"
         const val datetime = "org.jetbrains.kotlinx:kotlinx-datetime:0.1.1"
 
         object test {
