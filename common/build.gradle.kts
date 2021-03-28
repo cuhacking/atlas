@@ -38,6 +38,12 @@ android {
             res.srcDirs("src/androidTest/res")
             manifest.srcFile("src/androidTest/AndroidManifest.xml")
         }
+        // Workaround for KMP looking for `actual` declarations in androidAndroidTest
+        getByName("androidTest") {
+            java.srcDirs("src/androidTest/kotlin")
+            res.srcDirs("src/androidTest/res")
+            manifest.srcFile("src/androidTest/AndroidManifest.xml")
+        }
     }
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -66,12 +72,14 @@ kotlin {
         // Link cocoapods for test builds: https://youtrack.jetbrains.com/issue/KT-44857
         binaries {
             getTest("DEBUG").apply {
-                val mapboxPath = "${buildDir.absolutePath}/cocoapods/synthetic/IOS/common/Pods/Mapbox-iOS-SDK/dynamic"
+                val mapboxPath =
+                    "${buildDir.absolutePath}/cocoapods/synthetic/IOS/common/Pods/Mapbox-iOS-SDK/dynamic"
                 linkerOpts("-F$mapboxPath")
                 linkerOpts("-rpath", mapboxPath)
                 linkerOpts("-framework", "Mapbox")
 
-                val mapboxEventsPath = "${buildDir.absolutePath}/cocoapods/synthetic/IOS/common/build/Release-iphonesimulator/MapboxMobileEvents"
+                val mapboxEventsPath =
+                    "${buildDir.absolutePath}/cocoapods/synthetic/IOS/common/build/Release-iphonesimulator/MapboxMobileEvents"
                 linkerOpts("-F$mapboxEventsPath")
                 linkerOpts("-rpath", mapboxEventsPath)
                 linkerOpts("-framework", "MapboxMobileEvents")
