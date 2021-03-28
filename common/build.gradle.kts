@@ -62,7 +62,16 @@ kotlin {
     val iOSTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
         if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true) ::iosArm64 else ::iosX64
 
-    iOSTarget("ios") {}
+    iOSTarget("ios") {
+        binaries {
+            getTest("DEBUG").apply {
+                val frameworkPath = "${buildDir.absolutePath}/cocoapods/synthetic/IOS/common/Pods/Mapbox-iOS-SDK/dynamic"
+                linkerOpts("-F$frameworkPath")
+                linkerOpts("-rpath", frameworkPath)
+                linkerOpts("-framework", "Mapbox")
+            }
+        }
+    }
 
     cocoapods {
         summary = "Common framework"
@@ -195,9 +204,5 @@ detekt {
 tasks {
     withType<io.gitlab.arturbosch.detekt.Detekt> {
         jvmTarget = "1.8"
-    }
-
-    getByName("iosTest") {
-        enabled = false
     }
 }
