@@ -1,7 +1,7 @@
 package com.cuhacking.atlas.common
 
 import com.cuhacking.atlas.db.Feature as DbFeature
-import com.cuhacking.atlas.db.Database
+import com.cuhacking.atlas.db.AtlasDatabase
 import io.github.dellisd.spatialk.geojson.Feature
 import io.github.dellisd.spatialk.geojson.FeatureCollection
 import io.github.dellisd.spatialk.geojson.FeatureCollection.Companion.toFeatureCollection
@@ -14,7 +14,7 @@ import kotlinx.datetime.toInstant
 
 @Suppress("MaxLineLength", "MaximumLineLength")
 class FeatureApi(
-    private val database: Database,
+    private val database: AtlasDatabase,
     private val client: HttpClient,
     private val dataCache: DataCache,
     private val dispatchers: CoroutineDispatchers = CoroutineDispatchers

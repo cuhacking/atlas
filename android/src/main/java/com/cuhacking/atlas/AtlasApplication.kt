@@ -3,9 +3,6 @@ package com.cuhacking.atlas
 import android.app.Application
 import com.cuhacking.atlas.common.AtlasConfig
 import com.cuhacking.atlas.db.appContext
-import com.cuhacking.atlas.db.createDatabase
-import com.cuhacking.atlas.db.database
-import com.cuhacking.atlas.db.provideDbDriver
 import com.mapbox.mapboxsdk.Mapbox
 
 class AtlasApplication : Application() {
@@ -14,7 +11,6 @@ class AtlasApplication : Application() {
         super.onCreate()
 
         appContext = applicationContext
-        database = provideDbDriver().createDatabase()
 
         Mapbox.getInstance(applicationContext, AtlasConfig.MAPBOX_KEY)
     }

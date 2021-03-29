@@ -3,9 +3,10 @@ package com.cuhacking.atlas.db
 import android.content.Context
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.squareup.sqldelight.db.SqlDriver
+import kotlinx.coroutines.runBlocking
 
 lateinit var appContext: Context
 
-actual fun provideDbDriver(): SqlDriver {
-    return AndroidSqliteDriver(Database.Schema, appContext, "Feature.db")
+actual suspend fun provideDbDriver(): SqlDriver {
+    return AndroidSqliteDriver(AtlasDatabase.Schema, appContext, "Feature.db")
 }

@@ -38,6 +38,12 @@ android {
             res.srcDirs("src/androidTest/res")
             manifest.srcFile("src/androidTest/AndroidManifest.xml")
         }
+        // Workaround for KMP looking for `actual` declarations in androidAndroidTest
+        getByName("androidTest") {
+            java.srcDirs("src/androidTest/kotlin")
+            res.srcDirs("src/androidTest/res")
+            manifest.srcFile("src/androidTest/AndroidManifest.xml")
+        }
     }
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -62,7 +68,24 @@ kotlin {
     val iOSTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
         if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true) ::iosArm64 else ::iosX64
 
-    iOSTarget("ios") {}
+    iOSTarget("ios") {
+        // Link cocoapods for test builds: https://youtrack.jetbrains.com/issue/KT-44857
+        binaries {
+            getTest("DEBUG").apply {
+                val mapboxPath =
+                    "${buildDir.absolutePath}/cocoapods/synthetic/IOS/common/Pods/Mapbox-iOS-SDK/dynamic"
+                linkerOpts("-F$mapboxPath")
+                linkerOpts("-rpath", mapboxPath)
+                linkerOpts("-framework", "Mapbox")
+
+                val mapboxEventsPath =
+                    "${buildDir.absolutePath}/cocoapods/synthetic/IOS/common/build/Release-iphonesimulator/MapboxMobileEvents"
+                linkerOpts("-F$mapboxEventsPath")
+                linkerOpts("-rpath", mapboxEventsPath)
+                linkerOpts("-framework", "MapboxMobileEvents")
+            }
+        }
+    }
 
     cocoapods {
         summary = "Common framework"
@@ -77,13 +100,17 @@ kotlin {
     android()
 
     js(IR) {
-        useCommonJs()
-        browser()
-
-        binaries.executable()
-
+        browser {
+            binaries.library()
+            testTask {
+                useMocha {
+                    timeout = "5s"
+                }
+            }
+        }
         compilations["main"].packageJson {
-            customField("types", "kotlin/Atlas-common.d.ts")
+            customField("types", "Atlas-common.d.ts")
+            peerDependencies["sql.js"] = "1.0.0"
         }
     }
 
@@ -99,6 +126,14 @@ kotlin {
         api(project(":mapbox"))
     }
 
+    sourceSets["commonTest"].dependencies {
+        implementation(deps.kotlin.test.common)
+        implementation(deps.kotlin.test.annotationsCommon)
+        implementation(deps.ktor.mockClient)
+        implementation(deps.ktor.jsonFeature)
+        implementation(deps.ktor.jsonSerializer)
+    }
+
     sourceSets["androidMain"].dependencies {
         implementation(deps.sqldelight.androidDriver)
         api(deps.mapbox.androidSdk)
@@ -110,8 +145,6 @@ kotlin {
     sourceSets["androidTest"].dependencies {
         implementation(deps.kotlin.test.junit)
         implementation(deps.sqldelight.sqliteDriver)
-        implementation(deps.ktor.jsonFeature)
-        implementation(deps.ktor.jsonSerializer)
     }
 
     sourceSets["iosMain"].dependencies {
@@ -125,6 +158,16 @@ kotlin {
         implementation(deps.kotlin.datetime)
         implementation(deps.sqldelight.jsDriver)
         implementation(deps.sqldelight.jsRuntimeDriver)
+    }
+
+    sourceSets["jsTest"].dependencies {
+        implementation(deps.kotlin.test.js)
+    }
+
+    sourceSets.all {
+        with(languageSettings) {
+            useExperimentalAnnotation("kotlin.js.ExperimentalJsExport")
+        }
     }
 }
 
@@ -160,7 +203,7 @@ buildkonfig {
 }
 
 sqldelight {
-    database("Database") {
+    database("AtlasDatabase") {
         packageName = "com.cuhacking.atlas.db"
     }
 }
@@ -175,5 +218,9 @@ detekt {
 tasks {
     withType<io.gitlab.arturbosch.detekt.Detekt> {
         jvmTarget = "1.8"
+    }
+    // TODO: Fix concurrency freezing issue
+    getByName("iosTest") {
+        enabled = false
     }
 }
