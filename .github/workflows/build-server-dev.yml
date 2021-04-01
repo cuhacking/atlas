@@ -5,7 +5,7 @@ on:
     branches: [ master ]
 
 jobs:
-  publish-site:
+  build-server-image:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -23,4 +23,4 @@ jobs:
 
       - name: Push image
         if: success()
-        run: docker push ghcr.io/cuhacking/atlas-server
+        run: docker push --all-tags ghcr.io/cuhacking/atlas-server
