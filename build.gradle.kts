@@ -5,6 +5,9 @@ buildscript {
         jcenter()
         mavenCentral()
         maven(url = "https://oss.sonatype.org/content/repositories/snapshots")
+        // https://github.com/cashapp/sqldelight/pull/2224
+        maven(url = "https://www.jetbrains.com/intellij-repository/releases")
+        maven(url = "https://jetbrains.bintray.com/intellij-third-party-dependencies")
     }
     dependencies {
         classpath(deps.plugins.android)
