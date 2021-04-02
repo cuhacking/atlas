@@ -43,6 +43,7 @@ jobs:
         MAPBOX_KEY: ${{ secrets.MAPBOX_KEY }}
         MAPBOX_DOWNLOADS_TOKEN: ${{ secrets.MAPBOX_DOWNLOADS_TOKEN }}
       run: |
+        mkdir -p ~/.gradle
         echo mapbox.key="$MAPBOX_KEY" > local.properties
         echo server.url=https://example.com/ >> local.properties
         echo MAPBOX_DOWNLOADS_TOKEN=$MAPBOX_DOWNLOADS_TOKEN >> ~/.gradle/gradle.properties
