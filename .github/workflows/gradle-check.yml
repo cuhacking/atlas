@@ -20,6 +20,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - uses: gradle/wrapper-validation-action@v1
     - name: Cache gradle
       uses: actions/cache@v2.1.0
       with:
@@ -59,11 +60,9 @@ jobs:
 
     - name: Select Xcode
       if: matrix.os == 'macOS-latest'
-      run: sudo xcode-select -switch /Applications/Xcode_12.app
-
-    - name: Xcode version
-      if: matrix.os == 'macOS-latest'
-      run: /usr/bin/xcodebuild -version
+      run: |
+        sudo xcode-select -switch /Applications/Xcode_12.app
+        /usr/bin/xcodebuild -version
 
     - name: Install pods
       if: matrix.os == 'macOS-latest'
