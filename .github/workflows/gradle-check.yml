@@ -12,11 +12,15 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        os: [macOS-latest, ubuntu-latest]
 
-    runs-on: macos-latest
+    runs-on: ${{ matrix.os }}
 
     steps:
     - uses: actions/checkout@v2
+    - uses: gradle/wrapper-validation-action@v1
     - name: Cache gradle
       uses: actions/cache@v2.1.0
       with:
@@ -24,32 +28,48 @@ jobs:
         key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
         restore-keys: |
           ${{ runner.os }}-gradle-
+
     - name: Set up JDK 11
       uses: actions/setup-java@v1
       with:
         java-version: 11
+
     - name: Set up cocoapods-generate
+      if: matrix.os == 'macOS-latest'
       run: gem install cocoapods-generate
+
     - name: Set up local secrets
       env:
         MAPBOX_KEY: ${{ secrets.MAPBOX_KEY }}
         MAPBOX_DOWNLOADS_TOKEN: ${{ secrets.MAPBOX_DOWNLOADS_TOKEN }}
       run: |
+        mkdir -p ~/.gradle
         echo mapbox.key="$MAPBOX_KEY" > local.properties
         echo server.url=https://example.com/ >> local.properties
         echo MAPBOX_DOWNLOADS_TOKEN=$MAPBOX_DOWNLOADS_TOKEN >> ~/.gradle/gradle.properties
+
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-    - name: Build with Gradle
-      run: ./gradlew build
-    - name: Run tests
-      run: ./gradlew check 
+
+    - name: Run checks
+      if: matrix.os == 'ubuntu-latest'
+      run: ./gradlew check
+
+    - name: Run iOS tests
+      if: matrix.os == 'macOS-latest'
+      run: ./gradlew iosTest
+
     - name: Select Xcode
-      run: sudo xcode-select -switch /Applications/Xcode_12.app
-    - name: Xcode version
-      run: /usr/bin/xcodebuild -version
+      if: matrix.os == 'macOS-latest'
+      run: |
+        sudo xcode-select -switch /Applications/Xcode_12.app
+        /usr/bin/xcodebuild -version
+
     - name: Install pods
+      if: matrix.os == 'macOS-latest'
       working-directory: ./ios
       run: pod install
+
     - name: Run xcodebuild
+      if: matrix.os == 'macOS-latest'
       run: xcodebuild -sdk iphonesimulator -destination "name=iPhone 11,OS=14.0" -workspace ios/atlas.xcworkspace -configuration Debug -scheme atlas build
