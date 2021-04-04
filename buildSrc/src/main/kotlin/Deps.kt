@@ -70,7 +70,7 @@ object deps {
     }
 
     object mapbox {
-        const val androidSdk = "com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.0"
+        const val androidSdk = "com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.1"
     }
 
     const val material = "com.google.android.material:material:1.3.0-beta01"

@@ -29,6 +29,7 @@ actual class GeoJsonSource actual constructor(actual val id: String, features: F
         data = JSON.parse(featureCollection.json)
     }
 
+    @JsName("toJsObject")
     fun toJsObject(): dynamic {
         val obj = js("{}")
         obj.type = type
