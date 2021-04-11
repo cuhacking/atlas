@@ -9,6 +9,7 @@ fun Expression.toNSExpression(): NSExpression = when (this) {
     else -> TODO("Not yet implemented")
 }
 
+@Suppress("MagicNumber")
 private fun hexToUIColor(hex: String): UIColor {
     val asInt = hex.removePrefix("#").toUInt(radix = 16)
 

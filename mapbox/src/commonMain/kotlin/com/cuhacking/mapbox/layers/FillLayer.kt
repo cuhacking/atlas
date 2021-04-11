@@ -1,3 +1,5 @@
+@file:Suppress("TooManyFunctions")
+
 package com.cuhacking.mapbox.layers
 
 import com.cuhacking.mapbox.expressions.Expression
