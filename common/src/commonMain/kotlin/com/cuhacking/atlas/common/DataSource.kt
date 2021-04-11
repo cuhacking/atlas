@@ -15,6 +15,7 @@ val exampleDataSource = GeoJsonSource("example", null).apply {
 
 @JsExport
 val exampleLayer = fillLayer(id = "example-layer", sourceId = "example") {
-    fillColor("#a150f2")
+    fillOpacity(0.5)
+    fillColor("#FFFFFF")
     fillOutlineColor("#6b10c7")
 }

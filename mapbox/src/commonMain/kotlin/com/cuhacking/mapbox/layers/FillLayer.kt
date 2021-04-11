@@ -1,6 +1,7 @@
 package com.cuhacking.mapbox.layers
 
 import com.cuhacking.mapbox.expressions.Expression
+import com.cuhacking.mapbox.expressions.colorLiteral
 import com.cuhacking.mapbox.expressions.literal
 
 expect class FillLayer(
@@ -39,7 +40,7 @@ class FillLayerDsl internal constructor(
     }
 
     fun fillColor(hexColor: String) {
-        fillColor(literal(hexColor))
+        fillColor(colorLiteral(hexColor))
     }
 
     fun fillColor(expression: Expression) {
@@ -55,7 +56,7 @@ class FillLayerDsl internal constructor(
     }
 
     fun fillOutlineColor(hexColor: String) {
-        fillOutlineColor(literal(hexColor))
+        fillOutlineColor(colorLiteral(hexColor))
     }
 
     fun fillOutlineColor(expression: Expression) {

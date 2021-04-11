@@ -11,3 +11,7 @@ public fun literal(boolean: Boolean): Expression = ExpressionLiteral(boolean)
 public fun literal(any: Any): Expression = ExpressionLiteral(any)
 
 public fun literal(array: Array<out Any>): Expression = ExpressionLiteral(array)
+
+class ColorExpression internal constructor(public val hexColor: String) : Expression()
+
+public fun colorLiteral(hexColor: String): Expression = ColorExpression(hexColor)
