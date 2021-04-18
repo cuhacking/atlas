@@ -1,6 +1,7 @@
 package com.cuhacking.atlas.common
 
 import com.cuhacking.mapbox.GeoJsonSource
+import com.cuhacking.mapbox.layers.fillLayer
 import kotlin.js.JsExport
 
 @Suppress("MaximumLineLength", "MaxLineLength")
@@ -10,4 +11,10 @@ private const val FEATURE_JSON =
 @JsExport
 val exampleDataSource = GeoJsonSource("example", null).apply {
     setGeoJson(FEATURE_JSON)
+}
+
+@JsExport
+val exampleLayer = fillLayer(id = "example-layer", sourceId = "example") {
+    fillColor("#a150f2")
+    fillOutlineColor("#6b10c7")
 }

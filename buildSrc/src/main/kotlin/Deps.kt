@@ -2,7 +2,7 @@
 
 object deps {
     object plugins {
-        const val android = "com.android.tools.build:gradle:7.0.0-alpha12"
+        const val android = "com.android.tools.build:gradle:7.0.0-alpha14"
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
         const val sqldelight = "com.squareup.sqldelight:gradle-plugin:${Versions.sqldelight}"
         const val buildKonfig = "com.codingfeline.buildkonfig:buildkonfig-gradle-plugin:0.7.0"
@@ -70,7 +70,7 @@ object deps {
     }
 
     object mapbox {
-        const val androidSdk = "com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.0"
+        const val androidSdk = "com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.1"
     }
 
     const val material = "com.google.android.material:material:1.3.0-beta01"

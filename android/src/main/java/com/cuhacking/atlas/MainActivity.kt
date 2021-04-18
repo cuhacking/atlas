@@ -14,6 +14,7 @@ import com.cuhacking.atlas.common.CoroutineDispatchers
 import com.cuhacking.atlas.databinding.ActivityMainBinding
 import com.cuhacking.atlas.search.SearchResultsAdapter
 import com.cuhacking.atlas.common.SearchViewModel
+import com.cuhacking.atlas.common.exampleLayer
 import com.cuhacking.atlas.db.SharedDatabase
 import com.cuhacking.atlas.db.provideDbDriver
 import com.mapbox.mapboxsdk.maps.Style
@@ -46,15 +47,7 @@ class MainActivity : AppCompatActivity() {
 
                 // FeatureCollection from MultiPolygon GeoJson
                 style.addSource(exampleDataSource)
-
-                val fillLayer = FillLayer("fill-layer", "example")
-                fillLayer.setProperties(PropertyFactory.fillColor(Color.DKGRAY))
-                style.addLayer(fillLayer)
-
-                // https://stackoverflow.com/a/40286827
-                //  not android sdk but originally found below
-                // https://github.com/mapbox/mapbox-gl-js/issues/3018
-                style.addLayer(outlineLayer("outline-layer", "example"))
+                style.addLayer(exampleLayer)
             }
         }
 

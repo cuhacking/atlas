@@ -6,6 +6,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { com } from "Atlas-common";
 import AtlasConfig = com.cuhacking.atlas.common.AtlasConfig;
 import exampleDataSource = com.cuhacking.atlas.common.exampleDataSource;
+import exampleLayer = com.cuhacking.atlas.common.exampleLayer;
 
 export const Map = () => {
   const [viewport, setViewport] = React.useState<ViewState>({
@@ -13,6 +14,8 @@ export const Map = () => {
     latitude: 45.386438,
     zoom: 14.661,
   });
+
+  const {sourceId, ...layer} = exampleLayer.toJsObject();
 
   return (
     <AutoSizer>
@@ -25,7 +28,7 @@ export const Map = () => {
           mapboxApiAccessToken={AtlasConfig.MAPBOX_KEY}
         >
           <Source {...exampleDataSource.toJsObject()}>
-            <Layer id="test-fill" type="fill" paint={{}} />
+            <Layer {...layer} />
           </Source>
         </ReactMapGL>
       )}

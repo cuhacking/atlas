@@ -53,14 +53,8 @@ struct MapView: UIViewRepresentable {
             let source = DataSourceKt.exampleDataSource
             mapView.style?.addSource(source.internalSource)
 
-            let fillLayer = MGLFillStyleLayer(identifier: "fill-layer", source: source.internalSource)
-            fillLayer.fillColor = NSExpression(forConstantValue: UIColor.darkGray)
-            mapView.style?.addLayer(fillLayer)
-            
-            let outlineLayer = MGLLineStyleLayer(identifier: "outline-layer", source: source.internalSource)
-            outlineLayer.lineWidth = NSExpression(forConstantValue: 4)
-            outlineLayer.lineColor = NSExpression(forConstantValue: UIColor.purple)
-            mapView.style?.addLayer(outlineLayer)
+            let layer = DataSourceKt.exampleLayer.getMglLayer(source: source.internalSource)
+            mapView.style?.addLayer(layer)
 
         }
 
