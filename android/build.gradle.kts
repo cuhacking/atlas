@@ -1,3 +1,5 @@
+import io.gitlab.arturbosch.detekt.Detekt
+
 plugins {
     id("com.android.application")
     kotlin("android")
@@ -5,13 +7,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Versions.compileSdk)
+    compileSdk = libs.versions.compileSdk.getInt()
     buildToolsVersion = "30.0.3"
 
     defaultConfig {
         applicationId = "com.cuhacking.atlas"
-        minSdkVersion(Versions.minSdk)
-        targetSdkVersion(Versions.compileSdk)
+        minSdk = libs.versions.minSdk.getInt()
+        targetSdk = libs.versions.compileSdk.getInt()
         versionCode = 1
         versionName = "1.0"
 
@@ -28,11 +30,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 
     buildFeatures {
@@ -41,20 +43,16 @@ android {
 }
 
 dependencies {
-    implementation(project(":common"))
-    implementation(deps.androidx.core)
-    implementation(deps.androidx.appCompat)
-    implementation(deps.material)
-    implementation(deps.androidx.constraintLayout)
-    implementation(deps.androidx.lifeCycle)
+    implementation(projects.common)
+    implementation(libs.bundles.androidx.runtime)
+    implementation(libs.material)
 
-    testImplementation(deps.junit)
-    androidTestImplementation(deps.androidx.junit)
-    androidTestImplementation(deps.androidx.espresso)
-    androidTestImplementation(deps.kotlin.datetime)
-    androidTestImplementation(deps.ktor.mockClient)
-    androidTestImplementation(deps.ktor.jsonSerializer)
-    androidTestImplementation(deps.ktor.jsonFeature)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.bundles.androidx.test)
+    androidTestImplementation(libs.kotlinx.datetime)
+    androidTestImplementation(libs.ktor.client.mock)
+    androidTestImplementation(libs.ktor.client.json)
+    androidTestImplementation(libs.ktor.client.serialization)
 }
 
 detekt {
@@ -64,7 +62,7 @@ detekt {
 }
 
 tasks {
-    withType<io.gitlab.arturbosch.detekt.Detekt> {
-        jvmTarget = "1.8"
+    withType<Detekt> {
+        jvmTarget = "11"
     }
 }

@@ -1,4 +1,6 @@
+import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.util.Properties
 
 plugins {
@@ -7,7 +9,7 @@ plugins {
     kotlin("native.cocoapods")
     id("com.squareup.sqldelight")
     id("com.codingfeline.buildkonfig")
-    id(deps.plugins.detekt)
+    id("io.gitlab.arturbosch.detekt")
 }
 
 repositories {
@@ -15,16 +17,16 @@ repositories {
 }
 
 android {
-    compileSdkVersion(Versions.compileSdk)
+    compileSdk = libs.versions.compileSdk.getInt()
 
     defaultConfig {
-        targetSdk = Versions.compileSdk
-        minSdk = Versions.minSdk
+        targetSdk = libs.versions.compileSdk.getInt()
+        minSdk = libs.versions.minSdk.getInt()
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     sourceSets {
@@ -46,8 +48,8 @@ android {
         }
     }
 
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions.jvmTarget = "1.8"
+    tasks.withType<KotlinCompile> {
+        kotlinOptions.jvmTarget = "11"
     }
 
     // Workaround for: https://youtrack.jetbrains.com/issue/KT-43944
@@ -61,7 +63,7 @@ android {
     }
 }
 
-version = Versions.atlas
+version = "1.0"
 
 kotlin {
     // Select iOS target platform depending on the Xcode environment variables
@@ -115,53 +117,46 @@ kotlin {
     }
 
     sourceSets["commonMain"].dependencies {
-        implementation(deps.sqldelight.runtime)
-        implementation(deps.sqldelight.coroutines)
-        implementation(deps.spatialk.geojson)
-        implementation(deps.spatialk.turf)
-        implementation(deps.spatialk.geojsonDsl)
-        implementation(deps.ktor.commonDriver)
-        implementation(deps.kotlin.coroutines)
-        implementation(deps.kotlin.datetime)
-        api(project(":mapbox"))
+        implementation(libs.sqldelight.runtime)
+        implementation(libs.sqldelight.coroutines)
+        implementation(libs.bundles.spatialk)
+        implementation(libs.ktor.client.core)
+        implementation(libs.kotlinx.coroutines)
+        implementation(libs.kotlinx.datetime)
+        api(projects.mapbox)
     }
 
     sourceSets["commonTest"].dependencies {
-        implementation(deps.kotlin.test.common)
-        implementation(deps.kotlin.test.annotationsCommon)
-        implementation(deps.ktor.mockClient)
-        implementation(deps.ktor.jsonFeature)
-        implementation(deps.ktor.jsonSerializer)
+        implementation(kotlin("test-common"))
+        implementation(kotlin("test-annotations-common"))
+        implementation(libs.ktor.client.mock)
+        implementation(libs.ktor.client.json)
+        implementation(libs.ktor.client.serialization)
     }
 
     sourceSets["androidMain"].dependencies {
-        implementation(deps.sqldelight.androidDriver)
-        api(deps.mapbox.androidSdk)
-        implementation(deps.ktor.androidDriver)
-        implementation(deps.ktor.mockClient)
-        implementation(deps.kotlin.datetime)
+        implementation(libs.sqldelight.driver.android)
+        api(libs.mapbox.android)
+        implementation(libs.ktor.client.okhttp)
     }
 
     sourceSets["androidTest"].dependencies {
-        implementation(deps.kotlin.test.junit)
-        implementation(deps.sqldelight.sqliteDriver)
+        implementation(kotlin("test-junit"))
+        implementation(libs.sqldelight.driver.jvm)
     }
 
     sourceSets["iosMain"].dependencies {
-        implementation(deps.sqldelight.nativeDriver)
-        implementation(deps.ktor.iosDriver)
-        implementation(deps.kotlin.datetime)
+        implementation(libs.sqldelight.driver.native)
+        implementation(libs.ktor.client.ios)
     }
 
     sourceSets["jsMain"].dependencies {
-        implementation(deps.ktor.jsDriver)
-        implementation(deps.kotlin.datetime)
-        implementation(deps.sqldelight.jsDriver)
-        implementation(deps.sqldelight.jsRuntimeDriver)
+        implementation(libs.ktor.client.js)
+        implementation(libs.sqldelight.driver.js)
     }
 
     sourceSets["jsTest"].dependencies {
-        implementation(deps.kotlin.test.js)
+        implementation(kotlin("test-js"))
     }
 
     sourceSets.all {
@@ -216,8 +211,8 @@ detekt {
 }
 
 tasks {
-    withType<io.gitlab.arturbosch.detekt.Detekt> {
-        jvmTarget = "1.8"
+    withType<Detekt> {
+        jvmTarget = "11"
     }
     // TODO: Fix concurrency freezing issue
     getByName("iosTest") {

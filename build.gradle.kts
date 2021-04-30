@@ -10,12 +10,12 @@ buildscript {
         maven(url = "https://jetbrains.bintray.com/intellij-third-party-dependencies")
     }
     dependencies {
-        classpath(deps.plugins.android)
-        classpath(deps.plugins.kotlin)
-        classpath(deps.plugins.sqldelight)
-        classpath(deps.plugins.buildKonfig)
-        classpath(deps.plugins.node)
-        classpath(deps.plugins.shadow)
+        classpath("com.android.tools.build:gradle:7.0.0-alpha15")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.32")
+        classpath("com.squareup.sqldelight:gradle-plugin:1.5.0")
+        classpath("com.codingfeline.buildkonfig:buildkonfig-gradle-plugin:0.7.0")
+        classpath("com.github.node-gradle:gradle-node-plugin:2.2.4")
+        classpath("com.github.jengelman.gradle.plugins:shadow:6.1.0")
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -23,7 +23,7 @@ buildscript {
 }
 
 plugins {
-    id(deps.plugins.detekt) version Versions.detekt apply false
+    id("io.gitlab.arturbosch.detekt") version "1.15.0" apply false
 }
 
 allprojects {
