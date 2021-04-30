@@ -1,6 +1,8 @@
 [versions]
 compileSdk = "30"
 minSdk = "23"
+ios = "14.0"
+
 detekt = "1.16.0"
 kotlin = "1.4.32"
 ktor = "1.5.3"

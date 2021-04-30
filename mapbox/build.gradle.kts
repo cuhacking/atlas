@@ -56,7 +56,7 @@ android {
     }
 }
 
-version = Versions.atlas
+version = "1.0"
 
 kotlin {
     android()
@@ -81,7 +81,7 @@ kotlin {
         frameworkName = "MapboxAtlas"
         podfile = project.file("../ios/Podfile")
 
-        ios.deploymentTarget = Versions.ios
+        ios.deploymentTarget = libs.versions.ios.get()
 
         pod("Mapbox-iOS-SDK", "~> 5.9", moduleName = "Mapbox")
     }

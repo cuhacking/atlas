@@ -3,7 +3,7 @@ import io.gitlab.arturbosch.detekt.Detekt
 plugins {
     id("com.android.application")
     kotlin("android")
-    id(deps.plugins.detekt)
+    id("io.gitlab.arturbosch.detekt")
 }
 
 android {

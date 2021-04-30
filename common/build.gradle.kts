@@ -95,7 +95,7 @@ kotlin {
         podfile = project.file("../ios/Podfile")
         frameworkName = "Common"
 
-        ios.deploymentTarget = Versions.ios
+        ios.deploymentTarget = libs.versions.ios.get()
         pod("Mapbox-iOS-SDK", "~> 5.9", moduleName = "Mapbox")
     }
 
