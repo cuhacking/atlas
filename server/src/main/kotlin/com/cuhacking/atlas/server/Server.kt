@@ -10,7 +10,7 @@ import io.github.dellisd.spatialk.geojson.FeatureCollection.Companion.toFeatureC
 import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.server.engine.*
-import io.ktor.server.netty.*
+import io.ktor.server.cio.*
 
 class Server : CliktCommand() {
     private val file by argument(help = "Path to directory containing data files").path(
@@ -24,7 +24,7 @@ class Server : CliktCommand() {
     override fun run() {
         verifyData()
 
-        embeddedServer(Netty, port, module = {
+        embeddedServer(CIO, port, module = {
             install(AutoHeadResponse)
             dataModuleFactory(file)
         }).start(wait = true)

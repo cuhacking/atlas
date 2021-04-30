@@ -6,21 +6,21 @@ plugins {
 
 kotlin {
     dependencies {
-        implementation(deps.ktor.server.core)
-        implementation(deps.ktor.server.netty)
-        implementation(deps.slf4j)
-        implementation(deps.clikt)
-        implementation(deps.spatialk.geojson)
+        implementation(libs.ktor.server.core)
+        implementation(libs.ktor.server.cio)
+        implementation(libs.logback)
+        implementation(libs.clikt)
+        implementation(libs.spatialk.geojson)
 
-        testImplementation(deps.ktor.server.test)
-        testImplementation(deps.junit)
-        testImplementation(deps.kotlin.test.junit)
+        testImplementation(libs.ktor.server.test)
+        testImplementation(libs.junit)
+        testImplementation(kotlin("test-junit"))
     }
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 application {

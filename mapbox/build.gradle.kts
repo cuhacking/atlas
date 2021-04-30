@@ -1,23 +1,25 @@
+import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
     kotlin("native.cocoapods")
-    id(deps.plugins.detekt)
+    id("io.gitlab.arturbosch.detekt")
 }
 
 android {
-    compileSdkVersion(Versions.compileSdk)
+    compileSdk = libs.versions.compileSdk.getInt()
 
     defaultConfig {
-        targetSdk = Versions.compileSdk
-        minSdk = Versions.minSdk
+        targetSdk = libs.versions.compileSdk.getInt()
+        minSdk = libs.versions.minSdk.getInt()
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     sourceSets {
@@ -39,8 +41,8 @@ android {
         }
     }
 
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions.jvmTarget = "1.8"
+    tasks.withType<KotlinCompile> {
+        kotlinOptions.jvmTarget = "11"
     }
 
     // Workaround for: https://youtrack.jetbrains.com/issue/KT-43944
@@ -54,7 +56,7 @@ android {
     }
 }
 
-version = Versions.atlas
+version = "1.0"
 
 kotlin {
     android()
@@ -79,37 +81,33 @@ kotlin {
         frameworkName = "MapboxAtlas"
         podfile = project.file("../ios/Podfile")
 
-        ios.deploymentTarget = Versions.ios
+        ios.deploymentTarget = libs.versions.ios.get()
 
         pod("Mapbox-iOS-SDK", "~> 5.9", moduleName = "Mapbox")
     }
 
     sourceSets["commonMain"].dependencies {
-        api(deps.spatialk.geojson)
-        implementation(deps.spatialk.turf)
-        implementation(deps.spatialk.geojsonDsl)
+        api(libs.bundles.spatialk)
     }
 
     sourceSets["commonTest"].dependencies {
-        implementation(deps.kotlin.test.common)
-        implementation(deps.kotlin.test.annotationsCommon)
+        implementation(kotlin("test-common"))
+        implementation(kotlin("test-annotations-common"))
     }
 
     sourceSets["androidMain"].dependencies {
-        implementation(deps.mapbox.androidSdk)
+        implementation(libs.mapbox.android)
     }
 
     sourceSets["androidTest"].dependencies {
-        implementation(deps.kotlin.test.junit)
-        implementation(deps.kotlin.test.annotationsCommon)
+        implementation(kotlin("test-junit"))
     }
 
     sourceSets["jsMain"].dependencies {
     }
 
     sourceSets["jsTest"].dependencies {
-        implementation(deps.kotlin.test.js)
-        implementation(deps.kotlin.test.annotationsCommon)
+        implementation(kotlin("test-js"))
     }
 }
 
@@ -121,7 +119,7 @@ detekt {
 }
 
 tasks {
-    withType<io.gitlab.arturbosch.detekt.Detekt> {
-        jvmTarget = "1.8"
+    withType<Detekt> {
+        jvmTarget = "11"
     }
 }

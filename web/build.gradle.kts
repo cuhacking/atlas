@@ -1,6 +1,8 @@
 import com.moowork.gradle.node.yarn.YarnTask
 
-apply(plugin = "com.github.node-gradle.node")
+plugins {
+    id("com.github.node-gradle.node")
+}
 
 tasks {
     create<YarnTask>("build") {
