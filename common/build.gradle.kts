@@ -123,6 +123,7 @@ kotlin {
         implementation(libs.ktor.client.core)
         implementation(libs.kotlinx.coroutines)
         implementation(libs.kotlinx.datetime)
+        implementation(libs.klock)
         api(projects.mapbox)
     }
 

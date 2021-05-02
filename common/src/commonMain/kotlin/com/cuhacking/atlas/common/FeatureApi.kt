@@ -3,14 +3,11 @@ package com.cuhacking.atlas.common
 import com.cuhacking.atlas.db.Feature as DbFeature
 import com.cuhacking.atlas.db.AtlasDatabase
 import io.github.dellisd.spatialk.geojson.Feature
-import io.github.dellisd.spatialk.geojson.FeatureCollection
 import io.github.dellisd.spatialk.geojson.FeatureCollection.Companion.toFeatureCollection
 import io.ktor.client.HttpClient
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import kotlinx.coroutines.withContext
-import kotlinx.datetime.Instant
-import kotlinx.datetime.toInstant
 
 @Suppress("MaxLineLength", "MaximumLineLength")
 class FeatureApi(
@@ -48,9 +45,10 @@ class FeatureApi(
         }
     }
 
-    private suspend fun updateCache(cacheLastModified: Instant?) = withContext(dispatchers.io) {
+    private suspend fun updateCache(cacheLastModified: DateTime?) = withContext(dispatchers.io) {
         val header = client.head<HttpResponse>(AtlasConfig.SERVER_URL).headers
-        val serverLastModified = header["Last-Modified"]?.toInstant()
+        val dateFormat = DateFormat("EEE, dd MMM yyyy HH:mm:ss z")
+        val serverLastModified = header["Last-Modified"]?.let { dateFormat.parse(it) }?.local
         return@withContext cacheLastModified == null || serverLastModified == null || serverLastModified > cacheLastModified
     }
 }
