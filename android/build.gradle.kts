@@ -46,6 +46,7 @@ dependencies {
     implementation(projects.common)
     implementation(libs.bundles.androidx.runtime)
     implementation(libs.material)
+    implementation(libs.ktor.client.okhttp)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.bundles.androidx.test)

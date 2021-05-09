@@ -2,11 +2,15 @@ package com.cuhacking.atlas.common
 
 import com.cuhacking.atlas.db.Feature as DbFeature
 import com.cuhacking.atlas.db.AtlasDatabase
+import com.soywiz.klock.DateFormat
+import com.soywiz.klock.DateTime
+import com.soywiz.klock.parse
 import io.github.dellisd.spatialk.geojson.Feature
 import io.github.dellisd.spatialk.geojson.FeatureCollection.Companion.toFeatureCollection
 import io.ktor.client.HttpClient
-import io.ktor.client.request.*
-import io.ktor.client.statement.*
+import io.ktor.client.request.get
+import io.ktor.client.request.head
+import io.ktor.client.statement.HttpResponse
 import kotlinx.coroutines.withContext
 
 @Suppress("MaxLineLength", "MaximumLineLength")

@@ -20,7 +20,7 @@ Include the following in your `local.properties` file:
 mapbox.key=<your mapbox access token>
 ```
 
-In your home `.gradle` folder create a `gradle.properties` file (`~/.gradle/gradle.properties`) and add the following:
+In your `gradle.properties` file (`~/gradle.properties`) add the following:
 ```
 MAPBOX_DOWNLOADS_TOKEN=<your secret mapbox downloads token>
 ```
