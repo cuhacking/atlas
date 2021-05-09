@@ -17,8 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                               willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         MGLAccountManager.accessToken = AtlasConfig().MAPBOX_KEY
         
-        SharedDatabaseKt.database = SharedDatabaseKt.createDatabase(ProvideDbDriverKt.provideDbDriver())
-        SharedDatabaseKt.populateDatabase()
+        PopulateDatabaseKt.populateDatabase(httpClient: PopulateDatabaseKt.httpClient, dataCache: PopulateDatabaseKt.dataCache)
         return true
     }
 

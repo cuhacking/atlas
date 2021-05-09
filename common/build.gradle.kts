@@ -121,10 +121,17 @@ kotlin {
         implementation(libs.sqldelight.coroutines)
         implementation(libs.bundles.spatialk)
         implementation(libs.ktor.client.core)
-        implementation(libs.kotlinx.coroutines)
         implementation(libs.kotlinx.datetime)
         implementation(libs.klock)
         api(projects.mapbox)
+
+        // Ensure multithreaded coroutine dependency is used to resolve ktor issue on ios
+        // https://kotlinlang.org/docs/mobile/concurrency-and-coroutines.html#multithreaded-coroutines
+        implementation(libs.kotlinx.coroutines.get().module.toString()) {
+            version {
+                strictly(libs.versions.coroutines.get())
+            }
+        }
     }
 
     sourceSets["commonTest"].dependencies {
