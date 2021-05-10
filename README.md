@@ -31,6 +31,8 @@ as [specified here](https://docs.mapbox.com/android/maps/overview/) in the Mapbo
 - **Android**: Open project folder in Android Studio and execute the `android` run configuration.
 - **iOS**: Open the `.xcworkspace` file in XCode or AppCode and run.
 - **Web**:
+  - Run `npm install` in the `web` directory
+  - Run `./gradlew build` in the home directory
   - Run `yarn` in the `web` directory
   - Then run `yarn start` in the `web` directory
 

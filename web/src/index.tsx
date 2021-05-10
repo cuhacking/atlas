@@ -7,6 +7,9 @@ import AtlasConfig = com.cuhacking.atlas.common.AtlasConfig;
 import { Map } from "./Map";
 import { SearchBar } from "./SearchBar";
 import "fontsource-roboto/400.css";
+import populateDatabase = com.cuhacking.atlas.db.populateDatabase;
+import httpClient = com.cuhacking.atlas.db.httpClient;
+import dataCache = com.cuhacking.atlas.db.dataCache;
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -36,6 +39,8 @@ const MapOverlays = styled.div`
 `;
 
 const App = () => {
+  populateDatabase(httpClient, dataCache)
+
   return (
     <AppContainer>
       <GlobalStyle />

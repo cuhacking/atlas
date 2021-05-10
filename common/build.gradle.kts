@@ -161,6 +161,8 @@ kotlin {
     sourceSets["jsMain"].dependencies {
         implementation(libs.ktor.client.js)
         implementation(libs.sqldelight.driver.js)
+        implementation(npm("abort-controller", "3.0.0"))
+        implementation(npm("node-fetch", "2.6.1"))
     }
 
     sourceSets["jsTest"].dependencies {
