@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.util.Properties
 
+@Suppress("ForbiddenComment", "MaxLineLength", "MaximumLineLength")
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
@@ -80,8 +81,7 @@ kotlin {
                 linkerOpts("-rpath", mapboxPath)
                 linkerOpts("-framework", "Mapbox")
 
-                val mapboxEventsPath =
-                    "${buildDir.absolutePath}/cocoapods/synthetic/IOS/common/build/Release-iphonesimulator/MapboxMobileEvents"
+                val mapboxEventsPath = "${buildDir.absolutePath}/cocoapods/synthetic/IOS/common/build/Release-iphonesimulator/MapboxMobileEvents"
                 linkerOpts("-F$mapboxEventsPath")
                 linkerOpts("-rpath", mapboxEventsPath)
                 linkerOpts("-framework", "MapboxMobileEvents")
@@ -161,6 +161,7 @@ kotlin {
     sourceSets["jsMain"].dependencies {
         implementation(libs.ktor.client.js)
         implementation(libs.sqldelight.driver.js)
+        // TODO: Check if the dependencies below are still needed after upgrading Kotlin and/or Ktor
         implementation(npm("abort-controller", "3.0.0"))
         implementation(npm("node-fetch", "2.6.1"))
     }

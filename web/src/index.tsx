@@ -10,6 +10,7 @@ import "fontsource-roboto/400.css";
 import populateDatabase = com.cuhacking.atlas.db.populateDatabase;
 import httpClient = com.cuhacking.atlas.db.httpClient;
 import dataCache = com.cuhacking.atlas.db.dataCache;
+import sharedDatabase = com.cuhacking.atlas.db.sharedDatabase;
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -38,9 +39,9 @@ const MapOverlays = styled.div`
   z-index: 99;
 `;
 
-const App = () => {
-  populateDatabase(httpClient, dataCache)
+populateDatabase(httpClient, dataCache, sharedDatabase)
 
+const App = () => {
   return (
     <AppContainer>
       <GlobalStyle />

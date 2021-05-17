@@ -15,10 +15,13 @@ val dataCache = DataCache()
 val httpClient = HttpClient()
 
 @JsExport
+val sharedDatabase = SharedDatabase(::provideDbDriver)
+
+@JsExport
 @Suppress("NON_EXPORTABLE_TYPE")
-fun populateDatabase(httpClient: HttpClient, dataCache: DataCache) {
+fun populateDatabase(httpClient: HttpClient, dataCache: DataCache, sharedDatabase: SharedDatabase) {
     CoroutineScope(CoroutineDispatchers.io).launch {
-        SharedDatabase(::provideDbDriver)(CoroutineDispatchers.io) { database ->
+        sharedDatabase(CoroutineDispatchers.io) { database ->
             FeatureApi(database, httpClient, dataCache, CoroutineDispatchers).getAndStoreFeatures()
         }
     }
