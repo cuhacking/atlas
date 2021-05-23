@@ -98,7 +98,6 @@ kotlin {
         frameworkName = "Common"
 
         ios.deploymentTarget = libs.versions.ios.get()
-        pod("Mapbox-iOS-SDK", "~> 5.9", moduleName = "Mapbox")
     }
 
     android()
@@ -125,7 +124,7 @@ kotlin {
         implementation(libs.ktor.client.core)
         implementation(libs.kotlinx.datetime)
         implementation(libs.klock)
-        api(projects.mapbox)
+        api(libs.mmapp)
 
         // Ensure multithreaded coroutine dependency is used to resolve ktor issue on ios
         // https://kotlinlang.org/docs/mobile/concurrency-and-coroutines.html#multithreaded-coroutines
@@ -243,3 +242,5 @@ tasks {
         enabled = false
     }
 }
+
+apply(plugin = "com.cuhacking.mmapp")

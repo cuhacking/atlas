@@ -1,7 +1,7 @@
 package com.cuhacking.atlas.common
 
-import com.cuhacking.mapbox.GeoJsonSource
-import com.cuhacking.mapbox.layers.fillLayer
+import com.cuhacking.mmapp.sources.GeoJsonSource
+import com.cuhacking.mmapp.layers.fillLayer
 import kotlin.js.JsExport
 
 @Suppress("MaximumLineLength", "MaxLineLength")

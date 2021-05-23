@@ -16,6 +16,7 @@ buildscript {
         classpath("com.codingfeline.buildkonfig:buildkonfig-gradle-plugin:0.7.0")
         classpath("com.github.node-gradle:gradle-node-plugin:2.2.4")
         classpath("com.github.jengelman.gradle.plugins:shadow:6.1.0")
+        classpath("com.cuhacking.mmapp:gradle-plugin:0.1.0-SNAPSHOT")
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
