@@ -18,6 +18,8 @@ Include the following in your `local.properties` file:
 
 ```
 mapbox.key=<your mapbox access token>
+server.web.url = http://localhost:8080/api
+server.url=<server instance url>
 ```
 
 In your `gradle.properties` file (`~/gradle.properties`) add the following:
