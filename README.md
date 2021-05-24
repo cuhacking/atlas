@@ -6,27 +6,25 @@ Also known as "the Map Project".
 
 ### Required Tools
 
-This project requires the latest Android Studio 4.2 Canary to be installed along with JDK 8 and the latest Android SDK (29).
+This project requires the latest Android Studio Arctic Fox Beta to be installed along with JDK 11 and the latest Android SDK (30).
 
 If developing on macOS or for iOS, the latest version of XCode will also need to be installed.
 
-For development on the web client, the latest version of Node 12 needs to be installed.
+For development on the web client, the latest version of Node 14 needs to be installed.
 
 ### Setup
 
 Include the following in your `local.properties` file:
 
-```
+```properties
 mapbox.key=<your mapbox access token>
-server.web.url = http://localhost:8080/api
 server.url=<server instance url>
-```
+server.web.url=http://localhost:8080/api
 
-In your `gradle.properties` file (`~/gradle.properties`) add the following:
+mapbox.download.key=<your mapbox download token>
+# This line is required for downloading the Mapbox cocoapods
+mmapp.config.netrc=true
 ```
-MAPBOX_DOWNLOADS_TOKEN=<your secret mapbox downloads token>
-```
-as [specified here](https://docs.mapbox.com/android/maps/overview/) in the Mapbox docs.
 
 ### Building
 
