@@ -7,6 +7,15 @@ module.exports = {
   devtool: "source-map",
   devServer: {
     contentBase: path.join(__dirname, "build"),
+    proxy: {
+        "/api":  {
+          target: "https://atlas.cuhacking.com",
+          changeOrigin: true,
+          pathRewrite: {
+            '^/api': ''
+          },
+        }
+      }
   },
 
   resolve: {
