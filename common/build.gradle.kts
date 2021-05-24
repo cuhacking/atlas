@@ -13,6 +13,7 @@ plugins {
     id("com.squareup.sqldelight")
     id("com.codingfeline.buildkonfig")
     id("io.gitlab.arturbosch.detekt")
+    id("com.cuhacking.mmapp")
 }
 
 repositories {
@@ -242,5 +243,3 @@ tasks {
         enabled = false
     }
 }
-
-apply(plugin = "com.cuhacking.mmapp")
