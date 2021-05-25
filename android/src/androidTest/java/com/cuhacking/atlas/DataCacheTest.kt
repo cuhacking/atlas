@@ -52,7 +52,7 @@ class DataCacheTest {
                         }
                     }
                 ]
-            }""".replace(Regex("[\\s\n]"), "")
+            }"""
     @Before
     fun before() {
        dataCache.appContext = context

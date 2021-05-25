@@ -18,9 +18,11 @@ Include the following in your `local.properties` file:
 
 ```
 mapbox.key=<your mapbox access token>
+server.web.url = http://localhost:8080/api
+server.url=<server instance url>
 ```
 
-In your home `.gradle` folder create a `gradle.properties` file (`~/.gradle/gradle.properties`) and add the following:
+In your `gradle.properties` file (`~/gradle.properties`) add the following:
 ```
 MAPBOX_DOWNLOADS_TOKEN=<your secret mapbox downloads token>
 ```
@@ -31,6 +33,8 @@ as [specified here](https://docs.mapbox.com/android/maps/overview/) in the Mapbo
 - **Android**: Open project folder in Android Studio and execute the `android` run configuration.
 - **iOS**: Open the `.xcworkspace` file in XCode or AppCode and run.
 - **Web**:
+  - Run `npm install` in the `web` directory
+  - Run `./gradlew build` in the home directory
   - Run `yarn` in the `web` directory
   - Then run `yarn start` in the `web` directory
 

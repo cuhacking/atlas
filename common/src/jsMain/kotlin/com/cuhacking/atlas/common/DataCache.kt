@@ -1,14 +1,13 @@
 package com.cuhacking.atlas.common
 
-import kotlinx.datetime.Clock
-import kotlinx.datetime.Instant
+import com.soywiz.klock.DateTime
 
 actual class DataCache actual constructor(private val dispatchers: CoroutineDispatchers) {
-    actual var lastModified: Instant? = null
+    actual var lastModified: DateTime? = null
     private var jsonData = ""
 
     actual suspend fun writeData(data: String) {
-        lastModified = Clock.System.now()
+        lastModified = DateTime.now()
         jsonData = data
     }
 

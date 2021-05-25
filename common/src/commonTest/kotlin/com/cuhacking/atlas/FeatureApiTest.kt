@@ -3,14 +3,18 @@ package com.cuhacking.atlas
 import com.cuhacking.atlas.common.CoroutineDispatchers
 import com.cuhacking.atlas.common.DataCache
 import com.cuhacking.atlas.common.FeatureApi
-import com.cuhacking.atlas.db.*
+import com.cuhacking.atlas.db.Feature
+import com.cuhacking.atlas.db.GeoJsonAdapter
+import com.cuhacking.atlas.db.TestWithDatabase
 import com.cuhacking.atlas.util.runDbTest
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
-import io.ktor.http.*
+import io.ktor.client.features.json.JsonFeature
+import io.ktor.client.features.json.serializer.KotlinxSerializer
+import io.ktor.http.HttpStatusCode
+import io.ktor.http.ContentType
+import io.ktor.http.headersOf
 import kotlin.coroutines.coroutineContext
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -32,8 +36,9 @@ class FeatureApiTest : TestWithDatabase() {
                         },
                         "properties":
                         {
-                            "id": 1,
-                            "name": "sample name",
+                            "fid": 1,
+                            "roomId": "101",
+                            "roomName": "sample name",
                             "type": "sample type"
                             
                         }
@@ -47,8 +52,9 @@ class FeatureApiTest : TestWithDatabase() {
                         },
                         "properties":
                         {
-                            "id": 2,
-                            "name": "sample name",
+                            "fid": 2,
+                            "roomId": "102",
+                            "roomName": "sample name",
                             "type": "sample type",
                             "building": "building",
                             "floor": "floor"
@@ -56,10 +62,10 @@ class FeatureApiTest : TestWithDatabase() {
                     }
                 ]
             }"""
-    private val feature1Json = GeoJsonAdapter.decode("""{"type":"Feature","geometry":{"type":"Point","coordinates":[-75.0,45.0]},"properties":{"id":1,"name":"sample name","type":"sample type"}}""")
-    private val feature1 = Feature(1, "sample name", null, "sample type", null, null, "sample name", feature1Json)
-    private val feature2Json = GeoJsonAdapter.decode("""{"type":"Feature","geometry":{"type":"Point","coordinates":[-75.0,45.0]},"properties":{"id":2,"name":"sample name","type":"sample type","building":"building","floor":"floor"}}""")
-    private val feature2 = Feature(2, "sample name", null, "sample type", "building", "floor", "sample name", feature2Json)
+    private val feature1Json = GeoJsonAdapter.decode("""{"type":"Feature","geometry":{"type":"Point","coordinates":[-75.0,45.0]},"properties":{"fid":1,"roomId":"101","roomName":"sample name","type":"sample type"}}""")
+    private val feature1 = Feature(1, "101", "sample name", "sample type", null, null, null, feature1Json)
+    private val feature2Json = GeoJsonAdapter.decode("""{"type":"Feature","geometry":{"type":"Point","coordinates":[-75.0,45.0]},"properties":{"fid":2,"roomId":"102","roomName":"sample name","type":"sample type","building":"building","floor":"floor"}}""")
+    private val feature2 = Feature(2, "102", "sample name", "sample type", "building", "floor", null, feature2Json)
     private val featureList = mutableListOf(feature1, feature2)
 
     private val client = HttpClient(MockEngine) {

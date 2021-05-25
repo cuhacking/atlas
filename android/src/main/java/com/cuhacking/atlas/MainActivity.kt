@@ -1,6 +1,5 @@
 package com.cuhacking.atlas
 
-import android.graphics.Color
 import android.os.Bundle
 import android.widget.SearchView
 import android.widget.Toast
@@ -8,17 +7,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
-import com.cuhacking.atlas.common.exampleDataSource
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.cuhacking.atlas.common.CoroutineDispatchers
-import com.cuhacking.atlas.databinding.ActivityMainBinding
-import com.cuhacking.atlas.search.SearchResultsAdapter
 import com.cuhacking.atlas.common.SearchViewModel
+import com.cuhacking.atlas.common.exampleDataSource
 import com.cuhacking.atlas.common.exampleLayer
-import com.cuhacking.atlas.db.SharedDatabase
-import com.cuhacking.atlas.db.provideDbDriver
+import com.cuhacking.atlas.databinding.ActivityMainBinding
+import com.cuhacking.atlas.db.sharedDatabase
+import com.cuhacking.atlas.search.SearchResultsAdapter
 import com.mapbox.mapboxsdk.maps.Style
-import com.mapbox.mapboxsdk.style.layers.FillLayer
 import com.mapbox.mapboxsdk.style.layers.LineLayer
 import com.mapbox.mapboxsdk.style.layers.PropertyFactory
 import kotlinx.coroutines.flow.collect
@@ -30,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         SearchViewModel(
             CoroutineDispatchers,
             lifecycleScope,
-            SharedDatabase(::provideDbDriver)
+            sharedDatabase
         )
     }
 

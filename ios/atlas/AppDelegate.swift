@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                               willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         MGLAccountManager.accessToken = AtlasConfig().MAPBOX_KEY
+        
+        PopulateDatabaseKt.populateDatabase(httpClient: PopulateDatabaseKt.httpClient, dataCache: PopulateDatabaseKt.dataCache, sharedDatabase: PopulateDatabaseKt.sharedDatabase)
         return true
     }
 

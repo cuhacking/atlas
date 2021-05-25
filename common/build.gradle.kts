@@ -1,8 +1,11 @@
 import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
+import com.codingfeline.buildkonfig.gradle.TargetConfigDsl
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.util.Properties
 
+@Suppress("ForbiddenComment", "MaxLineLength", "MaximumLineLength")
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
@@ -80,8 +83,7 @@ kotlin {
                 linkerOpts("-rpath", mapboxPath)
                 linkerOpts("-framework", "Mapbox")
 
-                val mapboxEventsPath =
-                    "${buildDir.absolutePath}/cocoapods/synthetic/IOS/common/build/Release-iphonesimulator/MapboxMobileEvents"
+                val mapboxEventsPath = "${buildDir.absolutePath}/cocoapods/synthetic/IOS/common/build/Release-iphonesimulator/MapboxMobileEvents"
                 linkerOpts("-F$mapboxEventsPath")
                 linkerOpts("-rpath", mapboxEventsPath)
                 linkerOpts("-framework", "MapboxMobileEvents")
@@ -121,9 +123,17 @@ kotlin {
         implementation(libs.sqldelight.coroutines)
         implementation(libs.bundles.spatialk)
         implementation(libs.ktor.client.core)
-        implementation(libs.kotlinx.coroutines)
         implementation(libs.kotlinx.datetime)
+        implementation(libs.klock)
         api(projects.mapbox)
+
+        // Ensure multithreaded coroutine dependency is used to resolve ktor issue on ios
+        // https://kotlinlang.org/docs/mobile/concurrency-and-coroutines.html#multithreaded-coroutines
+        implementation(libs.kotlinx.coroutines.get().module.toString()) {
+            version {
+                strictly(libs.versions.coroutines.get())
+            }
+        }
     }
 
     sourceSets["commonTest"].dependencies {
@@ -153,6 +163,9 @@ kotlin {
     sourceSets["jsMain"].dependencies {
         implementation(libs.ktor.client.js)
         implementation(libs.sqldelight.driver.js)
+        // TODO: Check if the dependencies below are still needed after upgrading Kotlin and/or Ktor
+        implementation(npm("abort-controller", "3.0.0"))
+        implementation(npm("node-fetch", "2.6.1"))
     }
 
     sourceSets["jsTest"].dependencies {
@@ -165,22 +178,21 @@ kotlin {
         }
     }
 }
-
 buildkonfig {
     packageName = "com.cuhacking.atlas.common"
     exposeObjectWithName = "AtlasConfig"
 
-    defaultConfigs {
-        val props = Properties()
-        val localPropsFile = project.rootProject.file("local.properties")
-        if (localPropsFile.exists()) {
-            props.load(localPropsFile.inputStream())
-        }
+    val props = Properties()
+    val localPropsFile = project.rootProject.file("local.properties")
+    if (localPropsFile.exists()) {
+        props.load(localPropsFile.inputStream())
+    }
 
+    // default config is required
+    defaultConfigs {
         if (props.containsKey("mapbox.key")) {
             buildConfigField(
-                com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING, "MAPBOX_KEY",
-                props.getProperty("mapbox.key")
+                STRING, "MAPBOX_KEY", props.getProperty("mapbox.key")
             )
         } else {
             throw GradleException("mapbox.key not declared in local.properties")
@@ -188,13 +200,25 @@ buildkonfig {
 
         if (props.containsKey("server.url")) {
             buildConfigField(
-                com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING, "SERVER_URL",
-                props.getProperty("server.url")
+                STRING, "SERVER_URL", props.getProperty("server.url")
             )
         } else {
             throw GradleException("server.url not declared in local.properties")
         }
     }
+
+    // Configure js target server url
+    targetConfigs(closureOf<NamedDomainObjectContainer<TargetConfigDsl>> {
+        create("js") {
+            if (props.containsKey("server.web.url")) {
+                buildConfigField(
+                    STRING, "SERVER_URL", props.getProperty("server.web.url")
+                )
+            } else {
+                throw GradleException("server.web.url not declared in local.properties")
+            }
+        }
+    })
 }
 
 sqldelight {

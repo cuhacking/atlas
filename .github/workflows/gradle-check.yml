@@ -46,6 +46,7 @@ jobs:
         mkdir -p ~/.gradle
         echo mapbox.key="$MAPBOX_KEY" > local.properties
         echo server.url=https://example.com/ >> local.properties
+        echo server.web.url=http://localhost:8080/api >> local.properties
         echo MAPBOX_DOWNLOADS_TOKEN=$MAPBOX_DOWNLOADS_TOKEN >> ~/.gradle/gradle.properties
 
     - name: Grant execute permission for gradlew
