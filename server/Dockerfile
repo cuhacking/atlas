@@ -1,4 +1,4 @@
-FROM gradle:latest AS builder
+FROM gradle:jdk11 AS builder
 
 COPY . /home/gradle/src
 WORKDIR /home/gradle/src
