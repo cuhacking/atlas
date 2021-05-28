@@ -1,9 +1,9 @@
-FROM gradle:jdk11 AS builder
+FROM alvrme/alpine-android:android-30-jdk11 AS builder
 
 COPY . /home/gradle/src
 WORKDIR /home/gradle/src
 
-RUN gradle :web:build
+RUN ./gradlew :web:build
 
 FROM nginx:1.19.2
 
