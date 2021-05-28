@@ -1,4 +1,4 @@
-name: Build server development image
+name: Build Development Images
 
 on:
   push:
@@ -19,8 +19,7 @@ jobs:
         run: echo "BUILD_TAG=$(git describe --tags)" >> $GITHUB_ENV
 
       - name: Build and tag image
-        working-directory: server/
-        run: docker build -t ghcr.io/cuhacking/atlas-server:${BUILD_TAG} -t ghcr.io/cuhacking/atlas-server:dev .
+        run: docker build -f server/Dockerfile -t ghcr.io/cuhacking/atlas-server:${BUILD_TAG} -t ghcr.io/cuhacking/atlas-server:dev .
 
       - name: Push image
         if: success()
@@ -40,8 +39,7 @@ jobs:
         run: echo "BUILD_TAG=$(git describe --tags)" >> $GITHUB_ENV
 
       - name: Build and tag image
-        working-directory: web/
-        run: docker build -t ghcr.io/cuhacking/atlas-web:${BUILD_TAG} -t ghcr.io/cuhacking/atlas-web:dev .
+        run: docker build -f web/Dockerfile -t ghcr.io/cuhacking/atlas-web:${BUILD_TAG} -t ghcr.io/cuhacking/atlas-web:dev .
 
       - name: Push image
         if: success()
