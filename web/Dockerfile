@@ -1,6 +1,6 @@
 FROM gradle:latest AS builder
 
-COPY .. /home/gradle/src
+COPY . /home/gradle/src
 WORKDIR /home/gradle/src
 
 RUN gradle :web:build
