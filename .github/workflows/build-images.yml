@@ -19,8 +19,30 @@ jobs:
         run: echo "BUILD_TAG=$(git describe --tags)" >> $GITHUB_ENV
 
       - name: Build and tag image
+        working-directory: server/
         run: docker build -t ghcr.io/cuhacking/atlas-server:${BUILD_TAG} -t ghcr.io/cuhacking/atlas-server:dev .
 
       - name: Push image
         if: success()
         run: docker push --all-tags ghcr.io/cuhacking/atlas-server
+
+  build-web-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Authenticate package registry
+        run: echo "${{ secrets.CONTAINER_TOKEN }}" | docker login https://ghcr.io -u ${GITHUB_ACTOR} --password-stdin
+
+      - name: Get tag
+        run: echo "BUILD_TAG=$(git describe --tags)" >> $GITHUB_ENV
+
+      - name: Build and tag image
+        working-directory: web/
+        run: docker build -t ghcr.io/cuhacking/atlas-web:${BUILD_TAG} -t ghcr.io/cuhacking/atlas-web:dev .
+
+      - name: Push image
+        if: success()
+        run: docker push --all-tags ghcr.io/cuhacking/atlas-web
