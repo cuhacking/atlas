@@ -1,5 +1,11 @@
 FROM alvrme/alpine-android:android-30-jdk11 AS builder
 
+RUN apk add curl && \
+    (curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash) && \
+    export NVM_DIR="$HOME/.nvm" && \
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" \
+    && nvm install 14
+
 COPY . /home/gradle/src
 WORKDIR /home/gradle/src
 
