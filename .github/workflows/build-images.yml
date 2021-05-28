@@ -32,6 +32,18 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set up local secrets
+        env:
+          MAPBOX_KEY: ${{ secrets.MAPBOX_KEY }}
+          MAPBOX_DOWNLOADS_TOKEN: ${{ secrets.MAPBOX_DOWNLOADS_TOKEN }}
+          ATLAS_URL: ${{ secrets.ATLAS_URL }}
+        run: |
+          mkdir -p ~/.gradle
+          echo mapbox.key="$MAPBOX_KEY" > local.properties
+          echo server.url="$ATLAS_URL" >> local.properties
+          echo server.web.url="$ATLAS_URL" >> local.properties
+          echo MAPBOX_DOWNLOADS_TOKEN=$MAPBOX_DOWNLOADS_TOKEN >> ~/.gradle/gradle.properties
+
       - name: Authenticate package registry
         run: echo "${{ secrets.CONTAINER_TOKEN }}" | docker login https://ghcr.io -u ${GITHUB_ACTOR} --password-stdin
 
