@@ -14,7 +14,7 @@ tasks {
         group = "build"
         args = listOf("run", "build")
 
-        dependsOn("yarn")
+        dependsOn(":common:jsBrowserProductionLibraryDistribution", "yarn")
     }
 
     create<Delete>("clean") {
