@@ -4,6 +4,11 @@ plugins {
     id("com.github.node-gradle.node")
 }
 
+node {
+    download = true
+    version = "14.15.4"
+}
+
 tasks {
     create<YarnTask>("build") {
         group = "build"

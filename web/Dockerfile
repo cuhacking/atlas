@@ -1,7 +1,5 @@
 FROM alvrme/alpine-android:android-30-jdk11 AS builder
 
-RUN apk upgrade && apk add nodejs
-
 COPY . /home/gradle/src
 WORKDIR /home/gradle/src
 
