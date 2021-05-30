@@ -12,7 +12,7 @@ fun MainLayout() {
         MapView()
         Column {
             SearchBar()
-            SearchResultsList(searchResultItems.value, searchResultsVisible.value)
+            SearchResultsList(searchResultsFlow, searchResultsVisible.value)
         }
     }
 }

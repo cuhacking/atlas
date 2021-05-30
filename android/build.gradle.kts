@@ -75,22 +75,16 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerVersion = Versions.kotlin
-        kotlinCompilerExtensionVersion = Versions.compose
+        kotlinCompilerExtensionVersion = libs.versions.compose.get()
     }
 }
 
 dependencies {
-    implementation(project(":common"))
-    implementation(deps.androidx.core)
-    implementation(deps.androidx.appCompat)
-    implementation(deps.material)
-    implementation(deps.androidx.constraintLayout)
-    implementation(deps.androidx.lifeCycle)
-    implementation(deps.androidx.composeUI)
-    implementation(deps.androidx.composeFoundation)
-    implementation(deps.androidx.UITooling)
-    implementation(deps.androidx.composeMaterial)
+    implementation(projects.common)
+    implementation(libs.bundles.androidx.runtime)
+    implementation(libs.material)
+    implementation(libs.ktor.client.okhttp)
+    implementation(libs.bundles.androidx.compose)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.bundles.androidx.test)
@@ -114,7 +108,6 @@ tasks {
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         kotlinOptions {
             jvmTarget = "11"
-            freeCompilerArgs += "-Xallow-jvm-ir-dependencies"
         }
     }
 }

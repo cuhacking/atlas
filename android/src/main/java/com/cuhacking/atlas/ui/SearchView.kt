@@ -22,7 +22,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -35,16 +35,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
-import com.cuhacking.atlas.common.CoroutineDispatchers
+import com.cuhacking.atlas.MainActivity
 import com.cuhacking.atlas.common.SearchResult
-import com.cuhacking.atlas.common.SearchViewModel
-import com.cuhacking.atlas.db.database
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
-val viewModel = SearchViewModel(database, CoroutineDispatchers)
-val searchResultItems: MutableState<List<SearchResult>> = mutableStateOf(viewModel.searchResults.value)
+val viewModel = MainActivity().searchViewModel
 val searchResultsVisible = mutableStateOf(false)
+val searchResultsFlow = viewModel.searchResults.flow
 
 @Suppress("MagicNumber")
 @Composable
@@ -69,9 +67,6 @@ fun SearchBar() {
                 coroutineScope.launch {
                     viewModel.getSearchResults(query)
                     searchResultsVisible.value = true
-                    viewModel.searchResults.collect {
-                        searchResultItems.value = it
-                    }
                 }
             },
             singleLine = true,
@@ -79,9 +74,6 @@ fun SearchBar() {
                 onSearch = {
                     coroutineScope.launch {
                         viewModel.getSearchResults(query)
-                        viewModel.searchResults.collect {
-                            searchResultItems.value = it
-                        }
                     }
                     focusManager.clearFocus(true)
                 }
@@ -125,11 +117,13 @@ fun SearchResultView(searchResult: SearchResult, onClick: () -> Unit) {
 }
 
 @Composable
-fun SearchResultsList(results: List<SearchResult>, isVisible: Boolean) {
+fun SearchResultsList(results: Flow<List<SearchResult>>, isVisible: Boolean) {
+    val searchResults = results.collectAsState(emptyList())
     val context = LocalContext.current
+
     if (isVisible) {
         LazyColumn {
-            items(items = results) { searchResult ->
+            items(items = searchResults.value) { searchResult ->
                 SearchResultView(searchResult = searchResult, onClick = {
                     Toast.makeText(context, "${searchResult.name} was clicked", Toast.LENGTH_SHORT).show()
                     }

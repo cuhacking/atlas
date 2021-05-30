@@ -125,15 +125,8 @@ kotlin {
         implementation(libs.ktor.client.core)
         implementation(libs.kotlinx.datetime)
         implementation(libs.klock)
+        implementation(libs.kotlinx.coroutines)
         api(libs.mmapp)
-
-        // Ensure multithreaded coroutine dependency is used to resolve ktor issue on ios
-        // https://kotlinlang.org/docs/mobile/concurrency-and-coroutines.html#multithreaded-coroutines
-        implementation(libs.kotlinx.coroutines.get().module.toString()) {
-            version {
-                strictly(libs.versions.coroutines.get())
-            }
-        }
     }
 
     sourceSets["commonTest"].dependencies {
@@ -158,6 +151,13 @@ kotlin {
     sourceSets["iosMain"].dependencies {
         implementation(libs.sqldelight.driver.native)
         implementation(libs.ktor.client.ios)
+        // Ensure multithreaded coroutine dependency is used to resolve ktor issue on ios
+        // https://kotlinlang.org/docs/mobile/concurrency-and-coroutines.html#multithreaded-coroutines
+        implementation(libs.kotlinx.coroutines.get().module.toString()) {
+            version {
+                strictly(libs.versions.coroutines.get())
+            }
+        }
     }
 
     sourceSets["jsMain"].dependencies {
