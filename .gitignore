@@ -42,3 +42,5 @@ DerivedData/
 **/Pods
 
 **/dist
+
+keystore.properties

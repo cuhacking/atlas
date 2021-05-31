@@ -1,9 +1,19 @@
+import com.github.triplet.gradle.androidpublisher.ReleaseStatus
 import io.gitlab.arturbosch.detekt.Detekt
+import java.util.Properties
+import java.io.FileInputStream
+
 
 plugins {
     id("com.android.application")
     kotlin("android")
     id("io.gitlab.arturbosch.detekt")
+    id("com.github.triplet.play") version "3.4.0-agp7.0"
+}
+
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+val keystoreProperties = Properties().takeIf { keystorePropertiesFile.exists() }?.apply {
+    load(FileInputStream(keystorePropertiesFile))
 }
 
 android {
@@ -20,6 +30,19 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        if (keystoreProperties != null) {
+            create("release") {
+                keyAlias = keystoreProperties.getProperty("keyAlias")
+                keyPassword = keystoreProperties.getProperty("keyPassword")
+                storeFile = file(keystoreProperties.getProperty("storeFile"))
+                storePassword = keystoreProperties.getProperty("storePassword")
+            }
+        } else {
+            println("No signing key, skipping signing config")
+        }
+    }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
@@ -27,6 +50,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs["release"]
+        }
+        getByName("debug") {
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-DEBUG"
         }
     }
     compileOptions {
@@ -66,4 +94,10 @@ tasks {
     withType<Detekt> {
         jvmTarget = "11"
     }
+}
+
+play {
+    // TODO: Set up production releases?
+    track.set("internal")
+    releaseStatus.set(ReleaseStatus.COMPLETED)
 }
