@@ -20,6 +20,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - uses: gradle/wrapper-validation-action@v1
     - name: Cache gradle
       uses: actions/cache@v2.1.0
