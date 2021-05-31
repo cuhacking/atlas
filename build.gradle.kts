@@ -50,3 +50,5 @@ allprojects {
         }
     }
 }
+
+tasks.create("displayVersionInfo", DisplayVersionInfo::class)

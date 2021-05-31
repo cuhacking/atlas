@@ -24,8 +24,8 @@ android {
         applicationId = "com.cuhacking.atlas"
         minSdk = libs.versions.minSdk.getInt()
         targetSdk = libs.versions.compileSdk.getInt()
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = generateVersionCode()
+        versionName = generateVersionName()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
