@@ -50,7 +50,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            signingConfig = signingConfigs["release"]
+            if (keystoreProperties != null) {
+                signingConfig = signingConfigs["release"]
+            }
         }
         getByName("debug") {
             applicationIdSuffix = ".debug"
