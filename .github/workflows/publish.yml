@@ -1,0 +1,34 @@
+name: Publish Builds
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  publish-internal:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set up local secrets
+        env:
+          MAPBOX_KEY: ${{ secrets.MAPBOX_KEY }}
+          MAPBOX_DOWNLOADS_TOKEN: ${{ secrets.MAPBOX_DOWNLOADS_TOKEN }}
+          ATLAS_URL: ${{ secrets.ATLAS_URL }}
+          KEYSTORE_PROPERTIES: ${{ secrets.KEYSTORE_PROPERTIES }}
+          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
+        run: |
+          mkdir -p ~/.gradle
+          echo mapbox.key="$MAPBOX_KEY" > local.properties
+          echo server.url="$ATLAS_URL" >> local.properties
+          echo server.web.url="$ATLAS_URL" >> local.properties
+          echo MAPBOX_DOWNLOADS_TOKEN=$MAPBOX_DOWNLOADS_TOKEN >> ~/.gradle/gradle.properties
+          echo $KEYSTORE_PROPERTIES > keystore.properties
+          echo "$SIGNING_KEY" | base64 -d > atlas.jks
+
+      - name: Publish to Internal Track
+        env:
+          ANDROID_PUBLISHER_CREDENTIALS: ${{ secrets.GCP_PUBLISH_KEY }}
+        run: ./gradlew :android:publishBundle
