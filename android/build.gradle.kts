@@ -2,6 +2,7 @@ import com.github.triplet.gradle.androidpublisher.ReleaseStatus
 import io.gitlab.arturbosch.detekt.Detekt
 import java.util.Properties
 import java.io.FileInputStream
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 
 plugins {
@@ -105,7 +106,7 @@ tasks {
         jvmTarget = "11"
     }
 
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    withType<KotlinCompile> {
         kotlinOptions {
             jvmTarget = "11"
         }
