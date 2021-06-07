@@ -80,7 +80,6 @@ private fun MapViewContainer(map: MapView) {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT,
             )
-
             getMapAsync { map ->
                 map.setStyle(Style.DARK) { style ->
                     // I took some artistic liberties while figuring out how to do this
@@ -96,6 +95,12 @@ private fun MapViewContainer(map: MapView) {
                     //  not android sdk but originally found below
                     // https://github.com/mapbox/mapbox-gl-js/issues/3018
                     style.addLayer(outlineLayer(context, "outline-layer", "example"))
+                }
+
+                map.addOnMapClickListener {
+                    requestFocus()
+                    searchResultsVisible.value = false
+                    true
                 }
             }
         }
