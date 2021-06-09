@@ -45,7 +45,7 @@ DELETE FROM feature;
 search:
 SELECT *
 FROM feature_fts
-WHERE feature_fts MATCH ?;
+WHERE feature_fts MATCH ? || '*';
 
 clearFts:
 DELETE FROM feature_fts;

@@ -36,7 +36,7 @@ class DatabaseTest : TestWithDatabase() {
         database.featureQueries.insertFeature(feature3)
 
         assertTrue(
-            database.featureQueries.search("HS 1301B").executeAsList()
+            database.featureQueries.search("HS").executeAsList()
                 .contains(feature3.toFTS())
         )
     }
