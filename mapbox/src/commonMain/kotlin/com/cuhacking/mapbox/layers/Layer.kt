@@ -3,7 +3,6 @@ package com.cuhacking.mapbox.layers
 import com.cuhacking.mapbox.expressions.Expression
 import kotlin.js.JsExport
 
-@JsExport
 interface Layer {
     val id: String
     val sourceId: String

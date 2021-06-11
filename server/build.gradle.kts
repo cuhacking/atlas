@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     kotlin("jvm")
     application
@@ -16,6 +18,10 @@ kotlin {
         testImplementation(libs.junit)
         testImplementation(kotlin("test-junit"))
     }
+}
+
+tasks.withType(KotlinCompile::class) {
+    kotlinOptions.jvmTarget = "11"
 }
 
 java {
