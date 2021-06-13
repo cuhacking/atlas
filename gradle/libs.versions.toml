@@ -72,5 +72,6 @@ klock = "com.soywiz.korlibs.klock:klock:2.1.2"
 [bundles]
 androidx-runtime = ["androidx-core", "androidx-appCompat", "androidx-constraintLayout", "androidx-lifecycle"]
 androidx-test = ["androidx-test-junit", "androidx-test-espresso"]
+androidx-compose = ["androidx-compose-ui", "androidx-compose-uiTooling", "androidx-compose-foundation", "androidx-compose-material", "androidx-compose-coreIcons", "androidx-compose-extendedIcons", "androidx-activity-compose"]
 spatialk = ["spatialk-geojson", "spatialk-turf"]
 
