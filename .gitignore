@@ -44,3 +44,4 @@ DerivedData/
 **/dist
 
 keystore.properties
+*.jks
