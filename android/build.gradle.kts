@@ -101,5 +101,5 @@ tasks {
 play {
     // TODO: Set up production releases?
     track.set("internal")
-    releaseStatus.set(ReleaseStatus.COMPLETED)
+    releaseStatus.set(ReleaseStatus.DRAFT)
 }
