@@ -9,7 +9,7 @@ module.exports = {
     contentBase: path.join(__dirname, "build"),
     proxy: {
         "/api":  {
-          target: "https://atlas.cuhacking.com",
+          target: "https://atlas.cuhacking.com/data",
           changeOrigin: true,
           pathRewrite: {
             '^/api': ''

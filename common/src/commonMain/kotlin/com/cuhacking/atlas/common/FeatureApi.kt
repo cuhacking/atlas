@@ -1,15 +1,19 @@
 package com.cuhacking.atlas.common
 
-import com.cuhacking.atlas.db.AtlasDatabase
+import com.cuhacking.atlas.db.*
 import com.soywiz.klock.DateFormat
 import com.soywiz.klock.DateTime
 import com.soywiz.klock.parse
 import io.github.dellisd.spatialk.geojson.Feature
+import io.github.dellisd.spatialk.geojson.FeatureCollection
 import io.github.dellisd.spatialk.geojson.FeatureCollection.Companion.toFeatureCollection
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.request.head
 import io.ktor.client.statement.HttpResponse
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.contentOrNull
 import kotlinx.serialization.json.jsonPrimitive
@@ -18,7 +22,7 @@ import com.cuhacking.atlas.db.Feature as DbFeature
 
 @Suppress("MaxLineLength", "MaximumLineLength")
 class FeatureApi(
-    private val database: AtlasDatabase,
+    private val withDatabase: SharedDatabase,
     private val client: HttpClient,
     private val dataCache: DataCache,
     private val dispatchers: CoroutineDispatchers = CoroutineDispatchers
@@ -36,7 +40,7 @@ class FeatureApi(
     }
 
     @Suppress("TooGenericExceptionCaught")
-    suspend fun getAndStoreFeatures() = withContext(dispatchers.io) {
+    suspend fun getAndStoreFeatures() = withDatabase(dispatchers.io) { database ->
         try {
             if (updateCache(dataCache.lastModified)) {
                 database.featureQueries.run {

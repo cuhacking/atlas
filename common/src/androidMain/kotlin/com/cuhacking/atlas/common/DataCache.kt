@@ -1,12 +1,11 @@
 package com.cuhacking.atlas.common
 
-import android.content.Context
+import com.cuhacking.atlas.db.appContext
 import com.soywiz.klock.DateTime
 import kotlinx.coroutines.withContext
 import java.io.File
 
 actual class DataCache actual constructor(private val dispatchers: CoroutineDispatchers) {
-    lateinit var appContext: Context
     actual var lastModified: DateTime? = null
 
     actual suspend fun writeData(data: String) = withContext(dispatchers.io) {

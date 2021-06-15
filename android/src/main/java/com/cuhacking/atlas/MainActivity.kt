@@ -8,12 +8,10 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.cuhacking.atlas.common.CoroutineDispatchers
-import com.cuhacking.atlas.common.SearchViewModel
-import com.cuhacking.atlas.common.exampleDataSource
-import com.cuhacking.atlas.common.exampleLayer
+import com.cuhacking.atlas.common.*
+import com.cuhacking.atlas.common.di.dataRepository
+import com.cuhacking.atlas.common.di.sharedDatabase
 import com.cuhacking.atlas.databinding.ActivityMainBinding
-import com.cuhacking.atlas.db.sharedDatabase
 import com.cuhacking.atlas.search.SearchResultsAdapter
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.style.layers.LineLayer
@@ -23,13 +21,7 @@ import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val searchViewModel by lazy {
-        SearchViewModel(
-            CoroutineDispatchers,
-            lifecycleScope,
-            sharedDatabase
-        )
-    }
+    private val searchViewModel by lazy { provideSearchViewModel() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,10 +32,17 @@ class MainActivity : AppCompatActivity() {
 
         binding.mapView.getMapAsync { map ->
             map.setStyle(Style.DARK) { style ->
-                // I took some artistic liberties while figuring out how to do this
+                lifecycleScope.launchWhenStarted {
+                    searchViewModel.dataSource.collect {
+                        it ?: return@collect
 
-                // FeatureCollection from MultiPolygon GeoJson
-                style.addSource(exampleDataSource)
+                        if (style.getSource(it.id) != null) {
+                            style.removeSource(it.id)
+                        }
+
+                        style.addSource(it)
+                    }
+                }
                 style.addLayer(exampleLayer)
             }
         }

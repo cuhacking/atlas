@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactMapGL, { ViewportProps, Source, Layer } from "react-map-gl";
 import { AutoSizer } from "react-virtualized";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 import { com } from "Atlas-common";
 import AtlasConfig = com.cuhacking.atlas.common.AtlasConfig;
-import exampleDataSource = com.cuhacking.atlas.common.exampleDataSource;
 import exampleLayer = com.cuhacking.atlas.common.exampleLayer;
+import { searchViewModel } from ".";
 
 export const Map = () => {
   const [viewport, setViewport] = React.useState<ViewportProps>({
@@ -16,6 +16,19 @@ export const Map = () => {
   });
 
   const { sourceId, ...layer } = exampleLayer.toJsObject();
+
+  const [source, setSource] = React.useState(null);
+  useEffect(() => {
+    searchViewModel.dataSource.subscribe(
+      (source) => {
+        if (source != null) {
+          setSource(source.toJsObject());
+        }
+      },
+      () => {},
+      () => {}
+    );
+  }, []);
 
   return (
     <AutoSizer>
@@ -29,9 +42,11 @@ export const Map = () => {
           onViewportChange={setViewport}
           mapboxApiAccessToken={AtlasConfig.MAPBOX_KEY}
         >
-          <Source {...exampleDataSource.toJsObject()}>
-            <Layer {...layer} />
-          </Source>
+          {source && (
+            <Source {...source}>
+              <Layer {...layer} />
+            </Source>
+          )}
         </ReactMapGL>
       )}
     </AutoSizer>

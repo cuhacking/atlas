@@ -1,9 +1,16 @@
 package com.cuhacking.atlas.common
 
+import com.cuhacking.atlas.common.data.DataRepository
+import com.cuhacking.atlas.common.di.dataRepository
+import com.cuhacking.atlas.common.di.sharedDatabase
 import com.cuhacking.atlas.db.SharedDatabase
+import com.cuhacking.atlas.util.adapt
 import com.cuhacking.atlas.util.listAdapt
+import com.cuhacking.mapbox.GeoJsonSource
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlin.js.JsExport
 
@@ -12,10 +19,20 @@ import kotlin.js.JsExport
 class SearchViewModel(
     private val dispatchers: CoroutineDispatchers,
     private val scope: CoroutineScope,
-    private val withDatabase: SharedDatabase
+    private val withDatabase: SharedDatabase,
+    private val dataRepository: DataRepository,
 ) {
     private val _searchResults = MutableStateFlow(emptyList<SearchResult>())
     val searchResults = _searchResults.listAdapt(scope)
+
+    val dataSource = dataRepository.data
+        .map {
+            it ?: return@map null
+            GeoJsonSource("atlas-data", null).apply {
+                setGeoJson(it)
+            }
+        }
+        .adapt(scope)
 
     fun getSearchResults(query: String) {
         scope.launch {
@@ -30,3 +47,8 @@ class SearchViewModel(
         }
     }
 }
+
+@JsExport
+fun provideSearchViewModel(): SearchViewModel =
+    SearchViewModel(CoroutineDispatchers, GlobalScope, sharedDatabase, dataRepository)
+

@@ -14,6 +14,8 @@ struct MapView: UIViewRepresentable {
 
     private let mapView: MGLMapView = MGLMapView(frame: .zero, styleURL: MGLStyle.darkStyleURL)
 
+    private let searchViewModel: SearchViewModelKt = SearchViewModelKt.provideSearchViewModel()
+
     func makeUIView(context: UIViewRepresentableContext<MapView>) -> MGLMapView {
         mapView.delegate = context.coordinator
         return mapView

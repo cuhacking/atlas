@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atlas.cuhacking.com/data.schema.json",
+  "title": "Atlas Map Data Schema Definition",
+  "description": "Data used in project Atlas",
+  "type": "object",
+  "properties": {
+  },
+  "definitions": {
+    "feature": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "Feature"
+        }
+      }
+    },
+    "data/common": {
+      "type": "object",
+      "properties": {
+        "fid": {
+          "type": "number"
+        },
+        "search": {
+          "type": ["boolean", "null"]
+        },
+        "building": {
+          "type": ["string", "null"]
+        },
+        "floor": {
+
+        }
+      }
+    }
+  }
+}
