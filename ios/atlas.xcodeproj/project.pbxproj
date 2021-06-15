@@ -19,7 +19,6 @@
 		BE031A1B25043ADB00DB3C5F /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BE031A1A25043AC400DB3C5F /* libsqlite3.tbd */; };
 		BE27ABA4250692E200F4D63B /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE27ABA3250692E200F4D63B /* MapView.swift */; };
 		BE7A35EC254F9E1B00A5F609 /* common in Resources */ = {isa = PBXBuildFile; fileRef = BE7A35EB254F9E1B00A5F609 /* common */; };
-		BE7A35F1254F9E2700A5F609 /* mapbox in Resources */ = {isa = PBXBuildFile; fileRef = BE7A35F0254F9E2700A5F609 /* mapbox */; };
 		D5AD20D74FAF45E172BD9677 /* Pods_atlas_atlasUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6622B45580CCDC73B5FB313D /* Pods_atlas_atlasUITests.framework */; };
 		EB41DDF55A8C9127A5D8EE85 /* Pods_atlasTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E25BC53179B9C2066469C891 /* Pods_atlasTests.framework */; };
 /* End PBXBuildFile section */
@@ -300,7 +299,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE7A35F1254F9E2700A5F609 /* mapbox in Resources */,
 				653FF84124A97E44008855CD /* LaunchScreen.storyboard in Resources */,
 				653FF83E24A97E44008855CD /* Preview Assets.xcassets in Resources */,
 				653FF83B24A97E44008855CD /* Assets.xcassets in Resources */,
