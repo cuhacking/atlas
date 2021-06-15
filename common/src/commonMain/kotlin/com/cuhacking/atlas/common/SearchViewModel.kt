@@ -6,7 +6,7 @@ import com.cuhacking.atlas.common.di.sharedDatabase
 import com.cuhacking.atlas.db.SharedDatabase
 import com.cuhacking.atlas.util.adapt
 import com.cuhacking.atlas.util.listAdapt
-import com.cuhacking.mapbox.GeoJsonSource
+import com.cuhacking.mmapp.sources.GeoJsonSource
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.MutableStateFlow
