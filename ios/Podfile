@@ -15,6 +15,6 @@ target 'atlas' do
     # Pods for testing
   end
 
-  pod 'Mapbox-iOS-SDK', '~> 5.9'
+  pod 'Mapbox-iOS-SDK', '~> 6.3.0'
   pod 'common', :path => '../common'
 end
