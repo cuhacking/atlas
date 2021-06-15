@@ -76,4 +76,4 @@ jobs:
 
     - name: Run xcodebuild
       if: matrix.os == 'macOS-latest'
-      run: xcodebuild -sdk iphonesimulator -destination "name=iPhone 11,OS=14.5" -workspace ios/atlas.xcworkspace -configuration Debug -scheme atlas build
+      run: xcodebuild -sdk iphonesimulator -destination "name=iPhone 11,OS=14.0" -workspace ios/atlas.xcworkspace -configuration Debug -scheme atlas build
