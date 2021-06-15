@@ -51,6 +51,8 @@ ktor-server-test = { module = "io.ktor:ktor-server-test-host", version.ref = "kt
 spatialk-geojson = { module = "io.github.dellisd.spatialk:geojson", version.ref = "spatialk" }
 spatialk-turf = { module = "io.github.dellisd.spatialk:turf", version.ref = "spatialk" }
 
+mmapp = "com.cuhacking.mmapp:mmapp:0.1.0-SNAPSHOT"
+
 mapbox-android = "com.mapbox.mapboxsdk:mapbox-android-sdk:9.6.1"
 logback = "ch.qos.logback:logback-classic:1.2.3"
 material = "com.google.android.material:material:1.3.0-beta01"

@@ -8,6 +8,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     id("io.gitlab.arturbosch.detekt")
+    id("com.cuhacking.mmapp")
     id("com.github.triplet.play") version "3.4.0-agp7.0"
 }
 
