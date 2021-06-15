@@ -25,6 +25,8 @@ jobs:
           echo mapbox.key="$MAPBOX_KEY" > local.properties
           echo server.url="$ATLAS_URL" >> local.properties
           echo server.web.url="$ATLAS_URL" >> local.properties
+          echo mapbox.download.key="$MAPBOX_DOWNLOADS_TOKEN" >> local.properties
+          echo mmapp.config.netrc=true >> local.properties
           echo MAPBOX_DOWNLOADS_TOKEN=$MAPBOX_DOWNLOADS_TOKEN >> ~/.gradle/gradle.properties
           echo -en "$KEYSTORE_PROPERTIES" > keystore.properties
           echo "$SIGNING_KEY" | base64 -d > atlas.jks
