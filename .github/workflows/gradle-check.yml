@@ -49,7 +49,7 @@ jobs:
         echo mapbox.key="$MAPBOX_KEY" > local.properties
         echo server.url=https://example.com/ >> local.properties
         echo mapbox.download.key="$MAPBOX_DOWNLOADS_TOKEN" >> local.properties
-        echo mmapp.config.netrc=true
+        echo mmapp.config.netrc=true >> local.properties
         echo server.web.url=http://localhost:8080/api >> local.properties
 
     - name: Grant execute permission for gradlew
