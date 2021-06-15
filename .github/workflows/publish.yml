@@ -26,11 +26,8 @@ jobs:
           echo server.url="$ATLAS_URL" >> local.properties
           echo server.web.url="$ATLAS_URL" >> local.properties
           echo MAPBOX_DOWNLOADS_TOKEN=$MAPBOX_DOWNLOADS_TOKEN >> ~/.gradle/gradle.properties
-          echo $KEYSTORE_PROPERTIES > keystore.properties
+          echo -en "$KEYSTORE_PROPERTIES" > keystore.properties
           echo "$SIGNING_KEY" | base64 -d > atlas.jks
-
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
 
       - name: Publish to Internal Track
         env:
