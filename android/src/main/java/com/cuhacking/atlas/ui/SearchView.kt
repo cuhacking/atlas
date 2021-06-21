@@ -13,7 +13,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Card
+import androidx.compose.material.ContentAlpha
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Icon
+import androidx.compose.material.LocalContentAlpha
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.MaterialTheme.typography
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -22,6 +26,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -30,7 +35,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
@@ -95,6 +99,7 @@ fun SearchBar() {
     }
 }
 
+@ExperimentalMaterialApi
 @Suppress("MagicNumber")
 @Composable
 fun SearchResultView(searchResult: SearchResult, onClick: () -> Unit) {
@@ -102,8 +107,8 @@ fun SearchResultView(searchResult: SearchResult, onClick: () -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 20.dp)
-            .clickable(onClick = onClick)
-            .border(width = 0.5.dp, color = Color.LightGray),
+            .border(width = 0.5.dp, color = MaterialTheme.colors.onSurface.copy(alpha = ContentAlpha.disabled)),
+        onClick = onClick
     ) { Column(
             modifier = Modifier
                 .padding(vertical = 5.dp)
@@ -111,11 +116,14 @@ fun SearchResultView(searchResult: SearchResult, onClick: () -> Unit) {
             horizontalAlignment = Alignment.Start,
         ) {
             Text(searchResult.name, style = typography.body1)
-            Text(searchResult.description, style = typography.body2, color = Color.DarkGray)
+            CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
+                Text(searchResult.description, style = typography.body2)
+            }
         }
     }
 }
 
+@ExperimentalMaterialApi
 @Composable
 fun SearchResultsList(results: Flow<List<SearchResult>>, isVisible: Boolean) {
     val searchResults = results.collectAsState(emptyList())
