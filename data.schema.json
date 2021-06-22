@@ -1,0 +1,317 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://atlas.cuhacking.com/data.schema.json",
+  "title": "Atlas Map Data Schema Definition",
+  "description": "Data used in project Atlas",
+  "type": "object",
+  "properties": {
+    "type": {
+      "const": "FeatureCollection"
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/definitions/feature-room-polygon"
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "feature-room-polygon": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "const": "Feature"
+        },
+        "geometry": {
+          "$ref": "#/definitions/geometry-polygon"
+        },
+        "properties": {
+          "type": "object",
+          "allOf": [
+            {
+              "properties": {
+                "type": {
+                  "const": "room"
+                }
+              }
+            },
+            {
+              "$ref": "#/definitions/props-common"
+            },
+            {
+              "$ref": "#/definitions/props-room-polygon"
+            }
+          ]
+        }
+      }
+    },
+    "coordinate": {
+      "type": "array",
+      "title": "GeoJSON Coordinate",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 2,
+      "maxItems": 3
+    },
+    "geometry-point": {
+      "type": "object",
+      "title": "GeoJSON Point Geometry",
+      "properties": {
+        "type": {
+          "const": "Point"
+        },
+        "coordinates": {
+          "$ref": "#/definitions/coordinate"
+        }
+      },
+      "required": [
+        "type",
+        "coordinates"
+      ]
+    },
+    "geometry-multipoint": {
+      "type": "object",
+      "title": "GeoJSON MultiPoint Geometry",
+      "properties": {
+        "type": {
+          "const": "MultiPoint"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/coordinate"
+          }
+        }
+      },
+      "required": [
+        "type",
+        "coordinates"
+      ]
+    },
+    "geometry-linestring": {
+      "type": "object",
+      "title": "GeoJSON LineString Geometry",
+      "properties": {
+        "type": {
+          "const": "LineString"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/coordinate"
+          }
+        }
+      },
+      "required": [
+        "type",
+        "coordinates"
+      ]
+    },
+    "geometry-multilinestring": {
+      "type": "object",
+      "title": "GeoJSON MultiLineString Geometry",
+      "properties": {
+        "type": {
+          "const": "MultiLineString"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/coordinate"
+            }
+          }
+        }
+      },
+      "required": [
+        "type",
+        "coordinates"
+      ]
+    },
+    "geometry-polygon": {
+      "type": "object",
+      "title": "GeoJSON Polygon Geometry",
+      "properties": {
+        "type": {
+          "const": "Polygon"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/coordinate"
+            }
+          }
+        }
+      },
+      "required": [
+        "type",
+        "coordinates"
+      ]
+    },
+    "geometry-multipolygon": {
+      "type": "object",
+      "title": "GeoJSON MultiPolygon Geometry",
+      "properties": {
+        "type": {
+          "const": "MultiPolygon"
+        },
+        "coordinates": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/coordinate"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "type",
+        "coordinates"
+      ]
+    },
+    "geometry-geometrycollection": {
+      "type": "object",
+      "title": "GeoJSON GeometryCollection",
+      "properties": {
+        "type": {
+          "const": "GeometryCollection"
+        },
+        "geometries": {
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "$ref": "#/definitions/geometry-point"
+              },
+              {
+                "$ref": "#/definitions/geometry-multipoint"
+              },
+              {
+                "$ref": "#/definitions/geometry-linestring"
+              },
+              {
+                "$ref": "#/definitions/geometry-multilinestring"
+              },
+              {
+                "$ref": "#/definitions/geometry-polygon"
+              },
+              {
+                "$ref": "#/definitions/geometry-multipolygon"
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "type",
+        "coordinates"
+      ]
+    },
+    "props-common": {
+      "type": "object",
+      "title": "Common Feature Properties",
+      "description": "Properties used across all features",
+      "properties": {
+        "fid": {
+          "type": "number",
+          "title": "Feature ID",
+          "description": "A unique integer identifying this feature."
+        },
+        "search": {
+          "type": "boolean",
+          "title": "Include in Search",
+          "description": "Whether or not to include this feature in search results.",
+          "default": false
+        },
+        "building": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Building",
+          "description": "The two-letter building code of the building this feature is located in, if applicable."
+        },
+        "floor": {
+          "type": "string",
+          "title": "Floor",
+          "description": "An identifier for the floor this feature is located on within a building.",
+          "$comment": "This value is typically just a number, but can be a letter in some cases such as 'M' for a mezzanine level.",
+          "examples": [
+            "1",
+            "12",
+            "M"
+          ]
+        },
+        "searchTags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Search Tags",
+          "description": "A list of tags to be included in search matching for this feature, like alternate or commonly-used names."
+        }
+      },
+      "required": [
+        "fid"
+      ]
+    },
+    "props-room-polygon": {
+      "type": "object",
+      "description": "Polygonal shape of a room",
+      "properties": {
+        "roomId": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Room ID",
+          "description": "The identifier for the room, excluding the building code.",
+          "$comment": "When displayed, the building code should be automatically prepended from the common props.",
+          "examples": [
+            "2200",
+            "1204D"
+          ]
+        },
+        "roomName": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "title": "Room Name",
+          "description": "The formal name of the room, if applicable. Alternative, or commonly-used names should be specified in the searchTags prop."
+        },
+        "roomType": {
+          "enum": [
+            null,
+            "classroom",
+            "lecture-hall",
+            "office",
+            "washroom",
+            "public",
+            "elevator",
+            "maintenance",
+            "hallway",
+            "staircase"
+          ],
+          "title": "Room Type",
+          "description": "The type of room being displayed, from a set list of types. 'null' specifies a solid space that isn't really a room, but is still represented as one."
+        }
+      },
+      "required": [
+        "roomType"
+      ]
+    }
+  }
+}
