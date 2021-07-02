@@ -6,6 +6,10 @@ plugins {
     id("com.github.johnrengelman.shadow")
 }
 
+repositories {
+    maven(url = "https://jitpack.io")
+}
+
 kotlin {
     dependencies {
         implementation(libs.ktor.server.core)
@@ -13,6 +17,7 @@ kotlin {
         implementation(libs.logback)
         implementation(libs.clikt)
         implementation(libs.spatialk.geojson)
+        implementation(libs.json.schema)
 
         testImplementation(libs.ktor.server.test)
         testImplementation(libs.junit)
