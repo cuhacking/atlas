@@ -61,8 +61,6 @@ class Server : CliktCommand() {
             valid = false
             println(e.message)
             e.causingExceptions.map(ValidationException::message).forEach(::println)
-        } catch (e: Exception) {
-            println(e)
         }
 
         return valid
