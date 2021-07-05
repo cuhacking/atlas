@@ -16,7 +16,6 @@ import java.util.*
 import kotlin.test.assertEquals
 
 class ServerTests {
-
     private val data = Paths.get("src/test/resources/data.json")
     private val attr = Files.readAttributes(data, BasicFileAttributes::class.java)
     private val lastModified =
@@ -40,11 +39,9 @@ class ServerTests {
             }
         }
 
-    @Test(expected = SerializationException::class)
+    @Test(expected = RuntimeException::class)
     fun `server throws on invalid data content`() {
         val server = Server()
-        server.parse(arrayOf("src/test/resources/bad.json"))
-
-        server.verifyData()
+        server.parse(listOf("-t", "src/test/resources/bad.json"))
     }
 }
