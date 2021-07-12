@@ -7,11 +7,22 @@
 //
 
 import SwiftUI
-import Mapbox
 
 struct ContentView: View {
+
+    @State var isSearchResultsVisible = false
+
     var body: some View {
-        MapView().centerCoordinate(.init(latitude: 45.386438, longitude: -75.696127)).zoomLevel(14.661)
+        ZStack(alignment: .top) {
+            MapView().centerCoordinate(.init(latitude: 45.386438, longitude: -75.696127))
+                .zoomLevel(14.661)
+                .onTapGesture {
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
+                    isSearchResultsVisible = false
+                }
+            
+            SearchView(isSearchResultsVisible: $isSearchResultsVisible)
+        }
     }
 }
 
