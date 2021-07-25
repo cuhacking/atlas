@@ -40,8 +40,6 @@ struct SearchBar: View {
                 self.query = $0
                 viewModel.getSearchResults(query: query)
                 self.isSearchResultsVisible = true
-                print(self.query)
-                print(viewModel.searchResults)
             }
         )
         
@@ -88,7 +86,6 @@ struct SearchResultView: View {
                 Divider().background(Color(.darkGray))
             }
             .padding(.leading, 7)
-            Spacer()
         }
     }
 }
@@ -109,6 +106,7 @@ struct SearchResultList: View {
                 .padding(.top, 10)
             }
             .frame(maxHeight: 155)
+            .fixedSize(horizontal: false, vertical: true)
             .background(Color(.systemGray5))
             .cornerRadius(3)
             .padding(.top, 35)
