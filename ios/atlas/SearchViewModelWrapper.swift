@@ -16,13 +16,13 @@ class SearchViewModelWrapper: ObservableObject {
 
     init() {
         searchResults = []
-        viewModel = SearchViewModel(dispatchers: CoroutineDispatchers(), scope: MainScope(), withDatabase: PopulateDatabaseKt.sharedDatabase)
+        viewModel = SearchViewModelKt.provideSearchViewModel()
         
         viewModel.searchResults.subscribe(
             onEvent: { result in
                 self.searchResults = result as! Array<SearchResult>
             },
-            onError: {throwable in
+            onError: { throwable in
                 print("SearchViewModelWrapper onError: " + throwable.description())
             },
             onComplete: {

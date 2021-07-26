@@ -17,7 +17,7 @@ struct SearchView: View {
     var body: some View {
         ZStack(alignment: .top) {
             SearchResultList(isVisible: $isSearchResultsVisible, results: viewModel.searchResults)
-            SearchBar(isSearchResultsVisible: $isSearchResultsVisible, viewModel: viewModel)
+            SearchBar(viewModel: viewModel, isSearchResultsVisible: $isSearchResultsVisible)
         }
         .padding(15)
     }
@@ -25,13 +25,13 @@ struct SearchView: View {
 
 struct SearchBar: View {
     
+    var viewModel: SearchViewModelWrapper
     @State var query: String = "" {
         didSet {
             viewModel.getSearchResults(query: query)
         }
     }
     @Binding var isSearchResultsVisible: Bool
-    var viewModel: SearchViewModelWrapper
 
     var body: some View {
         let queryBinding = Binding<String>(

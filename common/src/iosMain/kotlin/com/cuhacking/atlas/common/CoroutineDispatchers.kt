@@ -1,8 +1,6 @@
 package com.cuhacking.atlas.common
 
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.Runnable
 import platform.darwin.dispatch_async
 import platform.darwin.dispatch_get_main_queue
@@ -26,12 +24,4 @@ internal class NsQueueDispatcher(private val dispatchQueue: dispatch_queue_t) : 
             block.run()
         }
     }
-}
-
- class MainScope : CoroutineScope {
-    private val dispatcher = CoroutineDispatchers.main
-    private val job = Job()
-
-    override val coroutineContext: CoroutineContext
-        get() = dispatcher + job
 }
